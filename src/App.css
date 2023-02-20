@@ -7,12 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 20vh;
@@ -24,15 +18,30 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-bar {
+  background-color: blue; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.social-login {
+  margin: 100px;
+  padding: 20px;
+}
+
+.social-button {
+  height: 60px;
+}
+
+.robin {
+  height: 40px;
+  width: 150px;
+}
+
+.zuckie {
+  height: 60px; 
+  width: 150px;
+}
+
+.goog {
+  height: 40px; 
+  width: 150px;
 }
