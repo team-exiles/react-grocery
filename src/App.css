@@ -1,6 +1,10 @@
 .App {
   text-align: center;
-  background-color: greenyellow;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
 .App-header {
@@ -31,6 +35,11 @@
 .zuckie {
   height: 60px;
   width: 150px;
+}
+
+.folder-pic {
+  height: 60px;
+  width: 60px;
 }
 
 .goog {
@@ -71,5 +80,18 @@
 }
 
 .folders {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-folder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.archived-folder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
