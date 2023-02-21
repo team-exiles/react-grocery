@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export const Homepage = () => {
   return (
@@ -23,10 +24,13 @@ export const Homepage = () => {
           </div>
 
           <div className="folders">
-            <button className="recipes-folder">Recipes</button>
-            <button className="archived-folder">Archived</button>
+            <h4>Recipes</h4>< ExpandedFolder />
+
+            <h4>Archived</h4>< ExpandedFolder />
           </div>
       </section>
+
+
         <button>
           <Link to="/Create" path="relative" className="createbutt">
             Pen List
@@ -35,3 +39,19 @@ export const Homepage = () => {
       </>
       )}
 
+      function ExpandedFolder(){
+        const [isExpanded, setExpansion] = useState(false);
+        const buttonName = isExpanded ? "Less" : "More";
+
+        return (
+          <div>
+              <button onClick={() => setExpansion(!isExpanded)}><strong>{buttonName} Info</strong></button>
+              {isExpanded && (
+                  <div className="expandedBox">
+                    <p>grocery list</p>
+                    <p>party list</p>
+                  </div>
+              )}
+          </div>   
+      )
+  }
