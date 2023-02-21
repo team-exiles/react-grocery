@@ -5,16 +5,16 @@ export const Homepage = () => {
       <>
         <section className="homepage"> 
         <div className="logged-in-user">
-          <h2> Username </h2>
+          <h2> Welcome, INSERT USERNAME! </h2>
           <h3> Email </h3>
         </div>
 
         <div className="active-lists">
-          <h2>Here are my active lists</h2>
-          <button><p>List 1</p></button>
-          <button><p>List 2</p></button>
-          <button><p>List 3</p></button>
-          <button><p>McLovin's Salad</p></button>
+          <h2>Here are my active lists:</h2>
+          <button className="listbutt"><p>List 1</p></button>
+          <button className="listbutt"><p>List 2</p></button>
+          <button className="listbutt"><p>List 3</p></button>
+          <button className="listbutt"><p>McLovin's Salad</p></button>
         </div>
 
           <div className="action-buttons">
