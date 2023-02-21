@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Login } from "./Components/Login";
-import CreateList from "./Components/CreateList";
+import CreateList from "./Components/List";
 
 function App() {
   const [user, setUser] = useState(false);
