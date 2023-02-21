@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import folder from "../img/folder.png"; 
 
 export const Homepage = () => {
   return (
@@ -26,13 +27,15 @@ export const Homepage = () => {
           <div className="folders">
 
             <div className="recipe-folder">
+              <img src={folder} className="folder-pic" alt="folder" />
               <h4>Recipes</h4>< ExpandedFolder />
             </div>
 
             <div className="archived-folder">
+            <img src={folder} className="folder-pic" alt="folder" />
               <h4>Archived</h4>< ExpandedFolder />
             </div>
-            
+
           </div>
 
       </section>
