@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom'
 
 export const CreateList = () => {
+    return (
     <>
-    <h3>List Genesis</h3>
-    <p>Let's make some nice <strong>THICC</strong> lists</p>
+    <h2>List Genesis</h2>
+    <p>My super <strong>THICC</strong> list</p>
     <br/>
-        <p>Tonight's Dinner</p>
+        <h3>Tonight's Dinner</h3>
         <ul>
         <li>Baby Food</li>
         <li>Everclear</li>
@@ -12,6 +14,8 @@ export const CreateList = () => {
         <li>Roll of Amish Butter</li>
         </ul>
     <button>Create List</button>
+    <button><Link to="/">Home Page</Link></button>
     </>
+    )
 
 }
