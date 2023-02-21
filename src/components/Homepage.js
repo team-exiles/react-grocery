@@ -11,9 +11,10 @@ export const Homepage = () => {
 
         <div className="active-lists">
           <h2>Here are my active lists</h2>
-          <p>List 1</p>
-          <p>List 2</p>
-          <p>List 3</p>
+          <button><p>List 1</p></button>
+          <button><p>List 2</p></button>
+          <button><p>List 3</p></button>
+          <button><p>McLovin's Salad</p></button>
         </div>
 
           <div className="action-buttons">

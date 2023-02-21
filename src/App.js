@@ -11,6 +11,10 @@ function App() {
 
   return (
     <div className="App">
+      <header className="App-header">
+        <h2>The NutBagz have Returned</h2>
+        <h3>Until we have another name up, of course</h3>
+      </header>
       {!user ? (
         <Login setUser={setUser} />
       ) : (
