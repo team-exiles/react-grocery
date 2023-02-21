@@ -1,13 +1,10 @@
 import "./App.css";
 import { useState } from "react";
-import { Login } from "./Components/Login";
-import { List } from "./Components/List";
 import { Routes, Route } from "react-router-dom";
-import { Homepage } from "./Components/Homepage";
-import { CreateList } from "./Components/CreateList";
-import twitter from "./img/twitter.png";
-import facebook from "./img/facebook.png";
-import google from "./img/google.png";
+import { Login } from "./components/Login";
+import { List } from "./components/List";
+import { Homepage } from "./components/Homepage";
+import { CreateList } from "./components/CreateList";
 
 function App() {
   const [user, setUser] = useState(false);
