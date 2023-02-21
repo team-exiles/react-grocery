@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login";
-import { List } from "./components/List";
+import { List } from "./components/prototypeList";
 import { Homepage } from "./components/Homepage";
 import { CreateList } from "./components/CreateList";
 

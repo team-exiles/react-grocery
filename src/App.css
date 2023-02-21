@@ -1,11 +1,6 @@
 .App {
   text-align: center;
-  background-color: greenyellow; 
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  background-color: greenyellow;
 }
 
 .App-header {
@@ -17,10 +12,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.nav-bar {
-  background-color: blue; 
 }
 
 .social-login {
@@ -38,12 +29,12 @@
 }
 
 .zuckie {
-  height: 60px; 
+  height: 60px;
   width: 150px;
 }
 
 .goog {
-  height: 40px; 
+  height: 40px;
   width: 150px;
 }
 
@@ -56,19 +47,19 @@
 .Make-New-Folder {
   width: 70px;
   height: 70px;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .Make-New-List {
   width: 70px;
   height: 70px;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .Start-Shopping {
   width: 70px;
   height: 70px;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .logged-in-user {
