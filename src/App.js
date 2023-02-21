@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>NutBagz</h2>
+        <h2>Grocery App</h2>
       </header>
 
       {!user ? (
@@ -36,14 +36,34 @@ function App() {
       
             </div>
     ) : (
-        <div className="homepage"> 
-        <h2>My List</h2>
-          <ul>
-            <li>I am a list, hear me roar.</li>
-            <li>Rawr Rawr.</li>
-          </ul>
-        <button>Make New List</button>
-        </div>)}
+
+        <section className="homepage"> 
+        <div className="logged-in-user">
+          <h2> Username </h2>
+          <h3> Email </h3>
+        </div>
+
+        <div className="active-lists">
+          <h2>Here are my active lists</h2>
+          <p>List 1</p>
+          <p>List 2</p>
+          <p>List 3</p>
+        </div>
+
+          <div className="folders">
+            <button className="recipes-folder">Recipes</button>
+            <button className="archived-folder">Archived</button>
+          </div>
+
+          <div className="action-buttons">
+            <button className="Make-New-Folder"></button>
+            <button className="Make-New-List"></button>
+            <button className="Start-Shopping"></button>
+          </div>
+          <form>
+            
+          </form>
+        </section>)}
     </div>
   );
 }

@@ -45,3 +45,39 @@
   height: 40px; 
   width: 150px;
 }
+
+.action-buttons {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.Make-New-Folder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%
+}
+
+.Make-New-List {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%
+}
+
+.Start-Shopping {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%
+}
+
+.logged-in-user {
+  border-bottom: solid 2px black;
+}
+
+.active-lists {
+  border-bottom: solid 2px black;
+}
+
+.folders {
+  padding: 20px;
+}
