@@ -10,9 +10,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h2>Grocery App</h2>
-      </header>
 
       {!user ? (
               <div> 
@@ -50,22 +47,22 @@ function App() {
           <p>List 3</p>
         </div>
 
-          <div className="folders">
-            <button className="recipes-folder">Recipes</button>
-            <button className="archived-folder">Archived</button>
-          </div>
-
           <div className="action-buttons">
             <button className="Make-New-Folder"></button>
             <button className="Make-New-List"></button>
             <button className="Start-Shopping"></button>
           </div>
-          <form>
-            
-          </form>
+
+          <div className="folders">
+            <button className="recipes-folder">Recipes</button>
+            <button className="archived-folder">Archived</button>
+          </div>
         </section>)}
     </div>
   );
 }
+
+
+
 
 export default App;
