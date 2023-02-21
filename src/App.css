@@ -1,6 +1,5 @@
 .App {
-  text-align: center;
-  background-color: greenyellow; 
+  text-align: center; 
 }
 
 .App-logo {
@@ -42,6 +41,11 @@
   width: 150px;
 }
 
+.folder-pic {
+  height: 60px;
+  width: 60px;
+}
+
 .goog {
   height: 40px; 
   width: 150px;
@@ -80,5 +84,18 @@
 }
 
 .folders {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-folder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.archived-folder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
