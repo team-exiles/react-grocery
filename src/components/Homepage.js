@@ -24,10 +24,17 @@ export const Homepage = () => {
           </div>
 
           <div className="folders">
-            <h4>Recipes</h4>< ExpandedFolder />
 
-            <h4>Archived</h4>< ExpandedFolder />
+            <div className="recipe-folder">
+              <h4>Recipes</h4>< ExpandedFolder />
+            </div>
+
+            <div className="archived-folder">
+              <h4>Archived</h4>< ExpandedFolder />
+            </div>
+            
           </div>
+
       </section>
 
 
