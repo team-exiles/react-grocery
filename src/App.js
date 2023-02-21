@@ -8,7 +8,6 @@ function App() {
 
   const [user, setUser] = useState(false)
 
-
   return (
     <div className="App">
       <header className="App-header">
@@ -39,15 +38,12 @@ function App() {
     ) : (
         <div className="homepage"> 
         <h2>My List</h2>
-        <form>
           <ul>
             <li>I am a list, hear me roar.</li>
             <li>Rawr Rawr.</li>
           </ul>
-        </form>
-        <button>Logout</button>
+        <button>Make New List</button>
         </div>)}
-
     </div>
   );
 }
