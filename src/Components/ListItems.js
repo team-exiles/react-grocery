@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-export const ListItems = () => {
+function ListItems() {
   const [itemEntry, setItemEntry] = useState("");
 
   return (
     <div>
+      <h1>List</h1>
       <form className="list-title">
         <label htmlFor="titleInput" hidden>
           Enter Title
@@ -18,7 +19,9 @@ export const ListItems = () => {
         />
         <button type="submit">Send</button>
       </form>
-      <ListItems/>
+      <ListItems />
     </div>
   );
-};
+}
+
+export default ListItems;
