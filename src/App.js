@@ -1,5 +1,8 @@
 import './App.css';
 import { useState } from 'react'; 
+import { Routes, Route } from 'react-router-dom';
+import { Homepage } from './components/Homepage';
+import { CreateList } from './components/CreateList';
 import twitter from './twitter.png'; 
 import facebook from './facebook.png';
 import google from './google.png';
@@ -36,14 +39,12 @@ function App() {
       
             </div>
     ) : (
-        <div className="homepage"> 
-        <h2>My List</h2>
-          <ul>
-            <li>I am a list, hear me roar.</li>
-            <li>Rawr Rawr.</li>
-          </ul>
-        <button>Make New List</button>
-        </div>)}
+        <> 
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/Create" element={<CreateList />} />
+          </Routes>
+        </>)}
     </div>
   );
 }
