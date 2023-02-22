@@ -8,6 +8,7 @@ export const Homepage = () => {
     <section className="homepage">
       <div className="homepage-header">
         <div className="logged-in-user">
+          {/* This is placeholder info and image*/}
           <img src={placeholder} className="avatar" />
           <div className="user-info">
             <h1 className="username-title">MJ Parker</h1>
