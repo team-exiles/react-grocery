@@ -7,20 +7,22 @@ export function Login({ setUser }) {
   return (
     <>
       <div className="login-field">
-        <h3>Login</h3>
+        <h1>Log In</h1>
         <div className="username">
           <input
-            className="input"
-            type="text"
-            placeholder="username"
+            className="login-input"
+            type="login-input"
+            placeholder="  Email"
             /* onChange={(e) => setUsername(e.target.value)} */
           />
         </div>
 
         <div className="password">
-          <input className="input" type="password" placeholder="password" />
+          <input className="input" type="password" placeholder="  Password" />
         </div>
-        <button onClick={setUser}>Login</button>
+        <button onClick={setUser} className="login-button">
+          <strong>Log In</strong>
+        </button>
       </div>
 
       <div className="social-login">

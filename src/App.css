@@ -26,7 +26,6 @@
 */
 
 .App {
-  text-align: center;
   font-family: "Inter", sans-serif;
 }
 
@@ -45,8 +44,33 @@ html {
 }
 
 .login-field {
-  padding: 20px;
+  /* padding: 20px; */
   margin: 20px;
+  text-align: center;
+}
+
+.login-input,
+.password {
+  margin-bottom: 10px;
+}
+
+input[type="login-input"],
+input[type="password"] {
+  background-color: rgb(235, 234, 234);
+  border: solid rgba(201, 201, 201, 0.849) 1px;
+  border-radius: 10px;
+  height: 40px;
+  width: 85%;
+}
+
+.login-button {
+  text-align: center;
+  width: 70%;
+  height: 30px;
+  color: white;
+  background-color: #12aec2;
+  border: none;
+  border-radius: 25px;
 }
 
 .social-login {
@@ -72,13 +96,46 @@ html {
   height: 40px;
   width: 150px;
 }
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 20%;
+}
+
+.homepage {
+  padding: 4%;
+}
 .folder-pic {
   height: 60px;
   width: 60px;
 }
 
-.logged-in-user {
+.homepage-header {
   border-bottom: solid 2px lightgray;
+}
+
+.logged-in-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* border: black 1px solid; */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  text-align: left;
+  margin-left: 3%;
+}
+.username-title {
+  margin: 1%;
+  margin-left: 0;
+}
+
+.user-email {
+  padding-bottom: 1%;
+  color: gray;
 }
 
 .action-buttons {
@@ -106,7 +163,7 @@ html {
 }
 
 .active-lists {
-  border-bottom: solid 2px lightgray;
+  /* border-bottom: solid 2px lightgray; */
   padding: 10px;
 }
 
@@ -115,7 +172,7 @@ html {
   flex-direction: row;
   height: 25px;
   line-height: 25px;
-  border: black 1px solid;
+  /* border: black 1px solid; */
 }
 
 .listbutt {
@@ -134,7 +191,7 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  border: black 1px solid;
+  /* border: black 1px solid; */
 }
 
 .archived-folder {
@@ -142,6 +199,5 @@ html {
   flex-direction: row;
   justify-content: left;
   height: 25px;
-  /*line-height: 25px; same as height*/
-  border: black 1px solid;
+  /* border: black 1px solid; */
 }
