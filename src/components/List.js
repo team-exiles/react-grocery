@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { ListItems } from "./ListItems";
 
 export const CreateList = () => {
-  const [list, setList] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setListTitle] = useState("");
 
   const handleText = (e) => {
     e.preventDefault();
-    setTitle(e.target.value);
+    setListTitle(e.target.value);
   };
 
   return (
     <div className="title">
+      <h1>{listTitle}</h1>
       <input
         className="title-input-field"
         onChange={handleText}
