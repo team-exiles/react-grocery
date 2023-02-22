@@ -7,12 +7,6 @@ import placeholder from "../img/chibi-mj.jpg";
 
 
 export const Homepage = () => {
-  const [createListPopUp, setCreateListPopUp] = useState(false);
-
-
-  if(createListPopUp === true)
-    <CreateListPopUp setCreateListPopUp={setCreateListPopUp}/>
-
 
   return (
     <section className="homepage">
@@ -58,13 +52,33 @@ export const Homepage = () => {
           <span>Archived</span>
           <ExpandedFolder />
         </div>
-
-        <button className="newListButton" onClick={CreateListPopUp === true}>Create New List</button>
-
+          <CreateNewList />
       </div>
     </section>
   );
 };
+
+function CreateNewList() {
+  const [isPopUp, setPopUp] = useState(false);
+  const buttonName = isPopUp ? "Less" : "";
+
+  return (
+    <div>
+      <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
+        <strong>{buttonName} Create New List</strong>
+      </button>
+      {isPopUp && (
+        <div className="new-list-pop-up">
+          <h1>Create A List</h1>
+          <input
+            className="New-List"
+            type="New-List-input"
+            placeholder="Title" />
+            </div>
+      )}
+    </div>
+  );
+}
 
 
 
