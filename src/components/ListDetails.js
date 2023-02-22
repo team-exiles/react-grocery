@@ -1,29 +1,23 @@
-import { useState } from 'react'; 
 
-export const ListDetails = ({card}) => {
+
+export const ListDetails = ({list}) => {
 
     return (
-    <div className="list-container"
-        style={{ borderColor: `${card.border_color}`,
-        fontFamily: `${card.font}`, 
-        color: `${card.text_color}`}}>
-        <br/>
-        <br/>
+        <div className="list-container">
             <h5 className="list-title">{list.title}</h5>
 
-            {front ? ( 
-                <div className="front-card">
-                    <div className="front-message">{card.front_message}</div>
-                </div>
-            ) : (
-            <div className="card-container-back">
-                <div className="back-message">{card.back_message}</div>
+            <div className="list-item">
+                <div className="list-item">{list.item}</div>
             </div>
-            )}
-        <br/>
-        <div>
-            <div className="author">{`created by ${card.owner}`}</div>
+
+            <div className="card-container-back">
+                <div className="back-message">{list.quantity}</div>
+            </div>
+
+            <br />
+            <div>
+                <div className="author">{`created by ${list.owner}`}</div>
+            </div>
         </div>
-    </div>
     )
 }

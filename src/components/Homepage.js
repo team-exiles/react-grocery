@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom";
 import { requestAllLists } from './Requests';
-import { ListItems } from './ListItems'; 
+import { ListDetails } from './ListDetails';
 import { useEffect, useState } from "react";
 import folder from "../img/folder.png"; 
 import placeholder from "../img/chibi-mj.jpg";
 
 
-export const Homepage = (token) => {
+export const Homepage = () => {
   const [lists, setLists] = useState([])
 
   useEffect(() => {
-    requestAllLists(token)
+    requestAllLists()
         .then(res =>  {
             setLists(res.data)
         })
-}, [token])
+})
 
   return (
     <section className="homepage">
@@ -32,7 +32,7 @@ export const Homepage = (token) => {
       <div className="active-lists">
         {lists.map(list => (
           <div className="listall">
-             <ListItems list={list} token={token} /> 
+             <ListDetails list={list} /> 
           </div>
         ))}
 
