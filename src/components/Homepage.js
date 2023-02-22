@@ -1,9 +1,21 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import folder from "../img/folder.png";
+import { requestAllLists } from './Requests';
+import { ListDetails } from './ListDetails';
+import { useEffect, useState } from "react";
+import folder from "../img/folder.png"; 
 import placeholder from "../img/chibi-mj.jpg";
 
+
 export const Homepage = () => {
+  const [lists, setLists] = useState([])
+
+  useEffect(() => {
+    requestAllLists()
+        .then(res =>  {
+            setLists(res.data)
+        })
+})
+
   return (
     <section className="homepage">
       <div className="homepage-header">
@@ -18,6 +30,12 @@ export const Homepage = () => {
       </div>
 
       <div className="active-lists">
+        {lists.map(list => (
+          <div className="listall">
+             <ListDetails list={list} /> 
+          </div>
+        ))}
+
         <div className="list-homepage-line">
           <span className="material-symbols-outlined">list</span>
           <span>Thursday Taco Night</span>
@@ -27,6 +45,7 @@ export const Homepage = () => {
           <span className="material-symbols-outlined">list</span>
           <span>Sunday Game</span>
         </div>
+
       </div>
 
       <div className="action-buttons">
