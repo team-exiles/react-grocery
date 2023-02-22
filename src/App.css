@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: rgb(25, 168, 20);
+  color: white;
+  text-align: center;
 }
 
 .App-logo {
@@ -15,11 +18,19 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+}
+
+.nav-bar {
+  background-color: blue;
+}
+
+.login-field {
+  padding: 20px;
+  margin: 20px;
 }
 
 .social-login {
-  margin: 100px;
+  margin: 50px;
   padding: 20px;
 }
 
@@ -47,6 +58,10 @@
   width: 150px;
 }
 
+.logged-in-user {
+  border-bottom: solid 2px black;
+}
+
 .action-buttons {
   position: fixed;
   bottom: 0;
@@ -71,15 +86,19 @@
   border-radius: 50%;
 }
 
-.logged-in-user {
-  border-bottom: solid 2px black;
-}
-
 .active-lists {
   border-bottom: solid 2px black;
+  padding: 10px;
+}
+
+.listbutt {
+  margin: 5px;
+  background-color: #282c34;
+  color: white;
 }
 
 .folders {
+  padding: 20px;
   display: flex;
   flex-direction: column;
 }

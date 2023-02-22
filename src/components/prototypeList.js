@@ -1,9 +1,18 @@
-import { useState } from "react";
-import ListItems from "./ListItems";
+import { requestAllLists } from './Requests';
+import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import { ListItems } from "./ListItems";
 
-function CreateList() {
+export const CreateList = () => {
   const [list, setList] = useState("");
   const [title, setTitle] = useState("Title..");
+
+  useEffect(() => {
+    requestAllLists()
+        .then(res =>  {
+            setList(res.data)
+        })
+}, [])
 
   return (
     <div>
@@ -21,6 +30,7 @@ function CreateList() {
         />
         <button type="submit">Send</button>
       </form>
+      <button><Link to="/">Home Page</Link></button>
       {/* <ListItems /> */}
     </div>
   );
