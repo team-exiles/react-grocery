@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { requestAllLists } from './Requests';
 import { useEffect, useState } from "react";
 import folder from "../img/folder.png"; 
+import placeholder from "../img/chibi-mj.jpg";
+
 
 export const Homepage = () => {
   const [list, setList] = useState("")
@@ -14,65 +16,75 @@ export const Homepage = () => {
 }, [])
 
   return (
-      <>
-        <section className="homepage"> 
+    <section className="homepage">
+      <div className="homepage-header">
         <div className="logged-in-user">
-          <h2> Welcome, INSERT USERNAME! </h2>
-          <h3> Email </h3>
+          {/* This is placeholder info and image*/}
+          <img src={placeholder} className="avatar" />
+          <div className="user-info">
+            <h1 className="username-title">MJ Parker</h1>
+            <span className="user-email">mjparker@dailybugle.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="active-lists">
+        <div className="list-homepage-line">
+          <span className="material-symbols-outlined">list</span>
+          <span>Thursday Taco Night</span>
         </div>
 
-        <div className="active-lists">
-          <h2>Here are my active lists:</h2>
-          <button className="listbutt"><p>List 1</p></button>
-          <button className="listbutt"><p>List 2</p></button>
-          <button className="listbutt"><p>List 3</p></button>
-          <button className="listbutt"><p>McLovin's Salad</p></button>
+        <div className="list-homepage-line">
+          <span className="material-symbols-outlined">list</span>
+          <span>Sunday Game</span>
+        </div>
+      </div>
+
+      <div className="action-buttons">
+        <button className="Make-New-Folder"></button>
+        <button className="Make-New-List"></button>
+        <button className="Start-Shopping"></button>
+      </div>
+
+      <div className="folders">
+        <div className="recipe-folder">
+          <span className="material-symbols-outlined">folder</span>
+          <span className="homepage-text">Recipes</span>
+
+          <ExpandedFolder />
         </div>
 
-          <div className="action-buttons">
-            <button className="Make-New-Folder"></button>
-            <button className="Make-New-List"></button>
-            <button className="Start-Shopping"></button>
-          </div>
+        <div className="archived-folder">
+          <span className="material-symbols-outlined">folder</span>
+          <span>Archived</span>
+          <ExpandedFolder />
+        </div>
+      </div>
 
-          <div className="folders">
+      <button>
+        <Link to="/Create" path="relative" className="createbutt">
+          Pen List
+        </Link>
+      </button>
+    </section>
+  );
+};
 
-            <div className="recipe-folder">
-              <img src={folder} className="folder-pic" alt="folder" />
-              <h4>Recipes</h4>< ExpandedFolder />
-            </div>
+function ExpandedFolder() {
+  const [isExpanded, setExpansion] = useState(false);
+  const buttonName = isExpanded ? "Less" : "More";
 
-            <div className="archived-folder">
-            <img src={folder} className="folder-pic" alt="folder" />
-              <h4>Archived</h4>< ExpandedFolder />
-            </div>
-
-          </div>
-
-      </section>
-
-
-        <button>
-          <Link to="/Create" path="relative" className="createbutt">
-            Pen List
-          </Link>
-        </button>
-      </>
+  return (
+    <div>
+      <button onClick={() => setExpansion(!isExpanded)}>
+        <strong>{buttonName} Info</strong>
+      </button>
+      {isExpanded && (
+        <div className="expandedBox">
+          <p>grocery list</p>
+          <p>party list</p>
+        </div>
       )}
-
-      function ExpandedFolder(){
-        const [isExpanded, setExpansion] = useState(false);
-        const buttonName = isExpanded ? "Less" : "More";
-
-        return (
-          <div>
-              <button onClick={() => setExpansion(!isExpanded)}><strong>{buttonName} Info</strong></button>
-              {isExpanded && (
-                  <div className="expandedBox">
-                    <p>grocery list</p>
-                    <p>party list</p>
-                  </div>
-              )}
-          </div>   
-      )
-  }
+    </div>
+  );
+}
