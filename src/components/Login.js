@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { requestLogin } from "./Requests";
 import facebook from "../img/facebook.png";
 import google from "../img/google.png";
 import twitter from "../img/twitter.png";

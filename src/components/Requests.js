@@ -1,5 +1,14 @@
 import axios from 'axios';
 
+export const requestLogin = (token) => {
+    const url = 'https://safe-plains-62725.herokuapp.com/auth/token/login/';
+
+    const response = axios.get(url, {
+        headers: {Authorization: `token ${token}`}
+    }); 
+    return response;
+}
+
 export const requestAllLists = () => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/';
 
