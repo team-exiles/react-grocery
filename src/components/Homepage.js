@@ -60,8 +60,8 @@ export const Homepage = () => {
 
 function CreateNewList() {
   const [isPopUp, setPopUp] = useState(false);
-  const buttonName = isPopUp ? "" : "";
-
+  const buttonName = isPopUp;
+  
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -70,13 +70,15 @@ function CreateNewList() {
       {isPopUp && (
         <div className="new-list-pop-up">
           <h1>Create A List</h1>
+          <div>
+          </div>
           <input
             className="New-List"
             type="New-List-input"
             placeholder="Title" />
-            </div>
-       
-      )}
+            <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
+            <button className="submit-button">Submit</button>
+            </div>)}
     </div>
   );
 }
