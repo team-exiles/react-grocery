@@ -1,12 +1,11 @@
-import { useState } from 'React';
+import { useState } from 'react';
 
 
 export function CreateListPopUp({setCreateListPopUp}) {
-    const [createListPopUp, setCreateListPopUp] = useState(false);
     const [newListTitle, setNewListTitle] = useState=("");
     return(
         <div className="new-list-pop-up">
-        <h2>New List Title</h2>
+        <h1>{newListTitle}</h1>
         <input
             className="New-List"
             type="New-List-input"

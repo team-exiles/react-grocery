@@ -1,16 +1,25 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { CreateListPopUp } from "./Create-list-pop-up";
+import { CreateListPopUp } from "./CreateListPopUp";
 import folder from "../img/folder.png";
 import placeholder from "../img/chibi-mj.jpg";
 
+
+
 export const Homepage = () => {
+  const [createListPopUp, setCreateListPopUp] = useState(false);
+
+
+  if(createListPopUp === true)
+    <CreateListPopUp setCreateListPopUp={setCreateListPopUp}/>
+
+
   return (
     <section className="homepage">
       <div className="homepage-header">
         <div className="logged-in-user">
           {/* This is placeholder info and image*/}
-          <img src={placeholder} className="avatar" />
+          <img src={placeholder} alt="avatar"className="avatar" />
           <div className="user-info">
             <h1 className="username-title">MJ Parker</h1>
             <span className="user-email">mjparker@dailybugle.com</span>
@@ -58,8 +67,6 @@ export const Homepage = () => {
 };
 
 
-    if(CreateListPopUp === true)
-    <createListPopUp setCreateListPopUp={setCreateListPopUp}/>
 
 
 function ExpandedFolder() {
