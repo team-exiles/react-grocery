@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { CreateListPopUp } from "./Create-list-pop-up";
 import folder from "../img/folder.png";
 import placeholder from "../img/chibi-mj.jpg";
 
@@ -48,16 +49,18 @@ export const Homepage = () => {
           <span>Archived</span>
           <ExpandedFolder />
         </div>
-      </div>
 
-      <button>
-        <Link to="/Create" path="relative" className="createbutt">
-          Pen List
-        </Link>
-      </button>
+        <button className="newListButton" onClick={CreateListPopUp === true}>Create New List</button>
+
+      </div>
     </section>
   );
 };
+
+
+    if(CreateListPopUp === true)
+    <createListPopUp setCreateListPopUp={setCreateListPopUp}/>
+
 
 function ExpandedFolder() {
   const [isExpanded, setExpansion] = useState(false);

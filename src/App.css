@@ -202,3 +202,16 @@ input[type="password"] {
   justify-content: left;
   border: black 1px solid; 
 }*/
+
+.newListButton {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 5px solid black;
+}
+
+.new-list-pop-up {
+  height: 100px;
+  width: 100px;
+  border: 5px solid black;
+}
