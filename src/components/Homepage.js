@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { requestAllLists } from './Requests';
+import { useEffect, useState } from "react";
 import folder from "../img/folder.png"; 
 
 export const Homepage = () => {
+  const [list, setList] = useState("")
+
+  useEffect(() => {
+    requestAllLists()
+        .then(res =>  {
+            setList(res.data)
+        })
+}, [])
+
   return (
       <>
         <section className="homepage"> 

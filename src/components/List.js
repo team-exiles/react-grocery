@@ -1,18 +1,10 @@
-import { requestAllLists } from './Requests';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { ListItems } from "./ListItems";
 
 export const CreateList = () => {
   const [list, setList] = useState("");
   const [title, setTitle] = useState("Title..");
-
-  useEffect(() => {
-    requestAllLists()
-        .then(res =>  {
-            setList(res.data)
-        })
-}, [])
 
   return (
     <div>
