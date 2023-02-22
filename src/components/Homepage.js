@@ -60,7 +60,7 @@ export const Homepage = () => {
 
 function CreateNewList() {
   const [isPopUp, setPopUp] = useState(false);
-  const buttonName = isPopUp ? "Less" : "";
+  const buttonName = isPopUp ? "" : "";
 
   return (
     <div>
@@ -75,6 +75,7 @@ function CreateNewList() {
             type="New-List-input"
             placeholder="Title" />
             </div>
+       
       )}
     </div>
   );
