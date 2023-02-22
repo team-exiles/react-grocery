@@ -1,9 +1,9 @@
-.App {
+/* .App {
   text-align: center;
   background-color: rgb(25, 168, 20);
   color: white;
   text-align: center;
-}
+
 
 .App-logo {
   height: 40vmin;
@@ -18,10 +18,21 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+
+  .nav-bar {
+    background-color: blue;
+  }
+}
+*/
+
+.App {
+  text-align: center;
+  font-family: "Inter", sans-serif;
 }
 
-.nav-bar {
-  background-color: blue;
+/* Material UI symbols from the index.html  */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
 }
 
 .login-field {
@@ -38,24 +49,23 @@
   height: 60px;
 }
 
-.robin {
+.twitter-image {
   height: 40px;
   width: 150px;
 }
 
-.zuckie {
+.facebook-image {
   height: 60px;
   width: 150px;
 }
 
+.google-image {
+  height: 40px;
+  width: 150px;
+}
 .folder-pic {
   height: 60px;
   width: 60px;
-}
-
-.goog {
-  height: 40px;
-  width: 150px;
 }
 
 .logged-in-user {
