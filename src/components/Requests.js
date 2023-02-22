@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export const requestAllLists = () => {
+export const requestAllLists = (token) => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/'
 
     const response = axios.get(url, {
+        headers: {Authorization: `token ${token}`}
     }); 
     return response; 
 };
