@@ -3,11 +3,11 @@ import { useState } from "react";
 
 export const CreateList = () => {
   const [list, setList] = useState("");
-  const [title, setTitle] = useState("Title..");
+  const [title, setTitle] = useState("");
 
   return (
     <div>
-      <h1>Create List</h1>
+      <h1>{title}</h1>
       <form className="list-title">
         <label htmlFor="titleInput" hidden>
           Enter Title
@@ -21,36 +21,30 @@ export const CreateList = () => {
         />
         <button type="submit">Send</button>
       </form>
+
+      <TextInput setTitle={setTitle} />
       {/* <ListItems /> */}
     </div>
   );
 };
 
-function TextInput(props) {
-  const [textInputField, setTextInputField] = useState("Input text here!");
-  const [displayAlign, setDisplayAlign] = useState("");
-  const [displayFont, setDisplayFont] = useState("");
+function TextInput({ setTitle }) {
+  const [textInputField, setTextInputField] = useState("");
 
   const handleText = (e) => {
     e.preventDefault();
     setTextInputField(e.target.value);
-    props.setFrontText(e.target.value);
-  };
-
-  const handleAlignment = (e) => {
-    setDisplayAlign(e.target.value);
-    props.setTextAlign(e.target.value);
-  };
-
-  const handleFont = (e) => {
-    setDisplayFont(e.target.value);
-    props.setTextFont(e.target.value);
+    setTitle(e.target.value);
   };
 
   return (
     <div className="text-customizer">
       <div className="front-input">
-        <input onChange={handleText} value={textInputField} />
+        <input
+          onChange={handleText}
+          value={textInputField}
+          placeholder="Enter Title..."
+        />
       </div>
     </div>
   );
