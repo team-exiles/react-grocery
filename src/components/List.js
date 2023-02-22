@@ -12,7 +12,9 @@ export const CreateList = () => {
         <Link to="/">Home Page</Link>
       </button>
       <h1>{title}</h1>
-      <form className="list-title">
+      <TextInput setTitle={setTitle} />
+
+      {/* <form className="list-title">
         <label htmlFor="titleInput" hidden>
           Enter Title
         </label>
@@ -25,8 +27,7 @@ export const CreateList = () => {
         />
         <button type="submit">Send</button>
       </form>
-      <TextInput setTitle={setTitle} />
-      {/* <ListItems /> */}
+      <ListItems /> */}
     </div>
   );
 };
@@ -41,14 +42,12 @@ function TextInput({ setTitle }) {
   };
 
   return (
-    <div className="text-customizer">
-      <div className="front-input">
-        <input
-          onChange={handleText}
-          value={textInputField}
-          placeholder="Enter Title..."
-        />
-      </div>
+    <div className="title-input">
+      <input
+        onChange={handleText}
+        value={textInputField}
+        placeholder="Enter Title..."
+      />
     </div>
   );
 }
