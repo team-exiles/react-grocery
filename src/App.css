@@ -30,9 +30,18 @@
   font-family: "Inter", sans-serif;
 }
 
+html {
+  background: url(img/kawaii-veggies-10pct.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 /* Material UI symbols from the index.html  */
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 48;
+  /* margin-right:5px; */
 }
 
 .login-field {
@@ -69,7 +78,7 @@
 }
 
 .logged-in-user {
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px lightgray;
 }
 
 .action-buttons {
@@ -97,8 +106,16 @@
 }
 
 .active-lists {
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px lightgray;
   padding: 10px;
+}
+
+.list-homepage-line {
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  line-height: 25px;
+  border: black 1px solid;
 }
 
 .listbutt {
@@ -108,19 +125,23 @@
 }
 
 .folders {
-  padding: 20px;
-  display: flex;
+  padding: 10px;
+  display: block;
   flex-direction: column;
 }
 
 .recipe-folder {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  border: black 1px solid;
 }
 
 .archived-folder {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  height: 25px;
+  /*line-height: 25px; same as height*/
+  border: black 1px solid;
 }

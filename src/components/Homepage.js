@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import folder from "../img/folder.png";
+import placeholder from "../img/chibi-mj.jpg";
 
 export const Homepage = () => {
   return (
     <>
       <section className="homepage">
         <div className="logged-in-user">
-          <h2> Welcome, INSERT USERNAME! </h2>
+          <span className="avatar">
+            <img src={placeholder} />
+          </span>
+          <h2> Welcome, User</h2>
           <h3> Email </h3>
         </div>
 
         <div className="active-lists">
-          <h2>Here are my active lists:</h2>
-          <button className="listbutt">
-            <p>List 1</p>
-          </button>
-          <button className="listbutt">
-            <p>List 2</p>
-          </button>
-          <button className="listbutt">
-            <p>List 3</p>
-          </button>
-          <button className="listbutt">
-            <p>McLovin's Salad</p>
-          </button>
+          <div className="list-homepage-line">
+            <span className="material-symbols-outlined">list</span>
+            <span>Thursday Taco Night</span>
+          </div>
+
+          <div className="list-homepage-line">
+            <span className="material-symbols-outlined">list</span>
+            <span>Sunday Game</span>
+          </div>
         </div>
 
         <div className="action-buttons">
@@ -36,12 +36,14 @@ export const Homepage = () => {
         <div className="folders">
           <div className="recipe-folder">
             <span className="material-symbols-outlined">folder</span>
-            <div className="homepage-text">Recipes</div>
+            <span className="homepage-text">Recipes</span>
+
             <ExpandedFolder />
           </div>
 
           <div className="archived-folder">
-            <h4>Archived</h4>
+            <span className="material-symbols-outlined">folder</span>
+            <span>Archived</span>
             <ExpandedFolder />
           </div>
         </div>
