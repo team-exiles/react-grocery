@@ -4,7 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login";
 import { List } from "./components/List";
 import { Homepage } from "./components/Homepage";
-import { CreateList } from "./components/CreateList";
+/* import { CreateList } from "./components/CreateList"; */ 
+import { CreateList } from "./components/List";
 
 function App() {
   const [user, setUser] = useState(false);
