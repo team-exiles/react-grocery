@@ -202,3 +202,10 @@ input[type="password"] {
   justify-content: left;
   border: black 1px solid; 
 }*/
+
+.title-input-field {
+  font-size: 2em;
+  border: none;
+  background-color: none;
+  width: 98%;
+}

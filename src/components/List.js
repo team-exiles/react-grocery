@@ -4,48 +4,70 @@ import { ListItems } from "./ListItems";
 
 export const CreateList = () => {
   const [list, setList] = useState("");
-  const [title, setTitle] = useState("Title..");
-
-  return (
-    <div>
-      <button>
-        <Link to="/">Home Page</Link>
-      </button>
-      <h1>{title}</h1>
-      <TextInput setTitle={setTitle} />
-
-      {/* <form className="list-title">
-        <label htmlFor="titleInput" hidden>
-          Enter Title
-        </label>
-        <input
-          id="titleInput"
-          name="titleInput"
-          type="text"
-          className="form-input__input"
-          placeholder="Enter Title..."
-        />
-        <button type="submit">Send</button>
-      </form>
-      <ListItems /> */}
-    </div>
-  );
-};
-
-function TextInput({ setTitle }) {
-  const [textInputField, setTextInputField] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleText = (e) => {
     e.preventDefault();
-    setTextInputField(e.target.value);
     setTitle(e.target.value);
   };
 
   return (
-    <div className="title-input">
+    <div className="title">
       <input
+        className="title-input-field"
         onChange={handleText}
-        value={textInputField}
+        value={title}
+        placeholder="Enter Title..."
+      />
+    </div>
+  );
+};
+
+// export const CreateList = () => {
+//   const [list, setList] = useState("");
+//   const [title, setTitle] = useState("Title..");
+
+//   return (
+//     <div>
+//       <button>
+//         <Link to="/">Home Page</Link>
+//       </button>
+//       <h1>{title}</h1>
+//       <TextInput title={title} setTitle={setTitle} />
+
+//        <form className="list-title">
+//         <label htmlFor="titleInput" hidden>
+//           Enter Title
+//         </label>
+//         <input
+//           id="titleInput"
+//           name="titleInput"
+//           type="text"
+//           className="form-input__input"
+//           placeholder="Enter Title..."
+//         />
+//         <button type="submit">Send</button>
+//       </form>
+//       <ListItems />
+//     </div>
+//   );
+// };
+
+function TextInput({ title, setTitle }) {
+  const [textInputField, setTextInputField] = useState("");
+
+  const handleText = (e) => {
+    e.preventDefault();
+    // setTextInputField(e.target.value);
+    setTitle(e.target.value);
+  };
+
+  return (
+    <div className="title">
+      <input
+        className="title-input-field"
+        onChange={handleText}
+        value={title}
         placeholder="Enter Title..."
       />
     </div>
