@@ -15,7 +15,7 @@ function App() {
     setUsername(username)
   }
 
-  const loggedIn = token 
+  const loggedIn = token
 
   return (
     <div className="App">
