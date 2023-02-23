@@ -207,3 +207,66 @@ input[type="password"] {
   justify-content: left;
   border: black 1px solid; 
 }*/
+
+.new-list-pop-up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 200px;
+  border: 3px solid #73AD21;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-folder-pop-up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 200px;
+  border: 3px solid #73AD21;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-list-button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 15%;
+  right: 27%;
+}
+
+.new-folder-button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 15%;
+  right: 5%;
+}
+
+.cancel-button {
+  height: 30px;
+  width: 60px;
+}
+
+.submit-button {
+  height: 30px;
+  width: 60px;
+}
+
+.show-buttons {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 6%;
+    right: 16%;
+}
