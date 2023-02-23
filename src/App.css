@@ -214,11 +214,12 @@ input[type="password"] {
   left: 50%;
   width: 300px;
   height: 200px;
-  border: 3px solid #73AD21;
+  border: 3px solid #73ad21;
   transform: translate(-50%, -50%);
   justify-content: center;
   display: flex;
   flex-direction: column;
+  background-color: whitesmoke;
 }
 
 .new-folder-pop-up {
@@ -227,7 +228,7 @@ input[type="password"] {
   left: 50%;
   width: 300px;
   height: 200px;
-  border: 3px solid #73AD21;
+  border: 3px solid #73ad21;
   transform: translate(-50%, -50%);
   justify-content: center;
   display: flex;
@@ -263,10 +264,10 @@ input[type="password"] {
 }
 
 .show-buttons {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 6%;
-    right: 16%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 6%;
+  right: 16%;
 }

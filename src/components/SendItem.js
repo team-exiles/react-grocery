@@ -6,8 +6,13 @@ export function SendItems({ items, setItems, listTitle, setListTitle }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (addedItem.trim() === "") {
+      alert("Enter valid message");
+      return;
+    }
     setItems([...items, addedItem]);
     setTextInput("");
+    setAddedItem("");
   };
 
   const handleText = (e) => {
@@ -26,6 +31,8 @@ export function SendItems({ items, setItems, listTitle, setListTitle }) {
           onChange={handleText}
           value={textInput}
           placeholder="Add an item.."
+          type="text"
+          required
         />
         <button type="submit" onClick={handleSubmit}>
           Add

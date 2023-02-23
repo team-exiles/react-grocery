@@ -79,7 +79,7 @@ function ShowButtons() {
       </button>
       {isPopUp && (
         <div className="more-buttons">
-          <CreateNewList />
+          <NewListPopUp />
           <CreateNewFolder />
         </div>
       )}
@@ -87,10 +87,24 @@ function ShowButtons() {
   );
 }
 
-function CreateNewList() {
+function NewListPopUp() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [newListTitle, setNewListTitle] = useState("");
+  const [textInput, setTextInput] = useState("");
+
+  const [newListTitle, setNewListTitle] = useState("New Title");
+
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInput(e.target.value);
+    setNewListTitle(e.target.value);
+  };
+
+  const handleClick = (e) => {
+    setNewListTitle(e.target.value);
+    console.log(newListTitle);
+  };
+
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -98,16 +112,31 @@ function CreateNewList() {
       </button>
       {isPopUp && (
         <div className="new-list-pop-up">
-          <h1>Create A List</h1>
+          <h1>{newListTitle}</h1>
           <input
             className="New-List"
             type="New-List-input"
-            placeholder="Title"
+            placeholder="Enter a title.."
+            value={textInput}
+            onChange={handleText}
           />
-          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
-            Cancel
-          </button>
-          <button className="submit-button">Submit</button>
+          <div className="modal-buttons">
+            <button
+              className="cancel-button"
+              onClick={() => setPopUp(!isPopUp)}
+            >
+              Cancel
+            </button>
+            <button
+              className="submit-button"
+              type="submit"
+              onClick={handleClick}
+            >
+              <Link to="/Create" path="relative" className="createbutt">
+                Save
+              </Link>
+            </button>
+          </div>
         </div>
       )}
     </div>
