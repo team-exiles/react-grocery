@@ -67,8 +67,6 @@ export const Homepage = () => {
           <span>Archived</span>
           <ExpandedFolder />
         </div>
-          <CreateNewList />
-          <CreateNewFolder />
           <ShowButtons />
       </div>
     </section>
@@ -86,6 +84,8 @@ function ShowButtons() {
       </button>
       {isPopUp && (
         <div className="more-buttons">
+          <CreateNewList />
+          <CreateNewFolder />
             </div>)}
     </div>
   );
