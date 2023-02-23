@@ -111,7 +111,6 @@ function CreateNewList() {
 
 export function TextInput({ setTitle }) {
   const [textInputField, setTextInputField] = useState("");
-
   const handleText = (e) => {
     e.preventDefault();
     setTextInputField(e.target.value);
@@ -133,7 +132,7 @@ export function TextInput({ setTitle }) {
 function CreateNewFolder() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [folder, setFolder] = useState("");
+  const [folder, setFolder] = useState("Folder..");
   return (
     <div>
       <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
@@ -152,7 +151,6 @@ function CreateNewFolder() {
 
 function FolderInput({ setFolder }) {
   const [textInputField, setTextInputField] = useState("");
-
   const handleText = (e) => {
     e.preventDefault();
     setTextInputField(e.target.value);
