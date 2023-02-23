@@ -133,7 +133,7 @@ export function TextInput({ setTitle }) {
 function CreateNewFolder() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [newFolderTitle, setNewFolderTitle] = useState("");
+  const [folder, setFolder] = useState("");
   return (
     <div>
       <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
@@ -141,14 +141,32 @@ function CreateNewFolder() {
       </button>
       {isPopUp && (
         <div className="new-folder-pop-up">
-          <h1>Create A Folder</h1>
-          <input
-            className="New-Folder"
-            type="New-Folder-input"
-            placeholder="Folder" />
+          <h1>{folder}</h1>
+          <FolderInput setFolder={setFolder} />
             <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
             <button className="submit-button">Submit</button>
             </div>)}
+    </div>
+  );
+}
+
+function FolderInput({ setFolder }) {
+  const [textInputField, setTextInputField] = useState("");
+
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInputField(e.target.value);
+    setFolder(e.target.value);
+  };
+  return (
+    <div className="text-customizer">
+      <div className="front-input">
+        <input
+          onChange={handleText}
+          value={textInputField}
+          placeholder="Enter Folder..."
+        />
+      </div>
     </div>
   );
 }
