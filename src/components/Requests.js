@@ -23,7 +23,7 @@ export const requestLogout = (token) => {
 export const requestAllLists = () => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/';
 
-    const response = axios.get(url, {
+    const response = axios.get(url, [], {
     }); 
     return response; 
 };

@@ -14,7 +14,7 @@ export const Homepage = () => {
         .then(res =>  {
             setLists(res.data)
         })
-})
+},[])
 
   return (
     <section className="homepage">
