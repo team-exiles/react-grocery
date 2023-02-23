@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-function ListItems() {
+export function ListItems() {
   const [itemEntry, setItemEntry] = useState("");
+  const [title, setTitle] = useState("Title");
 
   return (
     <div>
@@ -23,5 +24,3 @@ function ListItems() {
     </div>
   );
 }
-
-export default ListItems;
