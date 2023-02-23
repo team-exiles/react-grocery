@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import folder from "../img/folder.png"; 
 import placeholder from "../img/chibi-mj.jpg";
 
-export const Homepage = () => {
+export const Homepage = ({setUser}) => {
   const [lists, setLists] = useState([])
 
   useEffect(() => {
@@ -16,12 +16,12 @@ export const Homepage = () => {
         })
 },[])
 
-const handleLogout = (token) => {
+const handleLogout = (token, setUser) => {
   axios
   .post('https://safe-plains-62725.herokuapp.com/auth/token/logout/',
   { headers: {Authorization: `Token ${token}`, }, })
-  .then(() => ('',null))
-  .catch(() => ('',null))
+  .then(() => setUser('',null))
+  .catch(() => setUser('',null))
 }
 
   return (
@@ -79,7 +79,7 @@ const handleLogout = (token) => {
       </div>
 
       <div className="logout">
-        <button onClick={handleLogout}><Link to="/Login">Logout</Link></button>
+        <button><Link to="/Login" onClick={() => setUser(null)}>Logout</Link></button>
       </div>
 
     </section>
