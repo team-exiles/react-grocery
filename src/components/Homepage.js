@@ -6,7 +6,6 @@ import placeholder from "../img/chibi-mj.jpg";
 
 export const Homepage = () => {
   const [lists, setLists] = useState([]);
-
   useEffect(() => {
     requestAllLists().then((res) => {
       setLists(res.data);
@@ -90,21 +89,7 @@ function ShowButtons() {
 function NewListPopUp() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [textInput, setTextInput] = useState("");
-
-  const [newListTitle, setNewListTitle] = useState("New Title");
-
-  const handleText = (e) => {
-    e.preventDefault();
-    setTextInput(e.target.value);
-    setNewListTitle(e.target.value);
-  };
-
-  const handleClick = (e) => {
-    setNewListTitle(e.target.value);
-    console.log(newListTitle);
-  };
-
+  const [title, setTitle] = useState("Title..");
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -112,33 +97,38 @@ function NewListPopUp() {
       </button>
       {isPopUp && (
         <div className="new-list-pop-up">
-          <h1>{newListTitle}</h1>
-          <input
-            className="New-List"
-            type="New-List-input"
-            placeholder="Enter a title.."
-            value={textInput}
-            onChange={handleText}
-          />
-          <div className="modal-buttons">
-            <button
-              className="cancel-button"
-              onClick={() => setPopUp(!isPopUp)}
-            >
-              Cancel
-            </button>
-            <button
-              className="submit-button"
-              type="submit"
-              onClick={handleClick}
-            >
-              <Link to="/Create" path="relative" className="createbutt">
-                Save
-              </Link>
-            </button>
-          </div>
+          <h1>{title}</h1>
+          <TextInput setTitle={setTitle} />
+          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
+            Cancel
+          </button>
+          <button className="submit-button">
+            <Link to="/Create" path="relative">
+              Submit
+            </Link>
+          </button>
         </div>
       )}
+    </div>
+  );
+}
+
+export function TextInput({ setTitle }) {
+  const [textInputField, setTextInputField] = useState("");
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInputField(e.target.value);
+    setTitle(e.target.value);
+  };
+  return (
+    <div className="text-customizer">
+      <div className="front-input">
+        <input
+          onChange={handleText}
+          value={textInputField}
+          placeholder="Enter Title..."
+        />
+      </div>
     </div>
   );
 }
@@ -146,7 +136,7 @@ function NewListPopUp() {
 function CreateNewFolder() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [newFolderTitle, setNewFolderTitle] = useState("");
+  const [folder, setFolder] = useState("Folder..");
   return (
     <div>
       <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
@@ -154,18 +144,34 @@ function CreateNewFolder() {
       </button>
       {isPopUp && (
         <div className="new-folder-pop-up">
-          <h1>Create A Folder</h1>
-          <input
-            className="New-Folder"
-            type="New-Folder-input"
-            placeholder="Folder"
-          />
+          <h1>{folder}</h1>
+          <FolderInput setFolder={setFolder} />
           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
             Cancel
           </button>
           <button className="submit-button">Submit</button>
         </div>
       )}
+    </div>
+  );
+}
+
+function FolderInput({ setFolder }) {
+  const [textInputField, setTextInputField] = useState("");
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInputField(e.target.value);
+    setFolder(e.target.value);
+  };
+  return (
+    <div className="text-customizer">
+      <div className="front-input">
+        <input
+          onChange={handleText}
+          value={textInputField}
+          placeholder="Enter Folder..."
+        />
+      </div>
     </div>
   );
 }
