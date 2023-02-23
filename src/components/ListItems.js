@@ -1,30 +1,16 @@
 import { useState } from "react";
 
-<<<<<<< HEAD
-export function ListItems() {
-=======
-export const ListItems = () => {
->>>>>>> main
-  const [itemEntry, setItemEntry] = useState("");
-  const [title, setTitle] = useState("Title");
-
+export function ListItems({ items }) {
   return (
     <div>
-      <h1>List</h1>
-      <form className="list-title">
-        <label htmlFor="titleInput" hidden>
-          Enter Title
-        </label>
-        <input
-          id="titleInput"
-          name="titleInput"
-          type="text"
-          className="form-input__input"
-          placeholder="Enter Title..."
-        />
-        <button type="submit">Send</button>
-      </form>
-      <ListItems />
+      {items.map((item) => (
+        <div className="item-entry">
+          <span className="material-symbols-outlined">
+            check_box_outline_blank
+          </span>
+          <span>{item}</span>
+        </div>
+      ))}
     </div>
   );
 }

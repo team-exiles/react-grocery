@@ -10,7 +10,8 @@ function App() {
 
   return (
     <div className="App">
-      {!user ? (
+      <CreateList />
+      {/* {!user ? (
         <Login setUser={setUser} />
       ) : (
         <>
@@ -19,7 +20,7 @@ function App() {
             <Route path="/Create" element={<CreateList />} />
           </Routes>
         </>
-      )}
+      )} */}
     </div>
   );
 }

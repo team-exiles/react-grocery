@@ -1,25 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function SendItems() {
-  const [item, setItem] = useState("");
+export function SendItems({ items, setItems, listTitle, setListTitle }) {
+  const [textInput, setTextInput] = useState("");
+  const [addedItem, setAddedItem] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setItems([...items, addedItem]);
+    setTextInput("");
+  };
+
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInput(e.target.value);
+    setAddedItem(e.target.value);
+  };
 
   return (
     <div className="item-entry">
-      <form className="send-iteminput">
+      <form className="send-item-input">
         <label htmlFor="messageInput" hidden>
           Enter Item
         </label>
         <input
-          id="itemInput"
-          name="itemInput"
-          type="text"
-          className="form-input__inputmpv "
+          onChange={handleText}
+          value={textInput}
           placeholder="Add an item.."
         />
-        <button type="submit">Send</button>
+        <button type="submit" onClick={handleSubmit}>
+          Add
+        </button>
       </form>
     </div>
   );
 }
-
-export default SendItems;
