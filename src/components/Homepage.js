@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import { requestAllLists } from './Requests';
 import { ListDetails } from './ListDetails';
 import { useEffect, useState } from "react";
 import folder from "../img/folder.png"; 
 import placeholder from "../img/chibi-mj.jpg";
-
 
 export const Homepage = () => {
   const [lists, setLists] = useState([])
@@ -15,6 +15,14 @@ export const Homepage = () => {
             setLists(res.data)
         })
 },[])
+
+const handleLogout = (token) => {
+  axios
+  .post('https://safe-plains-62725.herokuapp.com/auth/token/logout/',
+  { headers: {Authorization: `Token ${token}`, }, })
+  .then(() => ('',null))
+  .catch(() => ('',null))
+}
 
   return (
     <section className="homepage">
@@ -71,9 +79,9 @@ export const Homepage = () => {
       </div>
 
       <div className="logout">
-        <button>Logout</button>
+        <button onClick={handleLogout}><Link to="/Login">Logout</Link></button>
       </div>
-      
+
     </section>
   );
 };

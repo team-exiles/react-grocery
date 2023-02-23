@@ -10,7 +10,6 @@ export const requestLogin = (username, password) => {
     return response;
 }
 
-
 export const requestLogout = (token) => {
     const url = 'https://safe-plains-62725.herokuapp.com/auth/token/logout/';
 
