@@ -33,11 +33,11 @@ export const Homepage = () => {
         </div>
       </div>
 
-      <div className="action-buttons">
+      {/* <div className="action-buttons">
         <button className="Make-New-Folder"></button>
         <button className="Make-New-List"></button>
         <button className="Start-Shopping"></button>
-      </div>
+      </div> */}
 
       <div className="folders">
         <div className="recipe-folder">
@@ -54,10 +54,27 @@ export const Homepage = () => {
         </div>
           <CreateNewList />
           <CreateNewFolder />
+          <ShowButtons />
       </div>
     </section>
   );
 };
+
+
+function ShowButtons() {
+  const [isPopUp, setPopUp] = useState(false);
+  const buttonName = isPopUp;
+  return (
+    <div>
+      <button className="show-buttons" onClick={() => setPopUp(!isPopUp)}>
+        <strong>{buttonName} Show Buttons</strong>
+      </button>
+      {isPopUp && (
+        <div className="more-buttons">
+            </div>)}
+    </div>
+  );
+}
 
 function CreateNewList() {
   const [isPopUp, setPopUp] = useState(false);
@@ -71,8 +88,6 @@ function CreateNewList() {
       {isPopUp && (
         <div className="new-list-pop-up">
           <h1>Create A List</h1>
-          <div>
-          </div>
           <input
             className="New-List"
             type="New-List-input"
@@ -97,8 +112,6 @@ function CreateNewFolder() {
       {isPopUp && (
         <div className="new-folder-pop-up">
           <h1>Create A Folder</h1>
-          <div>
-          </div>
           <input
             className="New-Folder"
             type="New-Folder-input"
