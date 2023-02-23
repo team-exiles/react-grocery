@@ -1,10 +1,28 @@
 import { Link } from "react-router-dom";
 import { requestLogin } from "./Requests";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import facebook from "../img/facebook.png";
 import google from "../img/google.png";
 import twitter from "../img/twitter.png";
 
-export function Login({ setUser }) {
+export const Login = ( {setUser} ) => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate('')
+
+  const handleLogin = (event) => {
+    event.preventDefault()
+    requestLogin(username, password)
+    .then((res) => {
+      const token = res.data.auth_token
+      setUser(token, username)
+      navigate("/")
+    })
+
+  }
+
+
   return (
     <>
       <div className="login-field">
@@ -13,18 +31,23 @@ export function Login({ setUser }) {
           <input
             className="login-input"
             type="login-input"
-            placeholder="  Email"
-            /* onChange={(e) => setUsername(e.target.value)} */
+            placeholder=" Username:"
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
 
         <div className="password">
-          <input className="input" type="password" placeholder="  Password" />
+          <input className="input" type="password" placeholder="  Password:" 
+          onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button onClick={setUser} className="login-button">
+        <button onClick={handleLogin} className="login-button">
           <strong>Log In</strong>
         </button>
       </div>
+
+
+
+
 
       <div className="social-login">
         <h4>Or...</h4>

@@ -1,12 +1,23 @@
 import axios from 'axios';
 
-export const requestLogin = (token) => {
+export const requestLogin = (username, password) => {
     const url = 'https://safe-plains-62725.herokuapp.com/auth/token/login/';
 
-    const response = axios.get(url, {
-        headers: {Authorization: `token ${token}`}
+    const response = axios.post(url, {
+        username: username,
+        password: password, 
     }); 
     return response;
+}
+
+
+export const requestLogout = (token) => {
+    const url = 'https://safe-plains-62725.herokuapp.com/auth/token/logout/';
+
+    const response = axios.post(url, {
+        headers: {Authorization: `token ${token}`}
+    });
+    return response; 
 }
 
 export const requestAllLists = () => {
