@@ -1,6 +1,10 @@
 import { useState } from "react";
 
+<<<<<<< HEAD
 export function ListItems() {
+=======
+export const ListItems = () => {
+>>>>>>> main
   const [itemEntry, setItemEntry] = useState("");
   const [title, setTitle] = useState("Title");
 
