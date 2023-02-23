@@ -8,7 +8,6 @@ import placeholder from "../img/chibi-mj.jpg";
 
 export const Homepage = () => {
   const [lists, setLists] = useState([])
-
   useEffect(() => {
     requestAllLists()
         .then(res =>  {
@@ -32,7 +31,7 @@ export const Homepage = () => {
       <div className="active-lists">
         {lists.map(list => (
           <div className="listall">
-             <ListDetails list={list} /> 
+            <ListDetails list={list} /> 
           </div>
         ))}
 
@@ -45,7 +44,6 @@ export const Homepage = () => {
           <span className="material-symbols-outlined">list</span>
           <span>Sunday Game</span>
         </div>
-
       </div>
 
       {/* <div className="action-buttons">
@@ -94,7 +92,7 @@ function ShowButtons() {
 function CreateNewList() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [newListTitle, setNewListTitle] = useState("");
+  const [title, setTitle] = useState("Title..");
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -102,23 +100,39 @@ function CreateNewList() {
       </button>
       {isPopUp && (
         <div className="new-list-pop-up">
-          <h1>Create A List</h1>
-          <input
-            className="New-List"
-            type="New-List-input"
-            placeholder="Title" />
+          <h1>{title}</h1>
+          <TextInput setTitle={setTitle} />
             <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
-            <button className="submit-button">Submit</button>
-            </div>)}
+            <button className="submit-button"><Link to="/Create" path="relative">Submit</Link></button>
+        </div>)}
     </div>
   );
 }
 
+export function TextInput({ setTitle }) {
+  const [textInputField, setTextInputField] = useState("");
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInputField(e.target.value);
+    setTitle(e.target.value);
+  };
+  return (
+    <div className="text-customizer">
+      <div className="front-input">
+        <input
+          onChange={handleText}
+          value={textInputField}
+          placeholder="Enter Title..."
+        />
+      </div>
+    </div>
+  );
+}
 
 function CreateNewFolder() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [newFolderTitle, setNewFolderTitle] = useState("");
+  const [folder, setFolder] = useState("Folder..");
   return (
     <div>
       <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
@@ -126,11 +140,8 @@ function CreateNewFolder() {
       </button>
       {isPopUp && (
         <div className="new-folder-pop-up">
-          <h1>Create A Folder</h1>
-          <input
-            className="New-Folder"
-            type="New-Folder-input"
-            placeholder="Folder" />
+          <h1>{folder}</h1>
+          <FolderInput setFolder={setFolder} />
             <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
             <button className="submit-button">Submit</button>
             </div>)}
@@ -138,9 +149,25 @@ function CreateNewFolder() {
   );
 }
 
-
-
-
+function FolderInput({ setFolder }) {
+  const [textInputField, setTextInputField] = useState("");
+  const handleText = (e) => {
+    e.preventDefault();
+    setTextInputField(e.target.value);
+    setFolder(e.target.value);
+  };
+  return (
+    <div className="text-customizer">
+      <div className="front-input">
+        <input
+          onChange={handleText}
+          value={textInputField}
+          placeholder="Enter Folder..."
+        />
+      </div>
+    </div>
+  );
+}
 
 function ExpandedFolder() {
   const [isExpanded, setExpansion] = useState(false);

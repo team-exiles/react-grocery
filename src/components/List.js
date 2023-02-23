@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { ListItems } from "./ListItems";
+import { TextInput } from "./Homepage";
 
 export const CreateList = () => {
   const [list, setList] = useState("");
   const [title, setTitle] = useState("Title..");
-
   return (
     <div>
       <button>
@@ -30,25 +30,3 @@ export const CreateList = () => {
     </div>
   );
 };
-
-function TextInput({ setTitle }) {
-  const [textInputField, setTextInputField] = useState("");
-
-  const handleText = (e) => {
-    e.preventDefault();
-    setTextInputField(e.target.value);
-    setTitle(e.target.value);
-  };
-
-  return (
-    <div className="text-customizer">
-      <div className="front-input">
-        <input
-          onChange={handleText}
-          value={textInputField}
-          placeholder="Enter Title..."
-        />
-      </div>
-    </div>
-  );
-}
