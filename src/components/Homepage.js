@@ -69,6 +69,11 @@ export const Homepage = () => {
         </div>
           <ShowButtons />
       </div>
+
+      <div className="logout">
+        <button>Logout</button>
+      </div>
+      
     </section>
   );
 };
@@ -158,5 +163,6 @@ function ExpandedFolder() {
         </div>
       )}
     </div>
+
   );
 }

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { requestLogin } from "./Requests";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +15,6 @@ export const Login = ( {setUser} ) => {
     requestLogin(username, password)
     .then((res) => {
       const token = res.data.auth_token
-      setUser(token, username)
       navigate("/")
     })
 

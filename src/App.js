@@ -24,8 +24,9 @@ function App() {
       ) : (
         <>
           <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/Create" element={<CreateList />} />
+            <Route path="/" element={<Homepage token={token} />} />
+            <Route path="/Create" element={<CreateList token={token} />} />
+            <Route path="/Login" element={<Login />} />
           </Routes>
         </>
       )}
