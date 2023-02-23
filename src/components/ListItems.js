@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ListItems() {
+export const ListItems = () => {
   const [itemEntry, setItemEntry] = useState("");
 
   return (
