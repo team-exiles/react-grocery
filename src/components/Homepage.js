@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { CreateListPopUp } from "./CreateListPopUp";
 import folder from "../img/folder.png";
 import placeholder from "../img/chibi-mj.jpg";
 
 
 
 export const Homepage = () => {
+  const [title, setTitle] = useState("Title..");
 
   return (
     <section className="homepage">
@@ -53,6 +53,7 @@ export const Homepage = () => {
           <ExpandedFolder />
         </div>
           <CreateNewList />
+          <CreateNewFolder />
       </div>
     </section>
   );
@@ -61,7 +62,7 @@ export const Homepage = () => {
 function CreateNewList() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  
+  const [newListTitle, setNewListTitle] = useState("");
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -82,6 +83,33 @@ function CreateNewList() {
     </div>
   );
 }
+
+
+function CreateNewFolder() {
+  const [isPopUp, setPopUp] = useState(false);
+  const buttonName = isPopUp;
+  const [newFolderTitle, setNewFolderTitle] = useState("");
+  return (
+    <div>
+      <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
+        <strong>{buttonName} Create New Folder</strong>
+      </button>
+      {isPopUp && (
+        <div className="new-folder-pop-up">
+          <h1>Create A Folder</h1>
+          <div>
+          </div>
+          <input
+            className="New-Folder"
+            type="New-Folder-input"
+            placeholder="Folder" />
+            <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
+            <button className="submit-button">Submit</button>
+            </div>)}
+    </div>
+  );
+}
+
 
 
 
