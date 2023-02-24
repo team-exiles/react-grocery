@@ -1,16 +1,26 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { requestAllLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import placeholder from "../img/chibi-mj.jpg";
 
-export const Homepage = () => {
+export const Homepage = ({ setUser }) => {
   const [lists, setLists] = useState([]);
   useEffect(() => {
     requestAllLists().then((res) => {
       setLists(res.data);
     });
   }, []);
+
+  const handleLogout = (token, setUser) => {
+    axios
+      .post("https://safe-plains-62725.herokuapp.com/auth/token/logout/", {
+        headers: { Authorization: `Token ${token}` },
+      })
+      .then(() => setUser("", null))
+      .catch(() => setUser("", null));
+  };
 
   return (
     <section className="homepage">
@@ -63,6 +73,14 @@ export const Homepage = () => {
           <ExpandedFolder />
         </div>
         <ShowButtons />
+      </div>
+
+      <div className="logout">
+        <button>
+          <Link to="/Login" onClick={() => setUser(null)}>
+            Logout
+          </Link>
+        </button>
       </div>
     </section>
   );
