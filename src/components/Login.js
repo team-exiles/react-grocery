@@ -1,6 +1,6 @@
 import { requestLogin } from "./Requests";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import facebook from "../img/facebook.png";
 import google from "../img/google.png";
 import twitter from "../img/twitter.png";
@@ -15,9 +15,8 @@ export const Login = ( {setUser} ) => {
     requestLogin(username, password)
     .then((res) => {
       const token = res.data.auth_token
-      navigate("/")
+      navigate("/Homepage")
     })
-
   }
 
 
@@ -38,9 +37,9 @@ export const Login = ( {setUser} ) => {
           <input className="input" type="password" placeholder="  Password:" 
           onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button onClick={handleLogin} className="login-button">
-          <strong>Log In</strong>
-        </button>
+        <button onClick={handleLogin} className="login-button"><strong>Log In</strong></button>
+        <br/>
+        <button><Link to="/Register">New User? Register Here:</Link></button>
       </div>
 
 
