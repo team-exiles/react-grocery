@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function SendItems({ items, setItems, listTitle, setListTitle }) {
+export function SendItems({ items, setItems }) {
   const [textInput, setTextInput] = useState("");
   const [addedItem, setAddedItem] = useState("");
 

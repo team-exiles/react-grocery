@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function ListItems({ items }) {
+export function ShowListItems({ items }) {
   return (
     <div>
       {items.map((item) => (

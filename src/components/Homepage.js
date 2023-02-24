@@ -121,7 +121,7 @@ function NewListPopUp() {
             Cancel
           </button>
           <button className="submit-button">
-            <Link to="/Create" path="relative">
+            <Link to="/Create" path="relative" state={{ title: title }}>
               Submit
             </Link>
           </button>
@@ -131,7 +131,7 @@ function NewListPopUp() {
   );
 }
 
-export function TextInput({ setTitle }) {
+function TextInput({ setTitle }) {
   const [textInputField, setTextInputField] = useState("");
   const handleText = (e) => {
     e.preventDefault();
