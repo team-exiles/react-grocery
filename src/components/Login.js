@@ -8,14 +8,15 @@ import twitter from "../img/twitter.png";
 export const Login = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate("");
+  const navigate = useNavigate("");  
 
   const handleLogin = (event) => {
     event.preventDefault();
     requestLogin(username, password).then((res) => {
       const token = res.data.auth_token;
       console.log(token);
-      navigate("/");
+      setUser(token, username)
+      navigate("/Homepage"); 
     });
   };
 

@@ -15,30 +15,22 @@ function App() {
     setUsername(username);
   };
 
-  const loggedIn = token;
+  const loggedIn = (token, username);
 
   return (
     <div className="App">
-      <>
-        <Routes>
-          <Route path="/" element={<Homepage token={token} />} />
-          <Route path="/Create" element={<CreateList token={token} />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
-        </Routes>
-      </>
-      {/* {!loggedIn ? (
-        <Login setUser={setUser} />
+      {!loggedIn ? (
+      <Login setUser={setUser}/> 
       ) : (
         <>
           <Routes>
-            <Route path="/Homepage" element={<Homepage token={token} />} />
+            <Route path="/Homepage" element={<Homepage setUser={setUser} username={username} token={token} />} />
             <Route path="/Create" element={<CreateList token={token} />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
           </Routes>
         </>
-      )} */}
+      )}
     </div>
   );
 }
