@@ -195,6 +195,11 @@ input[type="password"] {
   /* border: black 1px solid; */
 }
 
+.title-bar {
+  display: flex;
+  flex: row;
+}
+
 /*
 .archived-folder {
   display: flex;
@@ -205,28 +210,32 @@ input[type="password"] {
 
 .new-list-pop-up {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   width: 300px;
   height: 200px;
-  border: 3px solid #73AD21;
+  border: 3px solid black;
   transform: translate(-50%, -50%);
   justify-content: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  background-color: white;
 }
 
 .new-folder-pop-up {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   width: 300px;
   height: 200px;
-  border: 3px solid #73AD21;
+  border: 3px solid black;
   transform: translate(-50%, -50%);
   justify-content: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  background-color: white;
 }
 
 .new-list-button {
@@ -248,20 +257,26 @@ input[type="password"] {
 }
 
 .cancel-button {
-  height: 30px;
-  width: 60px;
+  height: 40px;
+  width: 80px;
+  position: fixed;
+  bottom: 4%;
+  left: 20%;
 }
 
 .submit-button {
-  height: 30px;
-  width: 60px;
+  height: 40px;
+  width: 80px;
+  position: fixed;
+  bottom: 4%;
+  right: 20%;
 }
 
 .show-buttons {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 6%;
-    right: 16%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 6%;
+  right: 16%;
 }
