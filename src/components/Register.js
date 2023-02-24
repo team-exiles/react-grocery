@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { requestRegisterUser } from './Requests';
 
 export const Register = ({setUser}) => {
@@ -26,6 +27,7 @@ export const Register = ({setUser}) => {
             </div>
             <button onClick={handleSubmit}><strong>Register</strong></button>
             </form>
+            <button><Link to="/Login">Return to Login</Link></button>
         </div>
 
     )

@@ -24,6 +24,7 @@ function App() {
           <Route path="/" element={<Homepage token={token} />} />
           <Route path="/Create" element={<CreateList token={token} />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
         </Routes>
       </>
       {/* {!loggedIn ? (

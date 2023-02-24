@@ -16,6 +16,7 @@ export const requestRegisterUser = ({username, password}) => {
     const response = axios.post(url, {
         username: username,
         password: password, 
+        headers: { "Content-Type": "application/json"},
     });
     return response 
 }
