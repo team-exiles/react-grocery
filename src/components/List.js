@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { ShowListItems } from "./ShowListItems";
+import { useNavigate } from "react-router-dom";import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
 
@@ -16,7 +15,7 @@ export const CreateList = () => {
   return (
     <div className="list-display">
       <div className="title-bar">
-        <button>Back</button>
+        <button className="cancel-list">Cancel</button>
         <h1>{title}</h1>
         <button>Share</button>
         <button>Edit</button>

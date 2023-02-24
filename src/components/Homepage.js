@@ -115,7 +115,9 @@ function NewListPopUp() {
       </button>
       {isPopUp && (
         <div className="new-list-pop-up">
-          <h1>{title}</h1>
+          <div>
+            <h1>{title}</h1>
+          </div>
           <TextInput setTitle={setTitle} />
           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
             Cancel
@@ -197,7 +199,6 @@ function FolderInput({ setFolder }) {
 function ExpandedFolder() {
   const [isExpanded, setExpansion] = useState(false);
   const buttonName = isExpanded ? "Less" : "More";
-
   return (
     <div>
       <button onClick={() => setExpansion(!isExpanded)}>
