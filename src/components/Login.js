@@ -43,7 +43,7 @@ export const Login = ({ setUser }) => {
         </div>
         <button onClick={handleSubmit} className="login-button"><strong>Log In</strong></button>
         <br/>
-        <button><Link to="/Register">New User? Register Here</Link></button>
+        <button><Link to="/Register">New User? See Registration</Link></button>
       </div>
 
       {/* <div className="social-login">

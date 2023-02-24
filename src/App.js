@@ -22,14 +22,16 @@ function App() {
       {!loggedIn ? (
       <div>
       <Login setUser={setUser} /> 
+      <Routes>
       <Route path="/Register" element={<Register setUser={setUser} />} />
+      </Routes>
       </div> 
       ) : (
         <>
           <Routes>
             <Route path="/Homepage" element={<Homepage setUser={setUser} username={username} token={token} />} />
             <Route path="/Create" element={<CreateList token={token} />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/Register" element={<Register setUser={setUser} />} />
           </Routes>
         </>

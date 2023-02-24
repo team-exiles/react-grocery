@@ -10,13 +10,12 @@ export const requestLogin = (username, password) => {
     return response;
 }
 
-export const requestRegisterUser = ({username, password}) => {
+export const requestRegisterUser = ({email, password}) => {
     const url = 'https://safe-plains-62725.herokuapp.com/auth/users/'; 
 
     const response = axios.post(url, {
-        username: username,
+        email: email,
         password: password, 
-        headers: { "Content-Type": "application/json"},
     });
     return response 
 }
