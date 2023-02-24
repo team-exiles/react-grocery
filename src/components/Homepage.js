@@ -1,34 +1,33 @@
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { requestAllLists } from './Requests';
-import { ListDetails } from './ListDetails';
+import axios from "axios";
+import { requestAllLists } from "./Requests";
+import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
-import folder from "../img/folder.png"; 
 import placeholder from "../img/chibi-mj.jpg";
 
-export const Homepage = ({setUser}) => {
-  const [lists, setLists] = useState([])
+export const Homepage = ({ setUser }) => {
+  const [lists, setLists] = useState([]);
   useEffect(() => {
-    requestAllLists()
-        .then(res =>  {
-            setLists(res.data)
-        })
-},[])
+    requestAllLists().then((res) => {
+      setLists(res.data);
+    });
+  }, []);
 
-const handleLogout = (token, setUser) => {
-  axios
-  .post('https://safe-plains-62725.herokuapp.com/auth/token/logout/',
-  { headers: {Authorization: `Token ${token}`, }, })
-  .then(() => setUser('',null))
-  .catch(() => setUser('',null))
-}
+  const handleLogout = (token, setUser) => {
+    axios
+      .post("https://safe-plains-62725.herokuapp.com/auth/token/logout/", {
+        headers: { Authorization: `Token ${token}` },
+      })
+      .then(() => setUser("", null))
+      .catch(() => setUser("", null));
+  };
 
   return (
     <section className="homepage">
       <div className="homepage-header">
         <div className="logged-in-user">
           {/* This is placeholder info and image*/}
-          <img src={placeholder} alt="avatar"className="avatar" />
+          <img src={placeholder} alt="avatar" className="avatar" />
           <div className="user-info">
             <h1 className="username-title">MJ Parker</h1>
             <span className="user-email">mjparker@dailybugle.com</span>
@@ -37,9 +36,9 @@ const handleLogout = (token, setUser) => {
       </div>
 
       <div className="active-lists">
-        {lists.map(list => (
+        {lists.map((list) => (
           <div className="listall">
-            <ListDetails list={list} /> 
+            <ListDetails list={list} />
           </div>
         ))}
 
@@ -73,17 +72,19 @@ const handleLogout = (token, setUser) => {
           <span>Archived</span>
           <ExpandedFolder />
         </div>
-          <ShowButtons />
+        <ShowButtons />
       </div>
 
       <div className="logout">
-        <button><Link to="/Login" onClick={() => setUser(null)}>Logout</Link></button>
+        <button>
+          <Link to="/Login" onClick={() => setUser(null)}>
+            Logout
+          </Link>
+        </button>
       </div>
-
     </section>
   );
 };
-
 
 function ShowButtons() {
   const [isPopUp, setPopUp] = useState(false);
@@ -95,14 +96,15 @@ function ShowButtons() {
       </button>
       {isPopUp && (
         <div className="more-buttons">
-          <CreateNewList />
+          <NewListPopUp />
           <CreateNewFolder />
-            </div>)}
+        </div>
+      )}
     </div>
   );
 }
 
-function CreateNewList() {
+function NewListPopUp() {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
   const [title, setTitle] = useState("Title..");
@@ -115,14 +117,21 @@ function CreateNewList() {
         <div className="new-list-pop-up">
           <h1>{title}</h1>
           <TextInput setTitle={setTitle} />
-            <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
-            <button className="submit-button"><Link to="/Create" path="relative">Submit</Link></button>
-        </div>)}
+          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
+            Cancel
+          </button>
+          <button className="submit-button">
+            <Link to="/Create" path="relative" state={{ title: title }}>
+              Submit
+            </Link>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-export function TextInput({ setTitle }) {
+function TextInput({ setTitle }) {
   const [textInputField, setTextInputField] = useState("");
   const handleText = (e) => {
     e.preventDefault();
@@ -155,9 +164,12 @@ function CreateNewFolder() {
         <div className="new-folder-pop-up">
           <h1>{folder}</h1>
           <FolderInput setFolder={setFolder} />
-            <button className="cancel-button" onClick={() =>setPopUp(!isPopUp)}>Cancel</button>
-            <button className="submit-button">Submit</button>
-            </div>)}
+          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
+            Cancel
+          </button>
+          <button className="submit-button">Submit</button>
+        </div>
+      )}
     </div>
   );
 }
@@ -198,6 +210,5 @@ function ExpandedFolder() {
         </div>
       )}
     </div>
-
   );
 }
