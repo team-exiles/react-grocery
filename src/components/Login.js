@@ -10,7 +10,7 @@ export const Login = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate("");  
 
-  const handleLogin = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     requestLogin(username, password).then((res) => {
       const token = res.data.auth_token;
@@ -41,9 +41,9 @@ export const Login = ({ setUser }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button onClick={handleLogin} className="login-button"><strong>Log In</strong></button>
+        <button onClick={handleSubmit} className="login-button"><strong>Log In</strong></button>
         <br/>
-        <button><Link to="/Register">New User? Register Here:</Link></button>
+        <button><Link to="/Register">New User? Register Here</Link></button>
       </div>
 
       {/* <div className="social-login">

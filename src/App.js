@@ -20,14 +20,17 @@ function App() {
   return (
     <div className="App">
       {!loggedIn ? (
-      <Login setUser={setUser}/> 
+      <div>
+      <Login setUser={setUser} /> 
+      <Route path="/Register" element={<Register setUser={setUser} />} />
+      </div> 
       ) : (
         <>
           <Routes>
             <Route path="/Homepage" element={<Homepage setUser={setUser} username={username} token={token} />} />
             <Route path="/Create" element={<CreateList token={token} />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/Register" element={<Register />} />
+            <Route path="/Register" element={<Register setUser={setUser} />} />
           </Routes>
         </>
       )}
