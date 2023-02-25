@@ -10,13 +10,14 @@ export const requestLogin = (username, password) => {
     return response;
 }
 
-export const requestLogout = (token) => {
-    const url = 'https://safe-plains-62725.herokuapp.com/auth/token/logout/';
+export const requestRegisterUser = ({email, password}) => {
+    const url = 'https://safe-plains-62725.herokuapp.com/auth/users/'; 
 
     const response = axios.post(url, {
-        headers: {Authorization: `token ${token}`}
+        email: email,
+        password: password, 
     });
-    return response; 
+    return response 
 }
 
 export const requestAllLists = () => {

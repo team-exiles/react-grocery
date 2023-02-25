@@ -4,6 +4,7 @@ import useLocalStorageState from "use-local-storage-state";
 import { Login } from "./components/Login";
 import { Homepage } from "./components/Homepage";
 import { CreateList } from "./components/List";
+import { Register } from "./components/Register";
 
 function App() {
   const [token, setToken] = useLocalStorageState("token", null);
@@ -14,28 +15,27 @@ function App() {
     setUsername(username);
   };
 
-  const loggedIn = token;
+  const loggedIn = (token, username);
 
   return (
     <div className="App">
-      <>
-        <Routes>
-          <Route path="/" element={<Homepage token={token} />} />
-          <Route path="/Create" element={<CreateList token={token} />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
-      </>
-      {/* {!loggedIn ? (
-        <Login setUser={setUser} />
+      {!loggedIn ? (
+      <div>
+      <Login setUser={setUser} /> 
+      <Routes>
+      <Route path="/Register" element={<Register setUser={setUser} />} />
+      </Routes>
+      </div> 
       ) : (
         <>
           <Routes>
-            <Route path="/" element={<Homepage token={token} />} />
+            <Route path="/Homepage" element={<Homepage setUser={setUser} username={username} token={token} />} />
             <Route path="/Create" element={<CreateList token={token} />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="/Login" element={<Login setUser={setUser} />} />
+            <Route path="/Register" element={<Register setUser={setUser} />} />
           </Routes>
         </>
-      )} */}
+      )}
     </div>
   );
 }
