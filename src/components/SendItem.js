@@ -23,7 +23,7 @@ export function SendItems({ items, setItems }) {
 
   return (
     <div className="item-entry">
-      <form className="send-item-input">
+        <form className="send-item-input">
         <label htmlFor="messageInput" hidden>
           Enter Item
         </label>
