@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export function ShowListItems({ items }) {
+  // console.log(items);
+
   return (
     <div>
       {items.map((item) => (
