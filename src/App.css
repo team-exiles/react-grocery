@@ -243,8 +243,8 @@ input[type="password"] {
   height: 70px;
   border-radius: 50%;
   position: fixed;
-  bottom: 15%;
-  right: 27%;
+  bottom: 12%;
+  right: 6%;
 }
 
 .new-folder-button {
@@ -285,4 +285,26 @@ input[type="password"] {
   position: fixed;
   bottom: 29%;
   right: 26%
+}
+
+
+.title-bar {
+  /* border: 5px solid green; */
+  justify-content: center;
+}
+
+.cancel-list {
+  position: fixed;
+  top: 2%;
+  left: 2%;
+
+}
+
+.send-item-input {
+  /* border: 5px solid red; */
+  padding: 20px;
+}
+
+.expandedBox {
+  border: 5px solid red;
 }

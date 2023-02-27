@@ -63,7 +63,6 @@ export const Homepage = ({ setUser }) => {
         <div className="recipe-folder">
           <span className="material-symbols-outlined">folder</span>
           <span className="homepage-text">Recipes</span>
-
           <ExpandedFolder />
         </div>
 
@@ -72,7 +71,6 @@ export const Homepage = ({ setUser }) => {
           <span>Archived</span>
           <ExpandedFolder />
         </div>
-        <ShowButtons />
       </div>
 
       <div className="logout">
@@ -82,27 +80,11 @@ export const Homepage = ({ setUser }) => {
           </Link>
         </button>
       </div>
+      < NewListPopUp />
     </section>
   );
 };
 
-function ShowButtons() {
-  const [isPopUp, setPopUp] = useState(false);
-  const buttonName = isPopUp;
-  return (
-    <div>
-      <button className="show-buttons" onClick={() => setPopUp(!isPopUp)}>
-        <strong>{buttonName} Show Buttons</strong>
-      </button>
-      {isPopUp && (
-        <div className="more-buttons">
-          <NewListPopUp />
-          <CreateNewFolder />
-        </div>
-      )}
-    </div>
-  );
-}
 
 function NewListPopUp() {
   const [isPopUp, setPopUp] = useState(false);
@@ -115,8 +97,8 @@ function NewListPopUp() {
       </button>
       {isPopUp && (
         <div className="new-list-pop-up">
-          <div>
-            <h1>{title}</h1>
+          <div className="title">
+            <h1>Create A List</h1>
           </div>
           <TextInput setTitle={setTitle} />
           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
@@ -153,48 +135,48 @@ function TextInput({ setTitle }) {
   );
 }
 
-function CreateNewFolder() {
-  const [isPopUp, setPopUp] = useState(false);
-  const buttonName = isPopUp;
-  const [folder, setFolder] = useState("Folder..");
-  return (
-    <div>
-      <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
-        <strong>{buttonName} Create New Folder</strong>
-      </button>
-      {isPopUp && (
-        <div className="new-folder-pop-up">
-          <h1>{folder}</h1>
-          <FolderInput setFolder={setFolder} />
-          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
-            Cancel
-          </button>
-          <button className="submit-button">Submit</button>
-        </div>
-      )}
-    </div>
-  );
-}
+// function CreateNewFolder() {
+//   const [isPopUp, setPopUp] = useState(false);
+//   const buttonName = isPopUp;
+//   const [folder, setFolder] = useState("Folder..");
+//   return (
+//     <div>
+//       <button className="new-folder-button" onClick={() => setPopUp(!isPopUp)}>
+//         <strong>{buttonName} Create New Folder</strong>
+//       </button>
+//       {isPopUp && (
+//         <div className="new-folder-pop-up">
+//           <h1>{folder}</h1>
+//           <FolderInput setFolder={setFolder} />
+//           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
+//             Cancel
+//           </button>
+//           <button className="submit-button">Submit</button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
-function FolderInput({ setFolder }) {
-  const [textInputField, setTextInputField] = useState("");
-  const handleText = (e) => {
-    e.preventDefault();
-    setTextInputField(e.target.value);
-    setFolder(e.target.value);
-  };
-  return (
-    <div className="text-customizer">
-      <div className="front-input">
-        <input
-          onChange={handleText}
-          value={textInputField}
-          placeholder="Enter Folder..."
-        />
-      </div>
-    </div>
-  );
-}
+// function FolderInput({ setFolder }) {
+//   const [textInputField, setTextInputField] = useState("");
+//   const handleText = (e) => {
+//     e.preventDefault();
+//     setTextInputField(e.target.value);
+//     setFolder(e.target.value);
+//   };
+//   return (
+//     <div className="text-customizer">
+//       <div className="front-input">
+//         <input
+//           onChange={handleText}
+//           value={textInputField}
+//           placeholder="Enter Folder..."
+//         />
+//       </div>
+//     </div>
+//   );
+// }
 
 function ExpandedFolder() {
   const [isExpanded, setExpansion] = useState(false);
@@ -202,7 +184,10 @@ function ExpandedFolder() {
   return (
     <div>
       <button onClick={() => setExpansion(!isExpanded)}>
-        <strong>{buttonName} Info</strong>
+      <div className="recipe-folder">
+          <span className="material-symbols-outlined">folder</span>
+          <span className="homepage-text">Recipes</span>
+      </div>
       </button>
       {isExpanded && (
         <div className="expandedBox">

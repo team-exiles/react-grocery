@@ -8,7 +8,7 @@ export const CreateList = () => {
   const [items, setItems] = useState([]);
   const location = useLocation();
   const navigate = useNavigate("");
-  
+
   console.log(location, " useLocation hook");
 
   const title = location.state?.title;
@@ -25,8 +25,6 @@ export const CreateList = () => {
       <div className="title-bar">
         <button className="cancel-list" onClick={handleCancel}>Cancel</button>
         <h1>{title}</h1>
-        <button>Share</button>
-        <button>Edit</button>
       </div>
       <SendItems items={items} setItems={setItems} />
       <ShowListItems items={items} />
