@@ -28,19 +28,20 @@ export const requestAllLists = () => {
     return response; 
 };
 
-export const requestMyLists = () => {
-    const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
+export const requestMyLists = (token) => {
+    const url = 'https://safe-plains-62725.herokuapp.com/lists/me/';
 
-    const response = axios.get(url, {
+    const response = axios.get(url, [], {
+        headers: {Authorization: `token ${token}`}
     }); 
     return response; 
 };
 
-export const requestMakeList = () => {
+export const requestMakeList = (token) => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
 
     const response = axios.post(url, {
-
+        headers: {Authorization: `token ${token}`}
     });
     return response;
 };
