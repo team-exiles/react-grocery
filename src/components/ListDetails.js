@@ -1,23 +1,20 @@
+import { Link } from "react-router-dom";
 
+export const ListDetails = ({ list, token }) => {
+  const handleClick = () => {};
 
-export const ListDetails = ({list}) => {
-
-    return (
-        <div className="list-container">
-            <h5 className="list-title">{list.title}</h5>
-
-            <div className="list-item">
-                <div className="list-item">{list.item}</div>
-            </div>
-
-            <div className="card-container-back">
-                <div className="back-message">{list.quantity}</div>
-            </div>
-
-            <br />
-            <div>
-                <div className="author">{`created by ${list.owner}`}</div>
-            </div>
+  return (
+    <>
+      <Link
+        to={`/lists/edit/${list.id}/`}
+        path="relative"
+        state={{ title: list.title, id: list.id, token: token }}
+      >
+        <div className="list-homepage-line" key={list.id} onClick={handleClick}>
+          <span className="material-symbols-outlined">list</span>
+          <span className="list-title">{list.title}</span>
         </div>
-    )
-}
+      </Link>
+    </>
+  );
+};

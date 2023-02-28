@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
+import { requestMakeList } from "./Requests";
 import { requestMyLists } from "./Requests";
-import { requestMakeList } from "./Requests"; 
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
-import placeholder from "../img/chibi-mj.jpg";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -17,24 +16,14 @@ export const Homepage = ({ setUser, token }) => {
 
   return (
     <section className="homepage">
-      <div className="homepage-header">
-        <div className="logged-in-user">
-          {/* This is placeholder info and image*/}
-          <img src={placeholder} alt="avatar" className="avatar" />
-          <div className="user-info">
-            <h1 className="username-title">MJ Parker</h1>
-            <span className="user-email">mjparker@dailybugle.com</span>
-          </div>
-        </div>
-      </div>
+      <div className="homepage-header">Milk & Eggs</div>
 
       <div className="active-lists">
         {lists.map((list) => (
           <div className="listall">
-            <ListDetails list={list} />
+            <ListDetails list={list} token={token} />
           </div>
         ))}
-
         <br/>
         <br/>
 
@@ -48,12 +37,6 @@ export const Homepage = ({ setUser, token }) => {
           <span>Sunday Game</span>
         </div>
       </div>
-
-      {/* <div className="action-buttons">
-        <button className="Make-New-Folder"></button>
-        <button className="Make-New-List"></button>
-        <button className="Start-Shopping"></button>
-      </div> */}
 
       <div className="folders">
         <div className="recipe-folder">
@@ -81,6 +64,7 @@ export const Homepage = ({ setUser, token }) => {
     </section>
   );
 };
+
 
 
 
@@ -226,10 +210,10 @@ function ExpandedFolder() {
   return (
     <div>
       <button onClick={() => setExpansion(!isExpanded)}>
-      <div className="recipe-folder">
+        <div className="recipe-folder">
           <span className="material-symbols-outlined">folder</span>
           <span className="homepage-text">Recipes</span>
-      </div>
+        </div>
       </button>
       {isExpanded && (
         <div className="expandedBox">
