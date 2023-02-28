@@ -1,63 +1,40 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { requestAllLists } from "./Requests";
+import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
-import placeholder from "../img/chibi-mj.jpg";
 
-export const Homepage = ({ setUser }) => {
+export const Homepage = ({ setUser, username, token }) => {
   const [lists, setLists] = useState([]);
   useEffect(() => {
-    requestAllLists().then((res) => {
-      setLists(res.data);
-    });
-  }, []);
-
-  const handleLogout = (token, setUser) => {
     axios
-      .post("https://safe-plains-62725.herokuapp.com/auth/token/logout/", {
-        headers: { Authorization: `Token ${token}` },
+      .get(`https://safe-plains-62725.herokuapp.com/lists/me/`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
       })
-      .then(() => setUser("", null))
-      .catch(() => setUser("", null));
-  };
+      .then((res) => {
+        setLists(res.data);
+      });
+  }, [token]);
+
+  // useEffect(() => {
+  //   requestMyLists(token).then((res) => {
+  //     setLists(res.data);
+  //   });
+  // }, [lists, token]);
 
   return (
     <section className="homepage">
-      <div className="homepage-header">
-        <div className="logged-in-user">
-          {/* This is placeholder info and image*/}
-          <img src={placeholder} alt="avatar" className="avatar" />
-          <div className="user-info">
-            <h1 className="username-title">MJ Parker</h1>
-            <span className="user-email">mjparker@dailybugle.com</span>
-          </div>
-        </div>
-      </div>
+      <div className="homepage-header">Milk & Eggs</div>
 
       <div className="active-lists">
         {lists.map((list) => (
           <div className="listall">
-            <ListDetails list={list} />
+            <ListDetails list={list} token={token} />
           </div>
         ))}
-
-        <div className="list-homepage-line">
-          <span className="material-symbols-outlined">list</span>
-          <span>Thursday Taco Night</span>
-        </div>
-
-        <div className="list-homepage-line">
-          <span className="material-symbols-outlined">list</span>
-          <span>Sunday Game</span>
-        </div>
       </div>
-
-      {/* <div className="action-buttons">
-        <button className="Make-New-Folder"></button>
-        <button className="Make-New-List"></button>
-        <button className="Start-Shopping"></button>
-      </div> */}
 
       <div className="folders">
         <div className="recipe-folder">
@@ -80,11 +57,10 @@ export const Homepage = ({ setUser }) => {
           </Link>
         </button>
       </div>
-      < NewListPopUp />
+      <NewListPopUp />
     </section>
   );
 };
-
 
 function NewListPopUp() {
   const [isPopUp, setPopUp] = useState(false);
@@ -184,10 +160,10 @@ function ExpandedFolder() {
   return (
     <div>
       <button onClick={() => setExpansion(!isExpanded)}>
-      <div className="recipe-folder">
+        <div className="recipe-folder">
           <span className="material-symbols-outlined">folder</span>
           <span className="homepage-text">Recipes</span>
-      </div>
+        </div>
       </button>
       {isExpanded && (
         <div className="expandedBox">
