@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -35,27 +35,27 @@ export const CreateList = () => {
 };
 
 export const EditList = () => {
-  // const [listTitle, setListTitle] = useState("Test");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
 
+  const { listID } = useParams();
   const title = location.state?.title;
-  const id = location.state?.id;
+  // const id = location.state?.id;
   const token = location.state?.token;
 
   useEffect(() => {
     axios
-      .get(`https://safe-plains-62725.herokuapp.com/lists/${id}/`, {
+      .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
         headers: {
           authorization: `token ${token}`,
         },
       })
       .then((res) => {
-        setItems(res.data);
-        console.log(res.data.listForItems[1].item);
+        setItems(res.data.listForItems);
+        // console.log(items);
       });
-  }, [id, token]);
+  }, []);
 
   const handleCancel = (event) => {
     event.preventDefault();
@@ -63,16 +63,20 @@ export const EditList = () => {
     navigate("/Homepage");
   };
 
+  // console.log(items);
+
   return (
-    <div className="list-display">
-      <div className="title-bar">
-        <button className="cancel-list" onClick={handleCancel}>
-          Cancel
-        </button>
-        <h1>{title}</h1>
+    items && (
+      <div className="list-display">
+        <div className="title-bar">
+          <button className="cancel-list" onClick={handleCancel}>
+            Cancel
+          </button>
+          <h1>{title}</h1>
+        </div>
+        <SendItems items={items} setItems={setItems} />
+        <ShowListItems items={items} />
       </div>
-      <SendItems items={items} setItems={setItems} />
-      {/* <ShowListItems items={items} /> */}
-    </div>
+    )
   );
 };

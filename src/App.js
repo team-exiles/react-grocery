@@ -38,7 +38,10 @@ function App() {
             <Route path="/Create" element={<CreateList token={token} />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/Register" element={<Register setUser={setUser} />} />
-            <Route path="/lists/edit" element={<EditList token={token} />} />
+            <Route
+              path="/lists/edit/:listID/"
+              element={<EditList token={token} />}
+            />
           </Routes>
         </>
       )}

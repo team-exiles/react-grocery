@@ -6,21 +6,15 @@ export const ListDetails = ({ list, token }) => {
   return (
     <>
       <Link
-        to="/lists/edit"
+        to={`/lists/edit/${list.id}/`}
         path="relative"
         state={{ title: list.title, id: list.id, token: token }}
       >
         <div className="list-homepage-line" key={list.id} onClick={handleClick}>
-          ;<span className="material-symbols-outlined">list</span>
+          <span className="material-symbols-outlined">list</span>
           <span className="list-title">{list.title}</span>
         </div>
       </Link>
     </>
   );
 };
-
-//     </div>
-// <div className="list-container">
-//   <span className="list-title" key={list.id}>
-//     {list.title}
-//   </span>

@@ -5,8 +5,6 @@ import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 
 export const Homepage = ({ setUser, username, token }) => {
-  console.log(token);
-
   const [lists, setLists] = useState([]);
   useEffect(() => {
     axios

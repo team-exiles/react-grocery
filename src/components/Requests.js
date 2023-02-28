@@ -23,7 +23,7 @@ export const requestRegisterUser = ({ email, password }) => {
 export const requestAllLists = () => {
   const url = "https://safe-plains-62725.herokuapp.com/lists/";
 
-  const response = axios.get(url, [], {});
+  const response = axios.get(url, {});
   return response;
 };
 
@@ -32,7 +32,7 @@ export const requestMyLists = (token) => {
 
   const response = axios.get(url, {
     headers: {
-      authorization: `token $(token)`,
+      authorization: `token ${token}`,
     },
   });
   return response;
