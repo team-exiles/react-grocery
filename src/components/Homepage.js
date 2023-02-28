@@ -2,14 +2,11 @@ import { Link } from "react-router-dom";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
-import { CssVarsProvider } from "@mui/joy/styles";
 import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
 import { CssVarsProvider } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
-// import Add from '@mui/icons-material/Add';
-
-
+import Add from '@mui/icons-material/Add';
 
 
 export const Homepage = ({ setUser, token }) => {
@@ -38,9 +35,7 @@ export const Homepage = ({ setUser, token }) => {
                     boxShadow: 'md',
                 }}
                 >
-
       <div className="homepage-header">Milk & Eggs</div>
-
       <div className="active-lists">
         {lists.map((list) => (
           <div className="listall">
@@ -116,7 +111,7 @@ function NewListPopUp({ token }) {
     <div>
     
       <Button 
-      // startDecorator={<Add />}
+      startDecorator={<Add />}
       variant="solid"
       onClick={() => setPopUp(!isPopUp)}>
       Create New List
