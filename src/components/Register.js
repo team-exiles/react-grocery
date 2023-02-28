@@ -19,9 +19,6 @@ export const Register = ({setUser}) => {
         
     return (
         <div>
-    <CssVarsProvider>
-      <Sheet />
-    </CssVarsProvider>
             <form className="register">
             <h3>Register</h3>
                 <div className="userfield">
