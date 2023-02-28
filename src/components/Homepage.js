@@ -3,6 +3,12 @@ import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { CssVarsProvider } from '@mui/joy/styles';
+import Button from '@mui/joy/Button';
+// import Add from '@mui/icons-material/Add';
+
+
+
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -14,6 +20,7 @@ export const Homepage = ({ setUser, token }) => {
   }, [token]);
 
   return (
+
     <section className="homepage">
       <div className="homepage-header">Milk & Eggs</div>
 
@@ -86,10 +93,15 @@ function NewListPopUp({ token }) {
   };
 
   return (
+    <CssVarsProvider>
     <div>
-      <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
-        <strong>{buttonName} Create New List</strong>
-      </button>
+    
+      <Button 
+      // startDecorator={<Add />}
+      variant="solid"
+      onClick={() => setPopUp(!isPopUp)}>
+      Create New List
+      </Button>
       {isPopUp && (
         <div className="new-list-pop-up">
           <div className="title">
@@ -114,6 +126,7 @@ function NewListPopUp({ token }) {
         </div>
       )}
     </div>
+    </CssVarsProvider>
   );
 }
 
