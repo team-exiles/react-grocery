@@ -3,8 +3,9 @@ import { requestMakeList } from "./Requests";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
+import axios from "axios"; 
 
-export const Homepage = ({ setUser, token }) => {
+export const Homepage = ({setUser, token}) => {
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
@@ -59,41 +60,29 @@ export const Homepage = ({ setUser, token }) => {
           </Link>
         </button>
       </div> 
-
-      < NewListPopUp />
+      <NewListPopUp token={token}/>
     </section>
   );
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-///// 
-
 function NewListPopUp({token}) {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
   const [title, setTitle] = useState("Title..");
-  const [create, setCreate] = useState({});
-
-  let createList = {
-    "title": `${title}`,
-  }
 
   const handleSubmit = (event) => {
-    requestMakeList(token, createList)
-      setTitle("Title..")
-      setCreate(createList)
+
+      const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
+      axios.post(url, {
+        "title": `${title}`
+      }, {
+          headers: {Authorization: `token ${token}`}
+      })
+      .then(() => 
+      setTitle("Title.."))
   }
+
 
 
   return (
@@ -124,21 +113,6 @@ function NewListPopUp({token}) {
 }
 
 
-//END OF FOCUS HERE 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function TextInput({ setTitle }) {
@@ -159,7 +133,7 @@ function TextInput({ setTitle }) {
       </div>
     </div>
   );
-}
+} 
 
 // function CreateNewFolder() {
 //   const [isPopUp, setPopUp] = useState(false);

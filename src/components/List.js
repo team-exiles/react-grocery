@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -20,7 +20,7 @@ export const CreateList = () => {
     navigate("/Homepage")
   };
 
-  const handleSubmit = (event) => {
+  /* const handleSubmit = (event) => {
     event.preventDefault();
     requestMakeList(username, password).then((res) => {
       const token = res.data.auth_token;
@@ -28,7 +28,7 @@ export const CreateList = () => {
       setUser(token, username)
       navigate("/Homepage"); 
     });
-  };
+  }; */
 
   return (
     <div className="list-display">

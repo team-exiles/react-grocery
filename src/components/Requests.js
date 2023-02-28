@@ -19,11 +19,11 @@ export const requestMyLists = (token) => {
     return response; 
 };
 
-export const requestMakeList = (token) => {
+export const requestMakeList = (token, title) => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
 
-    const response = axios.post(url, {}, {
-        headers: { Authorization: `token ${token}` }
+    const response = axios.post(url, {title}, {
+        headers: {Authorization: `token ${token}`}
     });
     return response;
 };
@@ -35,12 +35,5 @@ export const requestRegisterUser = ({ email, password }) => {
     email: email,
     password: password,
   });
-  return response;
-};
-
-export const requestMakoList = () => {
-  const url = "https://safe-plains-62725.herokuapp.com/lists/me/";
-
-  const response = axios.post(url, {});
   return response;
 };
