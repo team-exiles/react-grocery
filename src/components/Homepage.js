@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
-import { CssVarsProvider } from '@mui/joy/styles';
-import Button from '@mui/joy/Button';
-import Add from '@mui/icons-material/Add';
-
+import { CssVarsProvider } from "@mui/joy/styles";
+import Button from "@mui/joy/Button";
+import Add from "@mui/icons-material/Add";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -19,68 +19,48 @@ export const Homepage = ({ setUser, token }) => {
   }, [token]);
 
   return (
-
     <section className="homepage">
       <CssVarsProvider>
-      <Sheet sx={{
-                    width: 300,
-                    mx: 'auto', // margin left & right
-                    my: 4, // margin top & botom
-                    py: 3, // padding top & bottom
-                    px: 2, // padding left & right
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 2,
-                    borderRadius: 'sm',
-                    boxShadow: 'md',
-                }}
-                >
-      <div className="homepage-header">Milk & Eggs</div>
-      <div className="active-lists">
-        {lists.map((list) => (
-          <div className="listall">
-            <ListDetails list={list} token={token} />
+        <Sheet
+          sx={{
+            width: 300,
+            mx: "auto", // margin left & right
+            my: 4, // margin top & botom
+            py: 3, // padding top & bottom
+            px: 2, // padding left & right
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            borderRadius: "sm",
+            boxShadow: "md",
+          }}
+        >
+          <div className="homepage-header">Milk & Eggs</div>
+          <div className="active-lists">
+            {lists.map((list) => (
+              <div className="listall">
+                <ListDetails list={list} token={token} />
+              </div>
+            ))}
+
+            <div className="archived-folder">
+              <span className="material-symbols-outlined">
+                <Link to="/Archives">folder</Link>
+              </span>
+              <span>Archived</span>
+              <ExpandedFolder />
+            </div>
           </div>
-        ))}
-        <br />
-        <br />
 
-        <div className="list-homepage-line">
-          <span className="material-symbols-outlined">list</span>
-          <span>Thursday Taco Night</span>
-        </div>
-
-        <div className="list-homepage-line">
-          <span className="material-symbols-outlined">list</span>
-          <span>Sunday Game</span>
-        </div>
-      </div>
-
-      <div className="folders">
-        <div className="recipe-folder">
-          <span className="material-symbols-outlined">folder</span>
-          <span className="homepage-text">Recipes</span>
-          <ExpandedFolder />
-        </div>
-
-        <div className="archived-folder">
-          <span className="material-symbols-outlined">
-            <Link to="/Archives">folder</Link>
-          </span>
-          <span>Archived</span>
-          <ExpandedFolder />
-        </div>
-      </div>
-
-      <div className="logout">
-        <button>
-          <Link to="/Login" onClick={() => setUser(null)}>
-            Logout
-          </Link>
-        </button>
-      </div>
-      <NewListPopUp token={token} />
-      </Sheet>
+          <div className="logout">
+            <button>
+              <Link to="/Login" onClick={() => setUser(null)}>
+                Logout
+              </Link>
+            </button>
+          </div>
+          <NewListPopUp token={token} />
+        </Sheet>
       </CssVarsProvider>
     </section>
   );
@@ -89,57 +69,71 @@ export const Homepage = ({ setUser, token }) => {
 function NewListPopUp({ token }) {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [title, setTitle] = useState("Title..");
+  const [title, setTitle] = useState("Untitled");
+  let listID = "";
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     const url = "https://safe-plains-62725.herokuapp.com/lists/me/";
     axios
       .post(
         url,
-        {
-          title: `${title}`,
-        },
-        {
-          headers: { Authorization: `token ${token}` },
-        }
+        { title: `${title}` },
+        { headers: { Authorization: `token ${token}` } }
       )
-      .then(() => setTitle("Title.."));
+      .then((res) => {
+        console.log(res.data.id);
+        listID = res.data.id;
+        console.log(`${title} ${listID} ${token}`);
+        navigate(`/lists/edit/${listID}/`, {
+          state: {
+            title: title,
+            id: listID,
+            token: token,
+          },
+        });
+        setTitle("Untitled");
+      });
   };
 
   return (
     <CssVarsProvider>
-    <div>
-    
-      <Button 
-      startDecorator={<Add />}
-      variant="solid"
-      onClick={() => setPopUp(!isPopUp)}>
-      Create New List
-      </Button>
-      {isPopUp && (
-        <div className="new-list-pop-up">
-          <div className="title">
-            <h1>Create A List</h1>
-          </div>
-          <br />
-          <br />
-          <TextInput setTitle={setTitle} />
-          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
-            Cancel
-          </button>
-          <button className="submit-button" onClick={handleSubmit}>
-            <Link
+      <div>
+        <Button
+          startDecorator={<Add />}
+          variant="solid"
+          onClick={() => setPopUp(!isPopUp)}
+        >
+          Create New List
+        </Button>
+        {isPopUp && (
+          <div className="new-list-pop-up">
+            <div className="title">
+              <h1>New List Title?</h1>
+            </div>
+            <br />
+            <br />
+            <TextInput setTitle={setTitle} />
+            <button
+              className="cancel-button"
+              onClick={() => setPopUp(!isPopUp)}
+            >
+              Cancel
+            </button>
+            <button className="submit-button" onClick={handleSubmit}>
+              {/* <Link
               to="/Create"
               className="submit-link"
               path="relative"
-              state={{ title: title }}
-            >
-              Submit
+              state={{ title: title, listID: listID }}
+            > 
             </Link>
-          </button>
-        </div>
-      )}
-    </div>
+            */}
+              Submit
+            </button>
+          </div>
+        )}
+      </div>
     </CssVarsProvider>
   );
 }
