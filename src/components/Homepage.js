@@ -16,22 +16,13 @@ export const Homepage = ({ setUser, username, token }) => {
       .then((res) => {
         setLists(res.data);
       });
-  }, []);
+  }, [token]);
 
   // useEffect(() => {
   //   requestMyLists(token).then((res) => {
   //     setLists(res.data);
   //   });
   // }, [lists, token]);
-
-  const handleLogout = (token, setUser) => {
-    axios
-      .post("https://safe-plains-62725.herokuapp.com/auth/token/logout/", {
-        headers: { Token: `${token}` },
-      })
-      .then(() => setUser("", null))
-      .catch(() => setUser("", null));
-  };
 
   return (
     <section className="homepage">

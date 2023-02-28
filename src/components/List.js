@@ -75,7 +75,7 @@ export const EditList = () => {
           <h1>{title}</h1>
         </div>
         <SendItems items={items} setItems={setItems} />
-        <ShowListItems items={items} />
+        <ShowListItems items={items} token={token} />
       </div>
     )
   );
