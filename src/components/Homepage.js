@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
+import { CssVarsProvider } from "@mui/joy/styles";
+import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
 
 export const Homepage = ({ setUser, token }) => {
@@ -15,6 +17,21 @@ export const Homepage = ({ setUser, token }) => {
 
   return (
     <section className="homepage">
+      <CssVarsProvider>
+      <Sheet sx={{
+                    width: 300,
+                    mx: 'auto', // margin left & right
+                    my: 4, // margin top & botom
+                    py: 3, // padding top & bottom
+                    px: 2, // padding left & right
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                    borderRadius: 'sm',
+                    boxShadow: 'md',
+                }}
+                >
+
       <div className="homepage-header">Milk & Eggs</div>
 
       <div className="active-lists">
@@ -61,6 +78,8 @@ export const Homepage = ({ setUser, token }) => {
         </button>
       </div>
       <NewListPopUp token={token} />
+      </Sheet>
+      </CssVarsProvider>
     </section>
   );
 };
