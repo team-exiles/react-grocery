@@ -215,12 +215,26 @@ input[type="password"] {
   width: 300px;
   height: 200px;
   border: 3px solid black;
+  padding: 10px;
+  margin: 30px;
   transform: translate(-50%, -50%);
   justify-content: center;
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: white;
+  background-color: rgb(64, 182, 66);
+  color:rgb(247, 247, 247)
+}
+
+.title {
+  background-color: blue;
+  height: 60px;
+  width: 280px;
+  margin: 10px;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  align-items: center;
 }
 
 .new-folder-pop-up {
@@ -245,6 +259,9 @@ input[type="password"] {
   position: fixed;
   bottom: 12%;
   right: 6%;
+  background-color: #FAFA33;
+  border: 2px solid;
+  border-color: #dada28; 
 }
 
 .new-folder-button {
@@ -262,6 +279,8 @@ input[type="password"] {
   position: fixed;
   bottom: 4%;
   left: 20%;
+  background-color: #c22c12;
+  color: white;
 }
 
 .submit-button {
@@ -270,6 +289,11 @@ input[type="password"] {
   position: fixed;
   bottom: 4%;
   right: 20%;
+  background-color: #002e34;
+}
+
+.submit-link {
+  color: white;
 }
 
 .show-buttons {
