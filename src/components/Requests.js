@@ -31,8 +31,8 @@ export const requestAllLists = () => {
 export const requestMyLists = (token) => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/me/';
 
-    const response = axios.get(url, [], {
-        headers: {Authorization: `token ${token}`}
+    const response = axios.get(url, {
+        headers: { Authorization: `token ${token}` }
     }); 
     return response; 
 };
@@ -40,8 +40,8 @@ export const requestMyLists = (token) => {
 export const requestMakeList = (token) => {
     const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
 
-    const response = axios.post(url, {
-        headers: {Authorization: `token ${token}`}
+    const response = axios.post(url, {}, {
+        headers: { Authorization: `token ${token}` }
     });
     return response;
 };

@@ -1,26 +1,19 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { requestAllLists } from "./Requests";
+import { requestMyLists } from "./Requests";
+import { requestMakeList } from "./Requests"; 
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import placeholder from "../img/chibi-mj.jpg";
 
-export const Homepage = ({ setUser }) => {
+export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
+
   useEffect(() => {
-    requestAllLists().then((res) => {
+    requestMyLists(token).then((res) => {
       setLists(res.data);
     });
-  }, []);
+  }, [token]);
 
-  const handleLogout = (token, setUser) => {
-    axios
-      .post("https://safe-plains-62725.herokuapp.com/auth/token/logout/", {
-        headers: { Authorization: `Token ${token}` },
-      })
-      .then(() => setUser("", null))
-      .catch(() => setUser("", null));
-  };
 
   return (
     <section className="homepage">
@@ -41,6 +34,9 @@ export const Homepage = ({ setUser }) => {
             <ListDetails list={list} />
           </div>
         ))}
+
+        <br/>
+        <br/>
 
         <div className="list-homepage-line">
           <span className="material-symbols-outlined">list</span>
@@ -67,7 +63,7 @@ export const Homepage = ({ setUser }) => {
         </div>
 
         <div className="archived-folder">
-          <span className="material-symbols-outlined">folder</span>
+          <span className="material-symbols-outlined"><Link to="/Archives">folder</Link></span>
           <span>Archived</span>
           <ExpandedFolder />
         </div>
@@ -79,17 +75,43 @@ export const Homepage = ({ setUser }) => {
             Logout
           </Link>
         </button>
-      </div>
+      </div> 
+
       < NewListPopUp />
     </section>
   );
 };
 
 
-function NewListPopUp() {
+
+
+
+
+
+
+
+
+
+
+///// 
+
+function NewListPopUp({token}) {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
   const [title, setTitle] = useState("Title..");
+  const [create, setCreate] = useState({});
+
+  let createList = {
+    "title": `${title}`,
+  }
+
+  const handleSubmit = (event) => {
+    requestMakeList(token, createList)
+      setTitle("Title..")
+      setCreate(createList)
+  }
+
+
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -100,12 +122,14 @@ function NewListPopUp() {
           <div className="title">
             <h1>Create A List</h1>
           </div>
+          <br/>
+          <br/>
           <TextInput setTitle={setTitle} />
           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
             Cancel
           </button>
-          <button className="submit-button">
-            <Link to="/Create" path="relative" state={{ title: title }}>
+          <button className="submit-button" onClick={handleSubmit}>
+            <Link to="/Create" className="submit-link" path="relative" state={{ title: title }}>
               Submit
             </Link>
           </button>
@@ -114,6 +138,24 @@ function NewListPopUp() {
     </div>
   );
 }
+
+
+//END OF FOCUS HERE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function TextInput({ setTitle }) {
   const [textInputField, setTextInputField] = useState("");
