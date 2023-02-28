@@ -8,7 +8,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
+import { Link } from 'react-router-dom';
 
 
 
@@ -67,25 +67,19 @@ export const Login = ({ setUser }) => {
     onChange={(e) => setPassword(e.target.value)}
   />
 </FormControl>
-<Button onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
+<Button
+  variant="soft"
+ onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
   Log in
 </Button>
 <Typography
-  endDecorator={<Link href="/sign-up">Sign up</Link>}
+  endDecorator={<Link to="/sign-up">Sign up</Link>}
   fontSize="sm"
   sx={{ alignSelf: 'center' }}
 >
   Don't have an account?
 </Typography>
-
 </Sheet>
-        {/* <button onClick={handleSubmit} className="login-button" type="submit">
-          <strong>Log In</strong>
-        </button>
-        <br />
-        <button>
-          <Link to="/Register">New User? See Registration</Link>
-        </button> */}
-        </CssVarsProvider>
+</CssVarsProvider>
   );
 };

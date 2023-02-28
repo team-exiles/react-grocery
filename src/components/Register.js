@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import Link from '@mui/joy/Link';
 import { CssVarsProvider } from "@mui/joy/styles";
 import Sheet from "@mui/joy/Sheet";
+import Typography from '@mui/joy/Typography';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
 
 export const Register = ({ setUser }) => {
     const [username, setUsername] = useState("")
@@ -34,20 +39,41 @@ export const Register = ({ setUser }) => {
                     boxShadow: 'md',
                 }}
                 >
-                    <form className="register">
-                        <h3 className="regi-name">Register</h3>
-                        <div className="userfield">
-                            <input className="input" type="text" placeholder="username"
-                                onChange={(e) => setUsername(e.target.value)} />
-                        </div>
-                        <br />
-                        <div className="passwordfield">
-                            <input className="input" type="password" placeholder="password"
-                                onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                        <button className="regi-butt" onClick={handleSubmit}>Register</button>
-                        <button className="regi-close"><Link to="/Login">Close Window</Link></button>
-                    </form>
+                    <div>
+                        <Typography level="h4" component="h1">
+                        <b>Registration</b>
+                        </Typography>
+                        <Typography level="body2">Create a Username and Password</Typography>
+                    </div>
+
+                    <FormControl>
+                        <FormLabel>Username</FormLabel>
+                        <Input
+                            // html input attribute
+                            name="email"
+                            type="email"
+                            placeholder="johndoe@email.com"
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        </FormControl>
+                        <FormControl>
+                        <FormLabel>Password</FormLabel>
+                        <Input
+                            name="password"
+                            type="password"
+                            placeholder="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        </FormControl>
+                        <Button
+                        variant="soft"
+                         onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
+  Register
+</Button>
+                        <Button
+                        variant="soft"
+                        ><Link to="/Login">Close Window</Link>
+                        </Button>
                 </Sheet>
             </CssVarsProvider>
         </div>
