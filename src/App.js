@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 import { Login } from "./components/Login";
 import { Homepage } from "./components/Homepage";
-import { CreateList, EditList } from "./components/List";
+//import { CreateList, EditList } from "./components/List";
+import { EditList } from "./components/List";
 import { Register } from "./components/Register";
-import { Archive } from "./components/Archives"
+import { Archive } from "./components/Archives";
 
 function App() {
   const [token, setToken] = useLocalStorageState("token", null);
@@ -36,7 +37,7 @@ function App() {
                 <Homepage setUser={setUser} username={username} token={token} />
               }
             />
-            <Route path="/Create" element={<CreateList token={token} />} />
+            <Route path="/Create" element={<EditList token={token} />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/Archives" element={<Archive setUser={setUser} />} />
             <Route path="/Register" element={<Register setUser={setUser} />} />

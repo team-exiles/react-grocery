@@ -3,9 +3,10 @@ import { requestMakeList } from "./Requests";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
-import axios from "axios"; 
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export const Homepage = ({setUser, token}) => {
+export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,6 @@ export const Homepage = ({setUser, token}) => {
       setLists(res.data);
     });
   }, [token]);
-
 
   return (
     <section className="homepage">
@@ -25,18 +25,7 @@ export const Homepage = ({setUser, token}) => {
             <ListDetails list={list} token={token} />
           </div>
         ))}
-        <br/>
-        <br/>
-
-        <div className="list-homepage-line">
-          <span className="material-symbols-outlined">list</span>
-          <span>Thursday Taco Night</span>
-        </div>
-
-        <div className="list-homepage-line">
-          <span className="material-symbols-outlined">list</span>
-          <span>Sunday Game</span>
-        </div>
+        <br />
       </div>
 
       <div className="folders">
@@ -47,7 +36,9 @@ export const Homepage = ({setUser, token}) => {
         </div>
 
         <div className="archived-folder">
-          <span className="material-symbols-outlined"><Link to="/Archives">folder</Link></span>
+          <span className="material-symbols-outlined">
+            <Link to="/Archives">folder</Link>
+          </span>
           <span>Archived</span>
           <ExpandedFolder />
         </div>
@@ -59,31 +50,41 @@ export const Homepage = ({setUser, token}) => {
             Logout
           </Link>
         </button>
-      </div> 
-      <NewListPopUp token={token}/>
+      </div>
+      <NewListPopUp token={token} />
     </section>
   );
 };
 
-
-function NewListPopUp({token}) {
+function NewListPopUp({ token }) {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
-  const [title, setTitle] = useState("Title..");
+  const [title, setTitle] = useState("Untitled");
+  let listID = "";
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-
-      const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
-      axios.post(url, {
-        "title": `${title}`
-      }, {
-          headers: {Authorization: `token ${token}`}
-      })
-      .then(() => 
-      setTitle("Title.."))
-  }
-
-
+  const handleSubmit = () => {
+    const url = "https://safe-plains-62725.herokuapp.com/lists/me/";
+    axios
+      .post(
+        url,
+        { title: `${title}` },
+        { headers: { Authorization: `token ${token}` } }
+      )
+      .then((res) => {
+        console.log(res.data.id);
+        listID = res.data.id;
+        console.log(`${title} ${listID} ${token}`);
+        navigate(`/lists/edit/${listID}/`, {
+          state: {
+            title: title,
+            id: listID,
+            token: token,
+          },
+        });
+        setTitle("Untitled");
+      });
+  };
 
   return (
     <div>
@@ -93,27 +94,30 @@ function NewListPopUp({token}) {
       {isPopUp && (
         <div className="new-list-pop-up">
           <div className="title">
-            <h1>Create A List</h1>
+            <h1>New List Title?</h1>
           </div>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <TextInput setTitle={setTitle} />
           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
             Cancel
           </button>
           <button className="submit-button" onClick={handleSubmit}>
-            <Link to="/Create" className="submit-link" path="relative" state={{ title: title }}>
-              Submit
+            {/* <Link
+              to="/Create"
+              className="submit-link"
+              path="relative"
+              state={{ title: title, listID: listID }}
+            > 
             </Link>
+            */}
+            Submit
           </button>
         </div>
       )}
     </div>
   );
 }
-
-
-
 
 function TextInput({ setTitle }) {
   const [textInputField, setTextInputField] = useState("");
@@ -133,7 +137,7 @@ function TextInput({ setTitle }) {
       </div>
     </div>
   );
-} 
+}
 
 // function CreateNewFolder() {
 //   const [isPopUp, setPopUp] = useState(false);
