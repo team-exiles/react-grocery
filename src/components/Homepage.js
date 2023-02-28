@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { requestMakeList } from "./Requests";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
+import { CssVarsProvider } from "@mui/joy/styles";
+import Button from "@mui/joy/Button";
+import Add from "@mui/icons-material/Add";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -17,41 +20,48 @@ export const Homepage = ({ setUser, token }) => {
 
   return (
     <section className="homepage">
-      <div className="homepage-header">Milk & Eggs</div>
+      <CssVarsProvider>
+        <Sheet
+          sx={{
+            width: 300,
+            mx: "auto", // margin left & right
+            my: 4, // margin top & botom
+            py: 3, // padding top & bottom
+            px: 2, // padding left & right
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            borderRadius: "sm",
+            boxShadow: "md",
+          }}
+        >
+          <div className="homepage-header">Milk & Eggs</div>
+          <div className="active-lists">
+            {lists.map((list) => (
+              <div className="listall">
+                <ListDetails list={list} token={token} />
+              </div>
+            ))}
 
-      <div className="active-lists">
-        {lists.map((list) => (
-          <div className="listall">
-            <ListDetails list={list} token={token} />
+            <div className="archived-folder">
+              <span className="material-symbols-outlined">
+                <Link to="/Archives">folder</Link>
+              </span>
+              <span>Archived</span>
+              <ExpandedFolder />
+            </div>
           </div>
-        ))}
-        <br />
-      </div>
 
-      <div className="folders">
-        <div className="recipe-folder">
-          <span className="material-symbols-outlined">folder</span>
-          <span className="homepage-text">Recipes</span>
-          <ExpandedFolder />
-        </div>
-
-        <div className="archived-folder">
-          <span className="material-symbols-outlined">
-            <Link to="/Archives">folder</Link>
-          </span>
-          <span>Archived</span>
-          <ExpandedFolder />
-        </div>
-      </div>
-
-      <div className="logout">
-        <button>
-          <Link to="/Login" onClick={() => setUser(null)}>
-            Logout
-          </Link>
-        </button>
-      </div>
-      <NewListPopUp token={token} />
+          <div className="logout">
+            <button>
+              <Link to="/Login" onClick={() => setUser(null)}>
+                Logout
+              </Link>
+            </button>
+          </div>
+          <NewListPopUp token={token} />
+        </Sheet>
+      </CssVarsProvider>
     </section>
   );
 };
@@ -87,23 +97,31 @@ function NewListPopUp({ token }) {
   };
 
   return (
-    <div>
-      <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
-        <strong>{buttonName} Create New List</strong>
-      </button>
-      {isPopUp && (
-        <div className="new-list-pop-up">
-          <div className="title">
-            <h1>New List Title?</h1>
-          </div>
-          <br />
-          <br />
-          <TextInput setTitle={setTitle} />
-          <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
-            Cancel
-          </button>
-          <button className="submit-button" onClick={handleSubmit}>
-            {/* <Link
+    <CssVarsProvider>
+      <div>
+        <Button
+          startDecorator={<Add />}
+          variant="solid"
+          onClick={() => setPopUp(!isPopUp)}
+        >
+          Create New List
+        </Button>
+        {isPopUp && (
+          <div className="new-list-pop-up">
+            <div className="title">
+              <h1>New List Title?</h1>
+            </div>
+            <br />
+            <br />
+            <TextInput setTitle={setTitle} />
+            <button
+              className="cancel-button"
+              onClick={() => setPopUp(!isPopUp)}
+            >
+              Cancel
+            </button>
+            <button className="submit-button" onClick={handleSubmit}>
+              {/* <Link
               to="/Create"
               className="submit-link"
               path="relative"
@@ -111,11 +129,12 @@ function NewListPopUp({ token }) {
             > 
             </Link>
             */}
-            Submit
-          </button>
-        </div>
-      )}
-    </div>
+              Submit
+            </button>
+          </div>
+        )}
+      </div>
+    </CssVarsProvider>
   );
 }
 
