@@ -29,7 +29,7 @@ export const Login = ({ setUser }) => {
   return (
     <CssVarsProvider>
       <Sheet sx={{
-    width: 600,
+    width: 300,
     mx: 'auto', // margin left & right
     my: 4, // margin top & botom
     py: 3, // padding top & bottom
