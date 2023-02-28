@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { CssVarsProvider } from "@mui/joy/styles";
+import Sheet from "@mui/joy/Sheet";
 
 export const Register = ({setUser}) => {
     const [username, setUsername] = useState("")
@@ -17,6 +19,9 @@ export const Register = ({setUser}) => {
         
     return (
         <div>
+    <CssVarsProvider>
+      <Sheet />
+    </CssVarsProvider>
             <form className="register">
             <h3>Register</h3>
                 <div className="userfield">

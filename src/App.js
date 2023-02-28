@@ -5,7 +5,8 @@ import { Login } from "./components/Login";
 import { Homepage } from "./components/Homepage";
 import { CreateList, EditList } from "./components/List";
 import { Register } from "./components/Register";
-import { Archive } from "./components/Archives"
+import { Archive } from "./components/Archives";
+
 
 function App() {
   const [token, setToken] = useLocalStorageState("token", null);
