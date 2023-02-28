@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -17,12 +17,23 @@ export const CreateList = () => {
   const handleCancel = (event) => {
     event.preventDefault();
     setItems([]);
-    navigate("/Homepage");
+    navigate("/Homepage")
   };
+
+  /* const handleSubmit = (event) => {
+    event.preventDefault();
+    requestMakeList(username, password).then((res) => {
+      const token = res.data.auth_token;
+      console.log(token);
+      setUser(token, username)
+      navigate("/Homepage"); 
+    });
+  }; */
 
   return (
     <div className="list-display">
       <div className="title-bar">
+        <button><Link to="/Homepage">Back</Link></button>
         <button className="cancel-list" onClick={handleCancel}>
           Cancel
         </button>
@@ -30,6 +41,7 @@ export const CreateList = () => {
       </div>
       <SendItems items={items} setItems={setItems} />
       <ShowListItems items={items} />
+      <button onClick={handleCancel}>Cancel List</button>
     </div>
   );
 };

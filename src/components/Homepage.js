@@ -1,28 +1,19 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { requestMakeList } from "./Requests";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
+import axios from "axios"; 
 
-export const Homepage = ({ setUser, username, token }) => {
+export const Homepage = ({setUser, token}) => {
   const [lists, setLists] = useState([]);
+
   useEffect(() => {
-    axios
-      .get(`https://safe-plains-62725.herokuapp.com/lists/me/`, {
-        headers: {
-          Authorization: `token ${token}`,
-        },
-      })
-      .then((res) => {
-        setLists(res.data);
-      });
+    requestMyLists(token).then((res) => {
+      setLists(res.data);
+    });
   }, [token]);
 
-  // useEffect(() => {
-  //   requestMyLists(token).then((res) => {
-  //     setLists(res.data);
-  //   });
-  // }, [lists, token]);
 
   return (
     <section className="homepage">
@@ -34,6 +25,18 @@ export const Homepage = ({ setUser, username, token }) => {
             <ListDetails list={list} token={token} />
           </div>
         ))}
+        <br/>
+        <br/>
+
+        <div className="list-homepage-line">
+          <span className="material-symbols-outlined">list</span>
+          <span>Thursday Taco Night</span>
+        </div>
+
+        <div className="list-homepage-line">
+          <span className="material-symbols-outlined">list</span>
+          <span>Sunday Game</span>
+        </div>
       </div>
 
       <div className="folders">
@@ -44,7 +47,7 @@ export const Homepage = ({ setUser, username, token }) => {
         </div>
 
         <div className="archived-folder">
-          <span className="material-symbols-outlined">folder</span>
+          <span className="material-symbols-outlined"><Link to="/Archives">folder</Link></span>
           <span>Archived</span>
           <ExpandedFolder />
         </div>
@@ -56,16 +59,32 @@ export const Homepage = ({ setUser, username, token }) => {
             Logout
           </Link>
         </button>
-      </div>
-      <NewListPopUp />
+      </div> 
+      <NewListPopUp token={token}/>
     </section>
   );
 };
 
-function NewListPopUp() {
+
+function NewListPopUp({token}) {
   const [isPopUp, setPopUp] = useState(false);
   const buttonName = isPopUp;
   const [title, setTitle] = useState("Title..");
+
+  const handleSubmit = (event) => {
+
+      const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
+      axios.post(url, {
+        "title": `${title}`
+      }, {
+          headers: {Authorization: `token ${token}`}
+      })
+      .then(() => 
+      setTitle("Title.."))
+  }
+
+
+
   return (
     <div>
       <button className="new-list-button" onClick={() => setPopUp(!isPopUp)}>
@@ -76,12 +95,14 @@ function NewListPopUp() {
           <div className="title">
             <h1>Create A List</h1>
           </div>
+          <br/>
+          <br/>
           <TextInput setTitle={setTitle} />
           <button className="cancel-button" onClick={() => setPopUp(!isPopUp)}>
             Cancel
           </button>
-          <button className="submit-button">
-            <Link to="/Create" path="relative" state={{ title: title }}>
+          <button className="submit-button" onClick={handleSubmit}>
+            <Link to="/Create" className="submit-link" path="relative" state={{ title: title }}>
               Submit
             </Link>
           </button>
@@ -90,6 +111,9 @@ function NewListPopUp() {
     </div>
   );
 }
+
+
+
 
 function TextInput({ setTitle }) {
   const [textInputField, setTextInputField] = useState("");
@@ -109,7 +133,7 @@ function TextInput({ setTitle }) {
       </div>
     </div>
   );
-}
+} 
 
 // function CreateNewFolder() {
 //   const [isPopUp, setPopUp] = useState(false);
