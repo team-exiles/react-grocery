@@ -3,13 +3,10 @@
   background-color: rgb(25, 168, 20);
   color: white;
   text-align: center;
-
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 20vh;
@@ -18,7 +15,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-
   .nav-bar {
     background-color: blue;
   }
