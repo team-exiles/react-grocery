@@ -8,6 +8,9 @@ import axios from "axios";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Button from "@mui/joy/Button";
 import Add from "@mui/icons-material/Add";
+import Typography from '@mui/joy/Typography';
+import Input from '@mui/joy/Input';
+import FormControl from '@mui/joy/FormControl';
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -106,21 +109,23 @@ function NewListPopUp({ token }) {
         >
           Create New List
         </Button>
+
+
         {isPopUp && (
           <div className="new-list-pop-up">
-            <div className="title">
-              <h1>New List Title?</h1>
+            <div>
+              <Typography level="h2" component="h1">
+                <b>Create New List</b>
+              </Typography>
             </div>
-            <br />
-            <br />
-            <TextInput setTitle={setTitle} />
-            <button
-              className="cancel-button"
-              onClick={() => setPopUp(!isPopUp)}
-            >
-              Cancel
-            </button>
-            <button className="submit-button" onClick={handleSubmit}>
+          <FormControl>
+            <Input 
+            setTitle={setTitle} 
+            placeholder="Title.."
+            />
+            <Button
+            variant="soft"
+            onClick={handleSubmit}>
               {/* <Link
               to="/Create"
               className="submit-link"
@@ -130,7 +135,14 @@ function NewListPopUp({ token }) {
             </Link>
             */}
               Submit
-            </button>
+            </Button>
+          </FormControl>
+            <Button
+            variant="soft"
+            color="danger"
+            onClick={() => setPopUp(!isPopUp)}>Cancel
+            </Button>
+
           </div>
         )}
       </div>

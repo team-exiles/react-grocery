@@ -72,7 +72,7 @@ export const Register = ({ setUser }) => {
 </Button>
                         <Button
                         variant="soft"
-                        ><Link to="/Login">Close Window</Link>
+                        >{<Link to="/Login">Close Window</Link>}
                         </Button>
                 </Sheet>
             </CssVarsProvider>
