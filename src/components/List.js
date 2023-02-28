@@ -57,7 +57,7 @@ export const EditList = () => {
       });
   }, []);
 
-  const handleCancel = (event) => {
+  const handleBack = (event) => {
     event.preventDefault();
     setItems([]);
     navigate("/Homepage");
@@ -69,8 +69,8 @@ export const EditList = () => {
     items && (
       <div className="list-display">
         <div className="title-bar">
-          <button className="cancel-list" onClick={handleCancel}>
-            Cancel
+          <button className="back-list" onClick={handleBack}>
+            Back
           </button>
           <h1>{title}</h1>
         </div>
