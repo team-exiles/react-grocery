@@ -52,9 +52,9 @@ export const Login = ({ setUser }) => {
   <FormLabel>Username</FormLabel>
   <Input
     // html input attribute
-    name="email"
-    type="email"
-    placeholder="johndoe@email.com"
+    name="username"
+    type="text"
+    placeholder="Username:"
     onChange={(e) => setUsername(e.target.value)}
   />
 </FormControl>

@@ -7,7 +7,6 @@ import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Button from "@mui/joy/Button";
-import Add from "@mui/icons-material/Add";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -100,7 +99,6 @@ function NewListPopUp({ token }) {
     <CssVarsProvider>
       <div>
         <Button
-          startDecorator={<Add />}
           variant="solid"
           onClick={() => setPopUp(!isPopUp)}
         >
