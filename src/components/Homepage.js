@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from '@mui/joy/Link';
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Button from "@mui/joy/Button";
 import Add from "@mui/icons-material/Add";
+import Typography from '@mui/joy/Typography';
+import Input from '@mui/joy/Input';
+import FormControl from '@mui/joy/FormControl';
+
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -21,20 +25,6 @@ export const Homepage = ({ setUser, token }) => {
   return (
     <section className="homepage">
       <CssVarsProvider>
-        <Sheet
-          sx={{
-            width: 300,
-            mx: "auto", // margin left & right
-            my: 4, // margin top & botom
-            py: 3, // padding top & bottom
-            px: 2, // padding left & right
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            borderRadius: "sm",
-            boxShadow: "md",
-          }}
-        >
           <div className="homepage-header">Milk & Eggs</div>
           <div className="active-lists">
             {lists.map((list) => (
@@ -52,15 +42,20 @@ export const Homepage = ({ setUser, token }) => {
             </div>
           </div>
 
-          <div className="logout">
-            <button>
-              <Link to="/Login" onClick={() => setUser(null)}>
-                Logout
+          <div>
+          {/* <button>
+          <Link to="/Login" onClick={() => setUser(null)}>
+            Logout
+          </Link>
+        </button> */}
+            <Button
+            size="sm"
+            variant="soft">
+              <Link component={RouterLink} to="/Login" onClick={() => setUser(null)}>Logout
               </Link>
-            </button>
+            </Button>
           </div>
           <NewListPopUp token={token} />
-        </Sheet>
       </CssVarsProvider>
     </section>
   );
@@ -101,26 +96,26 @@ function NewListPopUp({ token }) {
       <div>
         <Button
           startDecorator={<Add />}
-          variant="solid"
+          variant="soft"
           onClick={() => setPopUp(!isPopUp)}
         >
           Create New List
         </Button>
         {isPopUp && (
           <div className="new-list-pop-up">
-            <div className="title">
-              <h1>New List Title?</h1>
+            <div>
+              <Typography level="h2" component="h1">
+                <b>Create New List</b>
+              </Typography>
             </div>
-            <br />
-            <br />
-            <TextInput setTitle={setTitle} />
-            <button
-              className="cancel-button"
-              onClick={() => setPopUp(!isPopUp)}
-            >
-              Cancel
-            </button>
-            <button className="submit-button" onClick={handleSubmit}>
+          <FormControl>
+            <Input 
+            setTitle={setTitle} 
+            placeholder="Title.."
+            />
+            <Button
+            variant="soft"
+            onClick={handleSubmit}>
               {/* <Link
               to="/Create"
               className="submit-link"
@@ -130,7 +125,12 @@ function NewListPopUp({ token }) {
             </Link>
             */}
               Submit
-            </button>
+            </Button>
+          </FormControl>
+            <Button
+            variant="soft"
+            onClick={() => setPopUp(!isPopUp)}>Cancel
+            </Button>
           </div>
         )}
       </div>

@@ -8,13 +8,14 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
-import { Link } from 'react-router-dom';
-
-
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@mui/joy/Link';
+import { Register } from "./Register";
 
 export const Login = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [register, setRegister] = useState(false)
   const navigate = useNavigate("");
 
   const handleSubmit = (event) => {
@@ -28,6 +29,7 @@ export const Login = ({ setUser }) => {
 
   return (
     <CssVarsProvider>
+      {register===false ? (
       <Sheet sx={{
     width: 300,
     mx: 'auto', // margin left & right
@@ -69,17 +71,14 @@ export const Login = ({ setUser }) => {
 </FormControl>
 <Button
   variant="soft"
- onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
+  onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
   Log in
-</Button>
-<Typography
-  endDecorator={<Link to="/sign-up">Sign up</Link>}
-  fontSize="sm"
-  sx={{ alignSelf: 'center' }}
->
-  Don't have an account?
-</Typography>
+</Button> 
+<Link component={RouterLink} to="/Register" onClick={() => setRegister(!register)}>Sign up</Link>
 </Sheet>
+    ) : (
+      <Register />
+    )}
 </CssVarsProvider>
   );
 };

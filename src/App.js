@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      {!loggedIn ? (
+      {!token ? (
         <div>
           <Login setUser={setUser} />
           <Routes>

@@ -8,6 +8,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Register = ({ setUser }) => {
     const [username, setUsername] = useState("")
@@ -71,8 +72,8 @@ export const Register = ({ setUser }) => {
   Register
 </Button>
                         <Button
-                        variant="soft"
-                        ><Link to="/Login">Close Window</Link>
+                        variant="soft">
+                        <Link component={RouterLink} to="/Login">Close Window</Link>
                         </Button>
                 </Sheet>
             </CssVarsProvider>

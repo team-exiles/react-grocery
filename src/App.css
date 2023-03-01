@@ -210,7 +210,8 @@ input[type="password"] {
   left: 50%;
   width: 300px;
   height: 200px;
-  border: 3px solid black;
+  border: 1px groove black;
+  border-radius: 25px;
   padding: 10px;
   margin: 30px;
   transform: translate(-50%, -50%);
@@ -218,7 +219,7 @@ input[type="password"] {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: rgb(64, 182, 66);
+  background-color: white;
   color:rgb(247, 247, 247)
 }
 
@@ -255,9 +256,7 @@ input[type="password"] {
   position: fixed;
   bottom: 12%;
   right: 6%;
-  background-color: #FAFA33;
   border: 2px solid;
-  border-color: #dada28; 
 }
 
 .new-folder-button {
