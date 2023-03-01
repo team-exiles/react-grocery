@@ -34,8 +34,6 @@ export const EditList = () => {
     navigate("/Homepage");
   };
 
-  // console.log(items);
-
   return (
     items && (
       <div className="list-display">
