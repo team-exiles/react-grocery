@@ -12,6 +12,7 @@ import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 
+
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
 
@@ -49,7 +50,7 @@ export const Homepage = ({ setUser, token }) => {
         </button> */}
             <Button
             size="sm"
-            variant="outlined">
+            variant="soft">
               <Link component={RouterLink} to="/Login" onClick={() => setUser(null)}>Logout
               </Link>
             </Button>
@@ -95,7 +96,7 @@ function NewListPopUp({ token }) {
       <div>
         <Button
           startDecorator={<Add />}
-          variant="solid"
+          variant="soft"
           onClick={() => setPopUp(!isPopUp)}
         >
           Create New List
@@ -128,7 +129,6 @@ function NewListPopUp({ token }) {
           </FormControl>
             <Button
             variant="soft"
-            color="danger"
             onClick={() => setPopUp(!isPopUp)}>Cancel
             </Button>
           </div>
