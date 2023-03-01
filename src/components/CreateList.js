@@ -9,7 +9,7 @@ import Slide from "@mui/material/Slide";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import TextField from "@mui/material/TextField";
-import QueueOutlinedIcon from '@mui/icons-material/QueueOutlined';
+import Add from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import { Fab } from "@mui/material";
 
@@ -57,12 +57,13 @@ export default function CreateList({ token }) {
     <div>
       <Fab
       sx={{ position: "absolute", bottom: 40, right: 40 }}
-      color="primary"
+      
       >
       <IconButton
         onClick={handleClickOpen}
+        color="primary"
         >
-          <QueueOutlinedIcon />
+          <Add />
       </IconButton>
       </Fab>
       <Dialog
