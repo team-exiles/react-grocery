@@ -2,7 +2,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import axios from "axios";
 
-export default function DeleteItem({ token, itemID }) {
+export default function DeleteItem({ token, deleteItem, itemID }) {
   const handleDelete = () => {
     axios({
       method: "DELETE",
@@ -10,13 +10,13 @@ export default function DeleteItem({ token, itemID }) {
       headers: {
         authorization: `token ${token}`,
       },
-    });
+    }).then((res) => deleteItem(itemID));
   };
 
   return (
     <div>
-      <IconButton size="small" color="primary">
-        <DeleteIcon onClick={handleDelete} />
+      <IconButton>
+        <DeleteIcon fontSize="small" onClick={handleDelete} />
       </IconButton>
     </div>
   );

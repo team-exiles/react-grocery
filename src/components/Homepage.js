@@ -27,7 +27,6 @@ export const Homepage = ({ setUser, token }) => {
 
   return (
     <section className="homepage">
-      {/* <CssVarsProvider> */}
       <Typography variant="h4">Forgot Milk?</Typography>
       <Divider sx={{ m: 2 }} />
       <div>
@@ -65,104 +64,9 @@ export const Homepage = ({ setUser, token }) => {
       </div>
 
       <CreateList token={token} />
-
-      {/* <NewListPopUp token={token} /> */}
-      {/* </CssVarsProvider> */}
     </section>
   );
 };
-
-// function NewListPopUp({ token }) {
-//   const [isPopUp, setPopUp] = useState(false);
-//   const buttonName = isPopUp;
-//   const [title, setTitle] = useState("Untitled");
-//   let listID = "";
-//   const navigate = useNavigate();
-
-//   const handleSubmit = () => {
-//     const url = "https://safe-plains-62725.herokuapp.com/lists/me/";
-//     axios
-//       .post(
-//         url,
-//         { title: `${title}` },
-//         { headers: { Authorization: `token ${token}` } }
-//       )
-//       .then((res) => {
-//         listID = res.data.id;
-//         navigate(`/lists/edit/${listID}/`, {
-//           state: {
-//             title: title,
-//             id: listID,
-//             token: token,
-//           },
-//         });
-//         setTitle("Untitled");
-//       });
-//   };
-
-//   return (
-//     <CssVarsProvider>
-//       <div>
-//         <Button
-//           startDecorator={<Add />}
-//           variant="soft"
-//           onClick={() => setPopUp(!isPopUp)}
-//         >
-//           Create New List
-//         </Button>
-//         {isPopUp && (
-//           <div className="new-list-pop-up">
-//             <div>
-//               <Typography level="h2" component="h1">
-//                 <b>Create New List</b>
-//               </Typography>
-//             </div>
-//             <FormControl>
-//               <Input
-//                 onChange={(e) => setTitle(e.target.value)}
-//                 placeholder="Title.."
-//               />
-//               <Button variant="soft" onClick={handleSubmit}>
-//                 {/* <Link
-//               to="/Create"
-//               className="submit-link"
-//               path="relative"
-//               state={{ title: title, listID: listID }}
-//             >
-//             </Link>
-//             */}
-//                 Submit
-//               </Button>
-//             </FormControl>
-//             <Button variant="soft" onClick={() => setPopUp(!isPopUp)}>
-//               Cancel
-//             </Button>
-//           </div>
-//         )}
-//       </div>
-//     </CssVarsProvider>
-//   );
-// }
-
-// function TextInput({ setTitle }) {
-//   const [textInputField, setTextInputField] = useState("");
-//   const handleText = (e) => {
-//     e.preventDefault();
-//     setTextInputField(e.target.value);
-//     setTitle(e.target.value);
-//   };
-//   return (
-//     <div className="text-customizer">
-//       <div className="front-input">
-//         <input
-//           onChange={handleText}
-//           value={textInputField}
-//           placeholder="Enter Title..."
-//         />
-//       </div>
-//     </div>
-//   );
-// }
 
 // function CreateNewFolder() {
 //   const [isPopUp, setPopUp] = useState(false);

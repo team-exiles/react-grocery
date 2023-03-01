@@ -72,7 +72,7 @@ export const EditList = () => {
           token={token}
           listID={listID}
         />
-        <ShowListItems items={items} token={token} />
+        <ShowListItems items={items} setItems={setItems} token={token} />
         <Fab
           sx={{ position: "absolute", bottom: 30, right: 30 }}
           color="primary"

@@ -12,13 +12,11 @@ import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
 import { roleElements } from "aria-query";
 
-export function ShowListItems({ items, token }) {
+export function ShowListItems({ items, setItems, token }) {
   const [state, setState] = useState({});
 
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
-
-    console.log(item);
     axios.patch(
       `https://safe-plains-62725.herokuapp.com/items/${item.id}/`,
       {
@@ -30,6 +28,11 @@ export function ShowListItems({ items, token }) {
         },
       }
     );
+  };
+
+  const deleteItem = (itemID) => {
+    const newItemArray = items.filter((item) => item.id !== itemID);
+    setItems(newItemArray);
   };
 
   return (
@@ -44,7 +47,11 @@ export function ShowListItems({ items, token }) {
             />
 
             <ListItemText primary={item.item} />
-            <DeleteItem token={token} itemID={item.id} />
+            <DeleteItem
+              token={token}
+              deleteItem={deleteItem}
+              itemID={item.id}
+            />
           </ListItem>
 
           <Divider />
