@@ -3,17 +3,12 @@ import Link from "@mui/joy/Link";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
-import Button from "@mui/joy/Button";
 import CreateList from "./CreateList";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { CssVarsProvider } from "@mui/joy/styles";
-// import Add from "@mui/icons-material/Add";
-// import Typography from "@mui/joy/Typography";
-// import Input from "@mui/joy/Input";
-// import FormControl from "@mui/joy/FormControl";
+import Card from "@mui/material/Card";
+import IconButton from "@mui/material/IconButton";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export const Homepage = ({ setUser, token }) => {
@@ -27,17 +22,21 @@ export const Homepage = ({ setUser, token }) => {
 
   return (
     <section className="homepage">
-      {/* <CssVarsProvider> */}
-      <Typography variant="h4">Forgot Milk?</Typography>
+      <Typography variant="h4" align="center">Forgot Milk?</Typography>
       <Divider sx={{ m: 2 }} />
-      <div>
+      <div className="active-lists">
         {lists.map((list) => (
-          <div className="listall">
+          <Card variant="outlined"
+          sx={{
+            p:2,
+            m:2,
+          }}
+          
+          >
             <ListDetails list={list} token={token} />
-          </div>
+          </Card>
         ))}
         <Divider sx={{ m: 2 }} />
-
         {/* <div className="archived-folder">
           <span className="material-symbols-outlined">
             <Link to="/Archives">folder</Link>
@@ -46,28 +45,21 @@ export const Homepage = ({ setUser, token }) => {
           <ExpandedFolder />
         </div> */}
       </div>
-
       <div>
-        {/* <button>
-          <Link to="/Login" onClick={() => setUser(null)}>
-            Logout
-          </Link>
-        </button> */}
-        <Button size="sm" variant="soft">
+        <IconButton
+        sx={{ position: "absolute", top: 10, left: 10 }}
+        >
           <Link
             component={RouterLink}
             to="/Login"
-            onClick={() => setUser(null)}
-          >
-            Logout
+            onClick={() => setUser(null)}>
+          <LogoutIcon />
           </Link>
-        </Button>
+        </IconButton>
+        {/* </Fab> */}
       </div>
 
       <CreateList token={token} />
-
-      {/* <NewListPopUp token={token} /> */}
-      {/* </CssVarsProvider> */}
     </section>
   );
 };
