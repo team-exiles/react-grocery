@@ -8,6 +8,9 @@ import CreateList from "./CreateList";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import { Fab } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 // import { CssVarsProvider } from "@mui/joy/styles";
@@ -60,27 +63,25 @@ export const Homepage = ({ setUser, token }) => {
           <ExpandedFolder />
         </div> */}
       </div>
-
-
-
-
-
-
       <div>
         {/* <button>
           <Link to="/Login" onClick={() => setUser(null)}>
             Logout
           </Link>
         </button> */}
-        <Button size="sm" variant="soft">
+        <Fab
+      sx={{ position: "absolute", top: 10, left: 10 }}
+      >
+        <IconButton
+        >
           <Link
             component={RouterLink}
             to="/Login"
-            onClick={() => setUser(null)}
-          >
-            Logout
+            onClick={() => setUser(null)}>
+          <LogoutIcon />
           </Link>
-        </Button>
+        </IconButton>
+        </Fab>
       </div>
 
       <CreateList token={token} />
