@@ -4,6 +4,12 @@ import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Card from "@mui/material/Card";
+import DeleteList from "./DeleteList";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 export const EditList = () => {
   const [items, setItems] = useState(null);
@@ -37,13 +43,20 @@ export const EditList = () => {
   return (
     items && (
       <div className="list-display">
-        <div className="title-bar">
-          <button className="back-list" onClick={handleBack}>
-            Back
-          </button>
-          <h1>{title}</h1>
-          <button className="delete-list">Delete</button>
-        </div>
+        {/* <div className="title-bar"> */}
+        <Stack direction="row" spacing="5">
+          <Button
+            aria-label="back to homepage"
+            variant="filled"
+            onClick={handleBack}
+          >
+            <ArrowBackIcon />
+          </Button>
+          <Typography level="h1">{title}</Typography>
+          <DeleteList listID={listID} token={token} title={title} />
+
+          {/* </div> */}
+        </Stack>
         <SendItems
           items={items}
           setItems={setItems}
