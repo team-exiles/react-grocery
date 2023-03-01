@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
 
 export function SendItems({ items, setItems, token, listID }) {
   const [textInput, setTextInput] = useState("");
   const [addedItem, setAddedItem] = useState("");
 
   const handleSubmit = (e) => {
-    console.log(e.target.value);
     e.preventDefault();
     if (addedItem.trim() === "") {
       alert("Enter valid message");
@@ -54,9 +54,9 @@ export function SendItems({ items, setItems, token, listID }) {
           type="text"
           required
         />
-        <button type="submit" onClick={handleSubmit}>
+        <Button type="submit" variant="contained" onClick={handleSubmit}>
           Add
-        </button>
+        </Button>
       </form>
     </div>
   );

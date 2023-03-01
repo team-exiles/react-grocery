@@ -77,13 +77,20 @@ export const Login = ({ setUser }) => {
           >
             Log in
           </Button>
-          <Link
-            component={RouterLink}
-            to="/sign-up"
-            onClick={() => setRegister(!register)}
+          <Typography
+            level="body2"
+            endDecorator={
+              <Link
+                component={RouterLink}
+                to="/sign-up"
+                onClick={() => setRegister(!register)}
+              >
+                Sign up
+              </Link>
+            }
           >
-            Sign up
-          </Link>
+            Don't have an account?{" "}
+          </Typography>
         </Sheet>
       ) : (
         <Register />

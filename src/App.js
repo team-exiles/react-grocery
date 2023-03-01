@@ -21,12 +21,12 @@ function App() {
 
   return (
     <div className="App">
-      {!token ? (
+      {!loggedIn ? (
         <div>
           {/* <Login setUser={setUser} /> */}
           <Routes>
-            <Route path="/sign-up" element={<Register setUser={setUser} />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
+            <Route path="/sign-up" element={<Register setUser={setUser} />} />
           </Routes>
         </div>
       ) : (
