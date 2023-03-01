@@ -73,10 +73,11 @@ export const EditList = () => {
           listID={listID}
         />
         <ShowListItems items={items} token={token} />
-        <Fab color="primary">
-          <ShoppingCartCheckoutIcon
-            sx={{ position: "absolute", bottom: 16, right: 16 }}
-          />
+        <Fab
+          sx={{ position: "absolute", bottom: 30, right: 30 }}
+          color="primary"
+        >
+          <ShoppingCartCheckoutIcon />
         </Fab>
       </div>
     )
