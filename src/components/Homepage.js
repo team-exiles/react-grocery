@@ -5,6 +5,8 @@ import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import Button from "@mui/joy/Button";
 import CreateList from "./CreateList";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 // import { CssVarsProvider } from "@mui/joy/styles";
@@ -25,13 +27,15 @@ export const Homepage = ({ setUser, token }) => {
   return (
     <section className="homepage">
       {/* <CssVarsProvider> */}
-      <div className="homepage-header">Milk & Eggs</div>
-      <div className="active-lists">
+      <Typography variant="h4">Forgot Milk?</Typography>
+      <Divider sx={{ m: 2 }} />
+      <div>
         {lists.map((list) => (
           <div className="listall">
             <ListDetails list={list} token={token} />
           </div>
         ))}
+        <Divider sx={{ m: 2 }} />
 
         {/* <div className="archived-folder">
           <span className="material-symbols-outlined">
@@ -58,7 +62,9 @@ export const Homepage = ({ setUser, token }) => {
           </Link>
         </Button>
       </div>
+
       <CreateList token={token} />
+
       {/* <NewListPopUp token={token} /> */}
       {/* </CssVarsProvider> */}
     </section>
