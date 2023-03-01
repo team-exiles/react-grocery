@@ -1,5 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
-import Link from '@mui/joy/Link';
+import Link from "@mui/joy/Link";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
@@ -8,10 +8,9 @@ import axios from "axios";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Button from "@mui/joy/Button";
 import Add from "@mui/icons-material/Add";
-import Typography from '@mui/joy/Typography';
-import Input from '@mui/joy/Input';
-import FormControl from '@mui/joy/FormControl';
-
+import Typography from "@mui/joy/Typography";
+import Input from "@mui/joy/Input";
+import FormControl from "@mui/joy/FormControl";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -25,37 +24,40 @@ export const Homepage = ({ setUser, token }) => {
   return (
     <section className="homepage">
       <CssVarsProvider>
-          <div className="homepage-header">Milk & Eggs</div>
-          <div className="active-lists">
-            {lists.map((list) => (
-              <div className="listall">
-                <ListDetails list={list} token={token} />
-              </div>
-            ))}
-
-            <div className="archived-folder">
-              <span className="material-symbols-outlined">
-                <Link to="/Archives">folder</Link>
-              </span>
-              <span>Archived</span>
-              <ExpandedFolder />
+        <div className="homepage-header">Milk & Eggs</div>
+        <div className="active-lists">
+          {lists.map((list) => (
+            <div className="listall">
+              <ListDetails list={list} token={token} />
             </div>
-          </div>
+          ))}
 
-          <div>
+          <div className="archived-folder">
+            <span className="material-symbols-outlined">
+              <Link to="/Archives">folder</Link>
+            </span>
+            <span>Archived</span>
+            <ExpandedFolder />
+          </div>
+        </div>
+
+        <div>
           {/* <button>
           <Link to="/Login" onClick={() => setUser(null)}>
             Logout
           </Link>
         </button> */}
-            <Button
-            size="sm"
-            variant="soft">
-              <Link component={RouterLink} to="/Login" onClick={() => setUser(null)}>Logout
-              </Link>
-            </Button>
-          </div>
-          <NewListPopUp token={token} />
+          <Button size="sm" variant="soft">
+            <Link
+              component={RouterLink}
+              to="/Login"
+              onClick={() => setUser(null)}
+            >
+              Logout
+            </Link>
+          </Button>
+        </div>
+        <NewListPopUp token={token} />
       </CssVarsProvider>
     </section>
   );
@@ -77,9 +79,7 @@ function NewListPopUp({ token }) {
         { headers: { Authorization: `token ${token}` } }
       )
       .then((res) => {
-        console.log(res.data.id);
         listID = res.data.id;
-        console.log(`${title} ${listID} ${token}`);
         navigate(`/lists/edit/${listID}/`, {
           state: {
             title: title,
@@ -108,15 +108,13 @@ function NewListPopUp({ token }) {
                 <b>Create New List</b>
               </Typography>
             </div>
-          <FormControl>
-            <Input 
-            setTitle={setTitle} 
-            placeholder="Title.."
-            />
-            <Button
-            variant="soft"
-            onClick={handleSubmit}>
-              {/* <Link
+            <FormControl>
+              <Input
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Title.."
+              />
+              <Button variant="soft" onClick={handleSubmit}>
+                {/* <Link
               to="/Create"
               className="submit-link"
               path="relative"
@@ -124,12 +122,11 @@ function NewListPopUp({ token }) {
             > 
             </Link>
             */}
-              Submit
-            </Button>
-          </FormControl>
-            <Button
-            variant="soft"
-            onClick={() => setPopUp(!isPopUp)}>Cancel
+                Submit
+              </Button>
+            </FormControl>
+            <Button variant="soft" onClick={() => setPopUp(!isPopUp)}>
+              Cancel
             </Button>
           </div>
         )}

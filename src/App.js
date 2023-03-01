@@ -23,9 +23,10 @@ function App() {
     <div className="App">
       {!token ? (
         <div>
-          <Login setUser={setUser} />
+          {/* <Login setUser={setUser} /> */}
           <Routes>
             <Route path="/sign-up" element={<Register setUser={setUser} />} />
+            <Route path="/Login" element={<Login setUser={setUser} />} />
           </Routes>
         </div>
       ) : (
@@ -40,7 +41,7 @@ function App() {
             <Route path="/Create" element={<EditList token={token} />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/Archives" element={<Archive setUser={setUser} />} />
-            <Route path="/Register" element={<Register setUser={setUser} />} />
+            <Route path="/sign-up" element={<Register setUser={setUser} />} />
             <Route
               path="/lists/edit/:listID/"
               element={<EditList token={token} />}
