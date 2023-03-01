@@ -7,6 +7,7 @@ import Button from "@mui/joy/Button";
 import CreateList from "./CreateList";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 // import { CssVarsProvider } from "@mui/joy/styles";
@@ -27,15 +28,29 @@ export const Homepage = ({ setUser, token }) => {
   return (
     <section className="homepage">
       {/* <CssVarsProvider> */}
-      <Typography variant="h4">Forgot Milk?</Typography>
+      <Typography variant="h4" align="center">Forgot Milk?</Typography>
       <Divider sx={{ m: 2 }} />
-      <div>
+
+
+
+
+      <div className="active-lists">
+        <Stack
+        spacing={3}
+        direction="column"
+        divider={<Divider orientation="vertical" flexItem />}
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+        sx={{ mt: 4 }}
+        >
+
         {lists.map((list) => (
           <div className="listall">
             <ListDetails list={list} token={token} />
           </div>
         ))}
         <Divider sx={{ m: 2 }} />
+        </Stack>
 
         {/* <div className="archived-folder">
           <span className="material-symbols-outlined">
@@ -45,6 +60,11 @@ export const Homepage = ({ setUser, token }) => {
           <ExpandedFolder />
         </div> */}
       </div>
+
+
+
+
+
 
       <div>
         {/* <button>
