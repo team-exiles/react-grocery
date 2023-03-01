@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 
 export function SendItems({ items, setItems, token, listID }) {
   const [textInput, setTextInput] = useState("");
@@ -47,16 +49,23 @@ export function SendItems({ items, setItems, token, listID }) {
         <label htmlFor="messageInput" hidden>
           Enter Item
         </label>
-        <input
-          onChange={handleText}
-          value={textInput}
-          placeholder="Add an item.."
-          type="text"
-          required
-        />
-        <Button type="submit" variant="contained" onClick={handleSubmit}>
-          Add
-        </Button>
+        <Stack
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="center"
+        >
+          <TextField
+            size="small"
+            required
+            id="list"
+            label="Add Item"
+            onChange={handleText}
+            autoFocus
+          />
+          <Button type="submit" variant="contained" onClick={handleSubmit}>
+            Add
+          </Button>
+        </Stack>
       </form>
     </div>
   );

@@ -27,7 +27,7 @@ export function ShowListItems({ items, token }) {
   };
 
   return (
-    <Box sx={{ m: 3, display: "flex" }}>
+    <Box sx={{ mx: 3, display: "flex" }}>
       <FormGroup>
         {items.map((item) => (
           <FormControlLabel
