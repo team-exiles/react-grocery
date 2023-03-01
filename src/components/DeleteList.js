@@ -52,7 +52,7 @@ export default function DeleteList({ listID, token, title }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogTitle>Are you sure?</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             <strong>{title}</strong> will be deleted.

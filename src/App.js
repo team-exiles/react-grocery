@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 import { Login } from "./components/Login";
 import { Homepage } from "./components/Homepage";
-//import { CreateList, EditList } from "./components/List";
 import { EditList } from "./components/List";
 import { Register } from "./components/Register";
 import { Archive } from "./components/Archives";
