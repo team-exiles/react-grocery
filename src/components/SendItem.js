@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 
 export function SendItems({ items, setItems, token, listID }) {
   const [textInput, setTextInput] = useState("");
   const [addedItem, setAddedItem] = useState("");
 
   const handleSubmit = (e) => {
-    console.log(e.target.value);
     e.preventDefault();
     if (addedItem.trim() === "") {
       alert("Enter valid message");
@@ -47,16 +49,23 @@ export function SendItems({ items, setItems, token, listID }) {
         <label htmlFor="messageInput" hidden>
           Enter Item
         </label>
-        <input
-          onChange={handleText}
-          value={textInput}
-          placeholder="Add an item.."
-          type="text"
-          required
-        />
-        <button type="submit" onClick={handleSubmit}>
-          Add
-        </button>
+        <Stack
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="center"
+        >
+          <TextField
+            size="small"
+            required
+            id="list"
+            label="Add Item"
+            onChange={handleText}
+            autoFocus
+          />
+          <Button type="submit" variant="contained" onClick={handleSubmit}>
+            Add
+          </Button>
+        </Stack>
       </form>
     </div>
   );
