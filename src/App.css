@@ -50,15 +50,6 @@ html {
   margin-bottom: 10px;
 }
 
-input[type="login-input"],
-input[type="password"] {
-  background-color: rgb(235, 234, 234);
-  border: solid rgba(201, 201, 201, 0.849) 1px;
-  border-radius: 10px;
-  height: 40px;
-  width: 85%;
-}
-
 .login-button {
   text-align: center;
   width: 70%;
@@ -220,7 +211,7 @@ input[type="password"] {
   flex-direction: column;
   text-align: center;
   background-color: white;
-  color:rgb(247, 247, 247)
+  color: rgb(247, 247, 247);
 }
 
 .title {
@@ -303,9 +294,8 @@ input[type="password"] {
 .front-input {
   position: fixed;
   bottom: 29%;
-  right: 26%
+  right: 26%;
 }
-
 
 .title-bar {
   /* border: 5px solid green; */
@@ -316,7 +306,6 @@ input[type="password"] {
   position: fixed;
   top: 2%;
   left: 2%;
-
 }
 
 .send-item-input {
@@ -345,11 +334,11 @@ input[type="password"] {
   bottom: 15%;
   right: 5%;
   margin: 10px;
-  background-color:rgb(64, 182, 66);
+  background-color: rgb(64, 182, 66);
   color: white;
 }
 .regi-butt:hover {
-  background-color:rgb(25, 118, 26);
+  background-color: rgb(25, 118, 26);
   color: white;
 }
 
@@ -357,7 +346,7 @@ input[type="password"] {
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
-  background-color: rgb(234, 254, 102); 
+  background-color: rgb(234, 254, 102);
 }
 
 .passwordfield {
