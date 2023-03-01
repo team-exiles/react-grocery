@@ -25,7 +25,13 @@ export const Homepage = ({ setUser, token }) => {
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
         {lists.map((list) => (
-          <Card variant="outlined">
+          <Card variant="outlined"
+          sx={{
+            p:2,
+            m:2,
+          }}
+          
+          >
             <ListDetails list={list} token={token} />
           </Card>
         ))}
