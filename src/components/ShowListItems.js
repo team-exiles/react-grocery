@@ -5,6 +5,12 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import DeleteItem from "./DeleteItem";
+import { roleElements } from "aria-query";
 
 export function ShowListItems({ items, token }) {
   const [state, setState] = useState({});
@@ -27,33 +33,41 @@ export function ShowListItems({ items, token }) {
   };
 
   return (
-    <Box sx={{ mx: 3, display: "flex" }}>
-      <FormGroup>
-        {items.map((item) => (
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={item.check_box}
-                onChange={() => handleClick(item)}
-              />
-            }
-            label={item.item}
-          />
-        ))}
-      </FormGroup>
-    </Box>
-  );
+    <List>
+      {items.map((item) => (
+        <>
+          <Divider />
+          <ListItem>
+            <Checkbox
+              checked={item.check_box}
+              onChange={() => handleClick(item)}
+            />
 
-  // return (
-  //   <div>
-  //     {items.map((item) => (
-  //       <div className="item-entry">
-  //         <Card orientation="horizontal">
-  //           <Checkbox onClick={() => handleClick(item)}></Checkbox>
-  //           <Typography key={item.id}>{item.item}</Typography>
-  //         </Card>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
+            <ListItemText primary={item.item} />
+            <DeleteItem token={token} itemID={item.id} />
+          </ListItem>
+
+          <Divider />
+        </>
+      ))}
+    </List>
+  );
 }
+
+// return (
+//   <Box sx={{ mx: 3, display: "flex" }}>
+//     <FormGroup>
+//       {items.map((item) => (
+//         <FormControlLabel
+//           control={
+//             <Checkbox
+//               checked={item.check_box}
+//               onChange={() => handleClick(item)}
+//             />
+//           }
+//           label={item.item}
+//         />
+//       ))}
+//     </FormGroup>
+//   </Box>
+// );

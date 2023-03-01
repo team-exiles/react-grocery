@@ -7,6 +7,7 @@ import Button from "@mui/joy/Button";
 import CreateList from "./CreateList";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import Card from "@mui/material/Card";
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 // import { CssVarsProvider } from "@mui/joy/styles";
@@ -31,20 +32,20 @@ export const Homepage = ({ setUser, token }) => {
       <Divider sx={{ m: 2 }} />
       <div>
         {lists.map((list) => (
-          <div className="listall">
+          <Card variant="outlined">
             <ListDetails list={list} token={token} />
-          </div>
+          </Card>
         ))}
-        <Divider sx={{ m: 2 }} />
 
         {/* <div className="archived-folder">
           <span className="material-symbols-outlined">
-            <Link to="/Archives">folder</Link>
+          <Link to="/Archives">folder</Link>
           </span>
           <span>Archived</span>
           <ExpandedFolder />
         </div> */}
       </div>
+      <Divider sx={{ m: 2 }} />
 
       <div>
         {/* <button>
