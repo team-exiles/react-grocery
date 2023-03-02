@@ -7,17 +7,17 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import IconButton from "@mui/material/IconButton";
-import { InputLabel } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
-import Visibility from "@mui/icons-material/Visibility"; 
-import VisibilityOff from "@mui/icons-material/VisibilityOff"; 
+//import IconButton from "@mui/material/IconButton";
+//import { InputLabel } from "@mui/material";
+//import InputAdornment from "@mui/material/InputAdornment";
+//import Visibility from "@mui/icons-material/Visibility"; 
+//import VisibilityOff from "@mui/icons-material/VisibilityOff"; 
 import { useNavigate } from "react-router-dom";
 
 export const Register = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState(""); 
-  const [values, setValues] = useState({ password: "", showPassword: false });
+  /* const [values, setValues] = useState({ password: "", showPassword: false }); */
   const navigate = useNavigate("");
 
   const handleSubmit = (e) => {
@@ -32,7 +32,7 @@ export const Register = ({ setUser }) => {
       });
   };
 
-  const handleClickShowPassword = () => {
+  /* const handleClickShowPassword = () => {
     setValues({...values, showPassword: values.showPassword});
   };
 
@@ -42,7 +42,7 @@ export const Register = ({ setUser }) => {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
+  }; */ 
 
   return (
     <div>
@@ -90,7 +90,7 @@ export const Register = ({ setUser }) => {
             />
             </FormControl>
 
-          <div>
+         {/*} <div>
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
@@ -111,7 +111,7 @@ export const Register = ({ setUser }) => {
                 </InputAdornment>
                 }
             />
-          </div>
+              </div> */}
           
 
           <FormControl>
