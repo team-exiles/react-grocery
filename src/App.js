@@ -38,7 +38,12 @@ function App() {
                 <Homepage setUser={setUser} username={username} token={token} />
               }
             />
-            <Route path="/" element={<Homepage setUser={setUser} username={username} token={token} />} />
+            <Route
+              path="/"
+              element={
+                <Homepage setUser={setUser} username={username} token={token} />
+              }
+            />
             <Route path="/Create" element={<EditList token={token} />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/Archives" element={<Archive setUser={setUser} />} />

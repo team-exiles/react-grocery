@@ -9,7 +9,7 @@ import Slide from "@mui/material/Slide";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { TextField } from "@mui/material";
-import Add from "@mui/icons-material/Add";
+import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import { Fab } from "@mui/material";
 
@@ -56,15 +56,14 @@ export default function CreateList({ token }) {
   return (
     <div>
       <Fab
-      sx={{ position: "absolute", bottom: 40, right: 40 }}
-      
-      >
-      <IconButton
-        onClick={handleClickOpen}
+        sx={{ position: "absolute", bottom: 40, right: 40 }}
+        variant="extended"
         color="primary"
-        >
-          <Add />
-      </IconButton>
+        onClick={handleClickOpen}
+        size="large"
+      >
+        <AddIcon sx={{ mr: 1 }} />
+        New List
       </Fab>
       <Dialog
         open={open}

@@ -12,22 +12,35 @@ import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
 import { roleElements } from "aria-query";
 
-export function ShowListItems({ items, setItems, token }) {
+export function ShowListItems({ items, setItems, token, listID }) {
   const [state, setState] = useState({});
 
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
-    axios.patch(
-      `https://safe-plains-62725.herokuapp.com/items/${item.id}/`,
-      {
-        check_box: newCheckBox,
-      },
-      {
-        headers: {
-          authorization: `token ${token}`,
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/items/${item.id}/`,
+        {
+          check_box: newCheckBox,
         },
-      }
-    );
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        //(items.find((id) => id.id === item.id));
+        axios
+          .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
+            headers: {
+              authorization: `token ${token}`,
+            },
+          })
+          .then((res) => {
+            setItems(res.data.listForItems);
+          });
+      });
   };
 
   const deleteItem = (itemID) => {
@@ -38,7 +51,7 @@ export function ShowListItems({ items, setItems, token }) {
   return (
     <List>
       {items.map((item) => (
-        <>
+        <div key={item.id}>
           <Divider />
           <ListItem>
             <Checkbox
@@ -55,7 +68,7 @@ export function ShowListItems({ items, setItems, token }) {
           </ListItem>
 
           <Divider />
-        </>
+        </div>
       ))}
     </List>
   );

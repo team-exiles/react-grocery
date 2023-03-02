@@ -6,14 +6,8 @@ import { useEffect, useState } from "react";
 import CreateList from "./CreateList";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import Card from "@mui/material/Card";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { CssVarsProvider } from "@mui/joy/styles";
-// import Add from "@mui/icons-material/Add";
-// import Typography from "@mui/joy/Typography";
-// import Input from "@mui/joy/Input";
-// import FormControl from "@mui/joy/FormControl";
+// import Card from "@mui/material/Card";
+// import Fab from "@mui/material/Fab";
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -34,29 +28,13 @@ export const Homepage = ({ setUser, token }) => {
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
         {lists.map((list) => (
-          <Card
-            variant="outlined"
-            sx={{
-              p: 2,
-              m: 2,
-            }}
-          >
-            <ListDetails list={list} token={token} />
-          </Card>
+          <ListDetails list={list} token={token} />
         ))}
-        <Divider sx={{ m: 2 }} />
-        {/* <div className="archived-folder">
-          <span className="material-symbols-outlined">
-          <Link to="/Archives">folder</Link>
-          </span>
-          <span>Archived</span>
-          <ExpandedFolder />
-        </div> */}
+        <Divider />
       </div>
-      <Divider sx={{ m: 2 }} />
 
       <div>
-        <IconButton sx={{ position: "absolute", top: 10, left: 10 }}>
+        <IconButton sx={{ position: "absolute", top: 18, left: 18 }}>
           <Link
             component={RouterLink}
             to="/Login"
@@ -65,10 +43,17 @@ export const Homepage = ({ setUser, token }) => {
             <LogoutIcon />
           </Link>
         </IconButton>
-        {/* </Fab> */}
       </div>
 
       <CreateList token={token} />
     </section>
   );
 };
+
+// <div className="archived-folder">
+//  <span className="material-symbols-outlined">
+//  <Link to="/Archives">folder</Link>
+//  </span>
+//  <span>Archived</span>
+//  <ExpandedFolder />
+//</div>
