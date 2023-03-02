@@ -60,6 +60,7 @@ export default function CreateList({ token }) {
         variant="extended"
         color="primary"
         onClick={handleClickOpen}
+        size="large"
       >
         <AddIcon sx={{ mr: 1 }} />
         New List
