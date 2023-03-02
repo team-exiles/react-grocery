@@ -30,8 +30,6 @@ export const Homepage = ({ setUser, token }) => {
   };
 
   filterList();
-  console.log(active);
-  console.log(archived);
 
   return (
     <section className="homepage">
@@ -69,10 +67,10 @@ export const Homepage = ({ setUser, token }) => {
   );
 };
 
-// <div className="archived-folder">
+//  <div className="archived-folder">
 //  <span className="material-symbols-outlined">
 //  <Link to="/Archives">folder</Link>
 //  </span>
 //  <span>Archived</span>
 //  <ExpandedFolder />
-//</div>
+//  </div>
