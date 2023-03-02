@@ -149,10 +149,10 @@ html {
   border-radius: 50%;
 }
 
-.active-lists {
+/* .active-lists {
   border-bottom: solid 2px lightgray;
   padding: 10px;
-}
+} */
 
 .list-homepage-line {
   display: flex;
@@ -356,7 +356,7 @@ html {
 
 .sign-here {
   margin: 10px;
-  background-color:rgb(141, 227, 143);
+  background-color: rgb(141, 227, 143);
   border: 1px solid rgb(145, 25, 25);
   height: 40px;
   width: 70px;
