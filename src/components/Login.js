@@ -84,9 +84,8 @@ export const Login = ({ setUser }) => {
 </Typography> */}
 
           <Typography
-            level="body2"><Link to="/sign-up">
+            level="body2">
             Don't have an account?{<button className="sign-here"><Link to="/sign-up">Sign Up</Link></button>}
-          </Link>
           </Typography>
         </Sheet>
       ) : (
