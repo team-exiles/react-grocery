@@ -42,7 +42,7 @@ export default function DeleteList({ listID, token, title }) {
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
+      <IconButton onClick={handleClickOpen} sx={{ mr: 1.5 }}>
         <DeleteIcon onClick={handleClickOpen} />
       </IconButton>
       <Dialog

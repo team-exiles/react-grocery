@@ -29,10 +29,9 @@ export function SendItems({ items, setItems, token, listID }) {
       )
       .then((res) => {
         setItems([...items, res.data]);
+        setTextInput("");
+        setAddedItem("");
       });
-
-    setTextInput("");
-    setAddedItem("");
   };
 
   const handleText = (e) => {
@@ -58,6 +57,7 @@ export function SendItems({ items, setItems, token, listID }) {
             id="list"
             label="Add Item"
             onChange={handleText}
+            value={textInput}
             autoFocus
           />
           <Button type="submit" variant="contained" onClick={handleSubmit}>

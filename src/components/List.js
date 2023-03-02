@@ -75,7 +75,7 @@ export const EditList = () => {
         <ShowListItems items={items} setItems={setItems} token={token} />
         <Fab
           sx={{ position: "absolute", bottom: 30, right: 30 }}
-          color="primary"
+          color="success"
         >
           <ShoppingCartCheckoutIcon />
         </Fab>

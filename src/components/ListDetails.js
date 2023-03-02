@@ -11,14 +11,22 @@ export const ListDetails = ({ list, token }) => {
       path="relative"
       state={{ title: list.title, id: list.id, token: token }}
     >
-      <Button fullWidth sx={{ mb: 2 }} color="primary" variant="contained">
-        <Typography key={list.id} variant="h7" sx={{ justifyItems: "left" }}>
-          <FormatListBulletedIcon
-            sx={{ verticalAlign: "middle" }}
-            fontSize="small"
-          />
-          {list.title}
-        </Typography>
+      <Button
+        fullWidth
+        sx={{
+          mb: 2,
+          justifyContent: "flex-start",
+          vericalAlign: "center",
+          border: "2px solid",
+          fontWeight: "bolder",
+          fontSize: 16,
+        }}
+        color="primary"
+        variant="outlined"
+        startIcon={<FormatListBulletedIcon />}
+        key={list.id}
+      >
+        {list.title}
       </Button>
     </Link>
   );
