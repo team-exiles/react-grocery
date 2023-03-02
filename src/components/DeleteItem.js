@@ -18,8 +18,8 @@ export default function DeleteItem({ token, deleteItem, itemID }) {
 
   return (
     <div>
-      <IconButton>
-        <DeleteIcon fontSize="small" onClick={handleDelete} />
+      <IconButton onClick={handleDelete}>
+        <DeleteIcon fontSize="small" />
       </IconButton>
     </div>
   );

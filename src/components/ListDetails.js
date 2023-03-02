@@ -18,15 +18,15 @@ export const ListDetails = ({ list, token }) => {
           justifyContent: "flex-start",
           vericalAlign: "center",
           border: "2px solid",
-          fontWeight: "bolder",
-          fontSize: 16,
         }}
         color="primary"
         variant="outlined"
         startIcon={<FormatListBulletedIcon />}
         key={list.id}
       >
-        {list.title}
+        <Typography sx={{ mt: 0.56, fontWeight: "bolder" }}>
+          {list.title}
+        </Typography>
       </Button>
     </Link>
   );

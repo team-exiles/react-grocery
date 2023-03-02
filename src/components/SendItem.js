@@ -59,6 +59,7 @@ export function SendItems({ items, setItems, token, listID }) {
             onChange={handleText}
             value={textInput}
             autoFocus
+            autoComplete="off"
           />
           <Button type="submit" variant="contained" onClick={handleSubmit}>
             Add

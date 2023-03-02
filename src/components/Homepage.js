@@ -30,7 +30,7 @@ export const Homepage = ({ setUser, token }) => {
         {lists.map((list) => (
           <ListDetails list={list} token={token} />
         ))}
-        <Divider sx={{ m: 2 }} />
+        <Divider />
       </div>
 
       <div>
