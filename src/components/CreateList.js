@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
 import Add from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import { Fab } from "@mui/material";
