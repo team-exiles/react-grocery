@@ -64,7 +64,7 @@ export const Homepage = ({ setUser, token }) => {
   );
 };
 
-function NewListPopUp({ token }) {
+/* function NewListPopUp({ token }) {
 //   const [isPopUp, setPopUp] = useState(false);
 //   const buttonName = isPopUp;
 //   const [title, setTitle] = useState("Untitled");
@@ -92,8 +92,7 @@ function NewListPopUp({ token }) {
 //       });
 //   };
 
-  return (
-    <CssVarsProvider>
+   return (
       <div>
         <Button
           variant="solid"
@@ -116,22 +115,21 @@ function NewListPopUp({ token }) {
               Cancel
             </button>
             <button className="submit-button" onClick={handleSubmit}>
-              {/* <Link
+              * <Link
               to="/Create"
               className="submit-link"
               path="relative"
               state={{ title: title, listID: listID }}
             > 
             </Link>
-            */}
+            *
               Submit
             </button>
           </div>
         )}
       </div>
-    </CssVarsProvider>
-  );
-}
+ // ); 
+// */
 
 //   return (
 //     <CssVarsProvider>
