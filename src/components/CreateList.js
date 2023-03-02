@@ -8,7 +8,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
+import Add from "@mui/icons-material/Add";
+import IconButton from "@mui/material/IconButton";
+import { Fab } from "@mui/material";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -52,9 +55,17 @@ export default function CreateList({ token }) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen} variant="contained">
-        Create New List
-      </Button>
+      <Fab
+      sx={{ position: "absolute", bottom: 40, right: 40 }}
+      
+      >
+      <IconButton
+        onClick={handleClickOpen}
+        color="primary"
+        >
+          <Add />
+      </IconButton>
+      </Fab>
       <Dialog
         open={open}
         TransitionComponent={Transition}

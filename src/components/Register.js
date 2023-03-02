@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import Link from "@mui/joy/Link";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
@@ -8,12 +7,17 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import { Link as RouterLink } from "react-router-dom";
+//import IconButton from "@mui/material/IconButton";
+//import { InputLabel } from "@mui/material";
+//import InputAdornment from "@mui/material/InputAdornment";
+//import Visibility from "@mui/icons-material/Visibility"; 
+//import VisibilityOff from "@mui/icons-material/VisibilityOff"; 
 import { useNavigate } from "react-router-dom";
 
 export const Register = ({ setUser }) => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(""); 
+  /* const [values, setValues] = useState({ password: "", showPassword: false }); */
   const navigate = useNavigate("");
 
   const handleSubmit = (e) => {
@@ -27,6 +31,18 @@ export const Register = ({ setUser }) => {
         navigate("/Login");
       });
   };
+
+  /* const handleClickShowPassword = () => {
+    setValues({...values, showPassword: values.showPassword});
+  };
+
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value }); 
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  }; */ 
 
   return (
     <div>
@@ -68,6 +84,40 @@ export const Register = ({ setUser }) => {
             <FormLabel>Password</FormLabel>
             <Input
               name="password"
+              type="password"
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            </FormControl>
+
+         {/*} <div>
+            <InputLabel htmlFor="standard-adornment-password">
+              Password
+            </InputLabel>
+            <Input
+              name="password"
+              type={values.showPassword ? "text" : "password"}
+              onChange={handlePasswordChange("password")}
+              value={values.password}
+              placeholder="password"
+              endadornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+                }
+            />
+              </div> */}
+          
+
+          <FormControl>
+            <FormLabel>Confirm Password</FormLabel>
+            <Input
+              name="password2"
               type="password"
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}

@@ -8,8 +8,8 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import { Link as RouterLink } from "react-router-dom";
-import Link from "@mui/joy/Link";
+import { Link } from "react-router-dom";
+//import Link from "@mui/joy/Link";
 import { Register } from "./Register";
 
 export const Login = ({ setUser }) => {
@@ -42,8 +42,8 @@ export const Login = ({ setUser }) => {
             gap: 2,
             borderRadius: "sm",
             boxShadow: "md",
-          }}
-        >
+          }}>
+
           <div>
             <Typography level="h4" component="h1">
               <b>Welcome!</b>
@@ -51,45 +51,42 @@ export const Login = ({ setUser }) => {
             <Typography level="body2">Sign in to continue.</Typography>
           </div>
 
-          <FormControl>
-            <FormLabel>Username</FormLabel>
-            <Input
-              // html input attribute
-              name="email"
-              type="email"
-              placeholder="johndoe"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Password</FormLabel>
-            <Input
-              name="password"
-              type="password"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FormControl>
-          <Button
-            variant="soft"
-            onClick={handleSubmit}
-            sx={{ mt: 2 /* margin top */ }}
-          >
-            Log in
-          </Button>
+<FormControl>
+  <FormLabel>Username</FormLabel>
+  <Input
+    // html input attribute
+    name="username"
+    type="text"
+    placeholder="Username:"
+    onChange={(e) => setUsername(e.target.value)}
+  />
+</FormControl>
+<FormControl>
+  <FormLabel>Password</FormLabel>
+  <Input
+    name="password"
+    type="password"
+    placeholder="password"
+    onChange={(e) => setPassword(e.target.value)} />
+</FormControl>
+
+<Button
+  variant="soft"
+ onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
+  Log in
+</Button>
+
+{/* <Typography
+  endDecorator={<Link to="/sign-up">Sign up</Link>}
+  fontSize="sm"
+  sx={{ alignSelf: 'center' }}>
+  Don't have an account?
+</Typography> */}
+
           <Typography
-            level="body2"
-            endDecorator={
-              <Link
-                component={RouterLink}
-                to="/sign-up"
-                onClick={() => setRegister(!register)}
-              >
-                Sign up
-              </Link>
-            }
-          >
-            Don't have an account?{" "}
+            level="body2"><Link to="/sign-up">
+            Don't have an account?{<button className="sign-here"><Link to="/sign-up">Sign Up</Link></button>}
+          </Link>
           </Typography>
         </Sheet>
       ) : (
