@@ -25,8 +25,8 @@ export const Homepage = ({ setUser, token }) => {
   }, [token]);
 
   const filterList = () => {
-    active = lists.filter((list) => list.archived === true);
-    archived = lists.filter((list) => list.archived === false);
+    active = lists.filter((list) => list.archived === false);
+    archived = lists.filter((list) => list.archived === true);
   };
 
   filterList();
