@@ -13,12 +13,25 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
+  // const [activeList, setActiveList] = useState([]);
+  // const [archivedList, setArchivedList] = useState([]);
+  let active = [];
+  let archived = [];
 
   useEffect(() => {
     requestMyLists(token).then((res) => {
       setLists(res.data);
     });
   }, [token]);
+
+  const filterList = () => {
+    active = lists.filter((list) => list.archived === false);
+    archived = lists.filter((list) => list.archived === true);
+  };
+
+  filterList();
+  console.log(active);
+  console.log(archived);
 
   return (
     <section className="homepage">
@@ -27,19 +40,25 @@ export const Homepage = ({ setUser, token }) => {
       </Typography>
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
-        {lists.map((list) => (
-          <ListDetails list={list} token={token} />
+        <Typography>Grocery Lists</Typography>
+        {active.map((list) => (
+          <ListDetails list={list} token={token} key={list.id} />
         ))}
-        <Divider />
+      </div>
+      <Divider />
+      <div>
+        <Typography>Archived Lists</Typography>
+        {archived.map((list) => (
+          <ListDetails list={list} token={token} key={list.id} />
+        ))}
       </div>
 
       <div>
-        <IconButton sx={{ position: "absolute", top: 18, left: 18 }}>
-          <Link
-            component={RouterLink}
-            to="/Login"
-            onClick={() => setUser(null)}
-          >
+        <IconButton
+          sx={{ position: "absolute", top: 18, left: 18 }}
+          onClick={() => setUser(null)}
+        >
+          <Link component={RouterLink} to="/Login">
             <LogoutIcon />
           </Link>
         </IconButton>
