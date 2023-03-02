@@ -12,17 +12,18 @@ import DeleteList from "./DeleteList";
 import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
 export const EditList = () => {
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
   const [color, setColor] = useState("success");
-  const [shoppingMode, setShoppingMode] = useState("Go");
+  const [shoppingMode, setShoppingMode] = useState("Go shopping");
 
   const { listID } = useParams();
   const title = location.state?.title;
-  // const id = location.state?.id;
+  const archiveStatus = location.state?.archiveStatus;
   const token = location.state?.token;
 
   useEffect(() => {
@@ -44,14 +45,39 @@ export const EditList = () => {
     navigate("/Homepage");
   };
 
-  const handleShopping = (e) => {
+  const handleUnarchive = () => {
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+        { archived: false },
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => navigate("/Homepage"));
+  };
+
+  const handleShopping = () => {
     if (color === "success") {
       setColor("error");
-      setShoppingMode("stop");
+      setShoppingMode("stop shopping & Archive List");
     }
     if (color === "error") {
       setColor("success");
-      setShoppingMode("go");
+      setShoppingMode("go shopping");
+      axios
+        .patch(
+          `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+          { archived: true },
+          {
+            headers: {
+              authorization: `token ${token}`,
+            },
+          }
+        )
+        .then((res) => navigate("/Homepage"));
     }
   };
 
@@ -91,48 +117,28 @@ export const EditList = () => {
           token={token}
           listID={listID}
         />
-        <Fab
-          sx={{ position: "absolute", bottom: 30, right: 30 }}
-          color={color}
-          variant="extended"
-          onClick={handleShopping}
-        >
-          <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-          {shoppingMode} Shopping
-        </Fab>
+        {archiveStatus ? (
+          <Fab
+            sx={{ position: "absolute", bottom: 30, right: 30 }}
+            color={"secondary"}
+            variant="extended"
+            onClick={handleUnarchive}
+          >
+            <UnarchiveIcon sx={{ mr: 1 }} />
+            Unarchive List
+          </Fab>
+        ) : (
+          <Fab
+            sx={{ position: "absolute", bottom: 30, right: 30 }}
+            color={color}
+            variant="extended"
+            onClick={handleShopping}
+          >
+            <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+            {shoppingMode}
+          </Fab>
+        )}
       </div>
     )
   );
 };
-
-// export const CreateList = () => {
-//   const [items, setItems] = useState([]);
-//   const location = useLocation();
-//   const navigate = useNavigate("");
-
-//   console.log(location, " useLocation hook");
-
-//   const title = location.state?.title;
-//   const listID = location.state?.listID;
-
-//   const handleCancel = (event) => {
-//     event.preventDefault();
-//     setItems([]);
-//     navigate("/Homepage")
-//   };
-
-//   return (
-//     <div className="list-display">
-//       <div className="title-bar">
-//         <button><Link to="/Homepage">Back</Link></button>
-//         <button className="cancel-list" onClick={handleCancel}>
-//           Cancel
-//         </button>
-//         <h1>{title}</h1>
-//       </div>
-//       <SendItems items={items} setItems={setItems} />
-//       <ShowListItems items={items} />
-//       <button onClick={handleCancel}>Cancel List</button>
-//     </div>
-//   );
-// };

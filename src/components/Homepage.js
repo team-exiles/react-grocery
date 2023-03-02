@@ -30,8 +30,6 @@ export const Homepage = ({ setUser, token }) => {
   };
 
   filterList();
-  console.log(active);
-  console.log(archived);
 
   return (
     <section className="homepage">
