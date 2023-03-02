@@ -1,19 +1,19 @@
-import { useState } from "react";
+// import Button from "@mui/joy/Button";
+// import FormGroup from "@mui/material/FormGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Box from "@mui/material/Box";
+// import { roleElements } from "aria-query";
+//import { useState } from "react";
 import axios from "axios";
-//import Button from "@mui/joy/Button";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
-import { roleElements } from "aria-query";
 
 export function ShowListItems({ items, setItems, token, listID }) {
-  const [state, setState] = useState({});
+  //const [state, setState] = useState({});
 
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
