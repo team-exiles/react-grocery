@@ -14,7 +14,6 @@ export function SendItems({ items, setItems, token, listID }) {
       alert("Enter valid message");
       return;
     }
-    // setItems([...items, addedItem]);
     axios
       .post(
         `https://safe-plains-62725.herokuapp.com/items/`,
@@ -30,11 +29,9 @@ export function SendItems({ items, setItems, token, listID }) {
       )
       .then((res) => {
         setItems([...items, res.data]);
-        // console.log(items);
+        setTextInput("");
+        setAddedItem("");
       });
-
-    setTextInput("");
-    setAddedItem("");
   };
 
   const handleText = (e) => {
@@ -60,7 +57,9 @@ export function SendItems({ items, setItems, token, listID }) {
             id="list"
             label="Add Item"
             onChange={handleText}
+            value={textInput}
             autoFocus
+            autoComplete="off"
           />
           <Button type="submit" variant="contained" onClick={handleSubmit}>
             Add

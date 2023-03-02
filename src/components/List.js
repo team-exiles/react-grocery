@@ -17,6 +17,8 @@ export const EditList = () => {
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
+  const [color, setColor] = useState("success");
+  const [shoppingMode, setShoppingMode] = useState("Go");
 
   const { listID } = useParams();
   const title = location.state?.title;
@@ -40,6 +42,17 @@ export const EditList = () => {
     event.preventDefault();
     setItems([]);
     navigate("/Homepage");
+  };
+
+  const handleShopping = (e) => {
+    if (color === "success") {
+      setColor("error");
+      setShoppingMode("stop");
+    }
+    if (color === "error") {
+      setColor("success");
+      setShoppingMode("go");
+    }
   };
 
   return (
@@ -72,9 +85,20 @@ export const EditList = () => {
           token={token}
           listID={listID}
         />
-        <ShowListItems items={items} token={token} />
-        <Fab color="primary">
-          <ShoppingCartCheckoutIcon />
+        <ShowListItems
+          items={items}
+          setItems={setItems}
+          token={token}
+          listID={listID}
+        />
+        <Fab
+          sx={{ position: "absolute", bottom: 30, right: 30 }}
+          color={color}
+          variant="extended"
+          onClick={handleShopping}
+        >
+          <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+          {shoppingMode} Shopping
         </Fab>
       </div>
     )
