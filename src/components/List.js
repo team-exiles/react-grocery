@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
@@ -12,8 +12,10 @@ import DeleteList from "./DeleteList";
 import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import _ws from 'websocket';
 
 export const EditList = () => {
+
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
@@ -24,6 +26,17 @@ export const EditList = () => {
   const title = location.state?.title;
   // const id = location.state?.id;
   const token = location.state?.token;
+
+
+  state = {
+    filledForm: false, 
+    messages: [], 
+    value: '',
+    name: '', 
+    room: 'test',
+  }
+  client = new W3CWebSocket("ws://127.0.0.1:8000/")
+
 
   useEffect(() => {
     axios
@@ -54,6 +67,7 @@ export const EditList = () => {
       setShoppingMode("go");
     }
   };
+
 
   return (
     items && (
@@ -100,10 +114,25 @@ export const EditList = () => {
           <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
           {shoppingMode} Shopping
         </Fab>
+        <div className="socket-chat">
+          {sock}
+        </div>
       </div>
     )
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 // export const CreateList = () => {
 //   const [items, setItems] = useState([]);
