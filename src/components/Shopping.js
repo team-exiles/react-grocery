@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
