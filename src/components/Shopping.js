@@ -1,3 +1,6 @@
+import { useQuery } from "react-query";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
@@ -10,101 +13,102 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DeleteList from "./DeleteList";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import useWebSocket, { ReadyState } from "react-use-websocket";
-//mport Fab from "@mui/material/Fab";
+import Fab from "@mui/material/Fab";
 
-export default function Shopping() {
+//import useWebSocket, { ReadyState } from "react-use-websocket";
+
+export default function Shopping({ token }) {
+  const [items, setItems] = useState(null);
   const location = useLocation();
-  const token = location.state?.token;
+  const navigate = useNavigate("");
+  const [color, setColor] = useState("success");
 
-  const { readyState } = useWebSocket(
-    "ws://safe-plains-62725.herokuapp.com:8000/list/2/",
-    {
-      onOpen: () => {
-        console.log("Connected!");
-      },
-      onClose: () => {
-        console.log("Disconnected!");
-      },
-    }
-  );
+  const { listID } = useParams();
+  const title = location.state?.title;
 
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: "Connecting",
-    [ReadyState.OPEN]: "Open",
-    [ReadyState.CLOSING]: "Closing",
-    [ReadyState.CLOSED]: "Closed",
-    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
-  }[readyState];
+  const fetchList = () => {
+    return axios.get(
+      `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+      {
+        headers: {
+          authorization: `token ${token}`,
+        },
+      }
+    );
+  };
+
+  const { isLoading, data } = useQuery("listInfo", fetchList, {
+    refetchInterval: 2000,
+  });
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+
+  const handleBack = (event) => {
+    event.preventDefault();
+    setItems([]);
+    navigate("/Homepage");
+  };
+
+  //console.log(data.data.listForItems);
+
+  const handleShopping = () => {
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+        { archived: true },
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => navigate("/Homepage"));
+  };
 
   return (
-    <div>
-      <span>The WebSocket is currently {connectionStatus}</span>
+    <div className="list-display">
+      <Stack
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+        sx={{ mt: 4 }}
+      >
+        <IconButton
+          aria-label="back to homepage"
+          variant="filled"
+          onClick={handleBack}
+        >
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h5" width="100%" justifyContent="center">
+          {title}
+        </Typography>
+        <DeleteList listID={listID} token={token} title={title} />
+      </Stack>
+      <SendItems
+        items={data.data.listForItems}
+        setItems={setItems}
+        token={token}
+        listID={listID}
+      />
+      <ShowListItems
+        items={data.data.listForItems}
+        setItems={setItems}
+        token={token}
+        listID={listID}
+      />
+
+      <Fab
+        sx={{ position: "absolute", bottom: 30, right: 30 }}
+        color="error"
+        variant="extended"
+        onClick={handleShopping}
+      >
+        <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+        Finish Shopping & Archive
+      </Fab>
     </div>
   );
 }
-
-// export default function Shopping() {
-//   const [items, setItems] = useState(null);
-//   const location = useLocation();
-//   const navigate = useNavigate("");
-
-//   const { listID } = useParams();
-//   const title = location.state?.title;
-//   // const id = location.state?.id;
-//   const token = location.state?.token;
-
-//   useEffect(() => {
-//     axios
-//       .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
-//         headers: {
-//           authorization: `token ${token}`,
-//         },
-//       })
-//       .then((res) => {
-//         setItems(res.data.listForItems);
-//         // console.log(items);
-//       });
-//   }, [listID, token]);
-
-//   const handleBack = (event) => {
-//     event.preventDefault();
-//     setItems([]);
-//     navigate("/Homepage");
-//   };
-
-//   return (
-//     items && (
-//       <div className="list-display">
-//         {/* <div className="title-bar"> */}
-//         <Stack
-//           direction="row"
-//           justifyContent="space-evenly"
-//           alignItems="center"
-//           sx={{ mt: 4 }}
-//         >
-//           <IconButton
-//             aria-label="back to homepage"
-//             variant="filled"
-//             onClick={handleBack}
-//           >
-//             <ArrowBackIcon />
-//           </IconButton>
-//           <Typography variant="h5" width="100%" justifyContent="center">
-//             {title}
-//           </Typography>
-//           <DeleteList listID={listID} token={token} title={title} />
-
-//           {/* </div> */}
-//         </Stack>
-//         <SendItems
-//           items={items}
-//           setItems={setItems}
-//           token={token}
-//           listID={listID}
-//         />
-//         <ShowListItems items={items} token={token} />
-//       </div>
-//     )
-//   );
-// }

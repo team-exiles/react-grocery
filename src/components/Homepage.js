@@ -65,9 +65,9 @@ export const Homepage = ({ setUser, token }) => {
       </div>
       <Divider />
       <ExpandedArchived />
-      <Link component={RouterLink} to="/shopping" state={{ token: token }}>
-        <Button>Shopping Websocket Test</Button>
-      </Link>
+      {/* <Link component={RouterLink} to="/shopping" state={{ token: token }}>
+        <Button>Shopping Polling Test</Button>
+      </Link> */}
       <div>
         <IconButton
           sx={{ position: "absolute", top: 18, right: 18 }}
