@@ -6,6 +6,7 @@ import { Homepage } from "./components/Homepage";
 import { EditList } from "./components/List";
 import { Register } from "./components/Register";
 import { Archive } from "./components/Archives";
+import Shopping from "./components/Shopping";
 
 function App() {
   const [token, setToken] = useLocalStorageState("token", null);
@@ -48,6 +49,7 @@ function App() {
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/Archives" element={<Archive setUser={setUser} />} />
             <Route path="/sign-up" element={<Register setUser={setUser} />} />
+            <Route path="/shopping" element={<Shopping token={token} />} />
             <Route
               path="/lists/edit/:listID/"
               element={<EditList token={token} />}
