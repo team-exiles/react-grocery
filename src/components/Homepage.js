@@ -10,6 +10,7 @@ import Divider from "@mui/material/Divider";
 // import Fab from "@mui/material/Fab";
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Button from "@mui/material/Button";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -29,6 +30,23 @@ export const Homepage = ({ setUser, token }) => {
     archived = lists.filter((list) => list.archived === true);
   };
 
+  function ExpandedArchived(){
+    const [isExpanded, setExpansion] = useState(false);
+  
+    return (
+        <div>
+            <Button onClick={() => setExpansion(!isExpanded)}><strong> Archived Lists</strong></Button>
+            {isExpanded && (
+                <div className="expandedArchivedBox">
+                  <Divider sx={{ m: 2 }} />
+                  {archived.map((list) => (
+                    <ListDetails list={list} token={token} key={list.id} />
+        ))}
+                </div>
+            )}
+        </div>
+    )}
+
   filterList();
 
   return (
@@ -44,16 +62,19 @@ export const Homepage = ({ setUser, token }) => {
         ))}
       </div>
       <Divider />
-      <div>
+      <ExpandedArchived />
+      {/* <div>
+      
         <Typography>Archived Lists</Typography>
+        <ExpandedArchived />
         {archived.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
-      </div>
+      </div> */}
 
       <div>
         <IconButton
-          sx={{ position: "absolute", top: 18, left: 18 }}
+          sx={{ position: "absolute", top: 18, right: 18 }}
           onClick={() => setUser(null)}
         >
           <Link component={RouterLink} to="/Login">
@@ -67,10 +88,3 @@ export const Homepage = ({ setUser, token }) => {
   );
 };
 
-//  <div className="archived-folder">
-//  <span className="material-symbols-outlined">
-//  <Link to="/Archives">folder</Link>
-//  </span>
-//  <span>Archived</span>
-//  <ExpandedFolder />
-//  </div>
