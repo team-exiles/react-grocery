@@ -12,7 +12,6 @@ import DeleteList from "./DeleteList";
 import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import _ws from 'websocket';
 
 export const EditList = () => {
 
@@ -26,17 +25,6 @@ export const EditList = () => {
   const title = location.state?.title;
   // const id = location.state?.id;
   const token = location.state?.token;
-
-
-  state = {
-    filledForm: false, 
-    messages: [], 
-    value: '',
-    name: '', 
-    room: 'test',
-  }
-  client = new W3CWebSocket("ws://127.0.0.1:8000/")
-
 
   useEffect(() => {
     axios
@@ -114,9 +102,6 @@ export const EditList = () => {
           <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
           {shoppingMode} Shopping
         </Fab>
-        <div className="socket-chat">
-          {sock}
-        </div>
       </div>
     )
   );
