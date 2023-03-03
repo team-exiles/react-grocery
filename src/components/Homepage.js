@@ -74,7 +74,7 @@ export const Homepage = ({ setUser, token }) => {
 
       <div>
         <IconButton
-          sx={{ position: "absolute", top: 18, left: 18 }}
+          sx={{ position: "absolute", top: 18, right: 18 }}
           onClick={() => setUser(null)}
         >
           <Link component={RouterLink} to="/Login">
