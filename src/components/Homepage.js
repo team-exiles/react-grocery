@@ -10,6 +10,7 @@ import Divider from "@mui/material/Divider";
 // import Fab from "@mui/material/Fab";
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Button from "@mui/material/Button";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
@@ -31,11 +32,10 @@ export const Homepage = ({ setUser, token }) => {
 
   function ExpandedArchived(){
     const [isExpanded, setExpansion] = useState(false);
-    const buttonName = isExpanded ? "" : "";
   
     return (
         <div>
-            <button onClick={() => setExpansion(!isExpanded)}><strong>{buttonName} Archived Lists</strong></button>
+            <Button onClick={() => setExpansion(!isExpanded)}><strong> Archived Lists</strong></Button>
             {isExpanded && (
                 <div className="expandedArchivedBox">
                   <Divider sx={{ m: 2 }} />
