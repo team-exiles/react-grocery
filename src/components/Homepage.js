@@ -29,6 +29,24 @@ export const Homepage = ({ setUser, token }) => {
     archived = lists.filter((list) => list.archived === true);
   };
 
+  function ExpandedArchived(){
+    const [isExpanded, setExpansion] = useState(false);
+    const buttonName = isExpanded ? "" : "";
+  
+    return (
+        <div>
+            <button onClick={() => setExpansion(!isExpanded)}><strong>{buttonName} Archived Lists</strong></button>
+            {isExpanded && (
+                <div className="expandedArchivedBox">
+                  <Divider sx={{ m: 2 }} />
+                  {archived.map((list) => (
+                    <ListDetails list={list} token={token} key={list.id} />
+        ))}
+                </div>
+            )}
+        </div>
+    )}
+
   filterList();
 
   return (
@@ -44,12 +62,15 @@ export const Homepage = ({ setUser, token }) => {
         ))}
       </div>
       <Divider />
-      <div>
+      <ExpandedArchived />
+      {/* <div>
+      
         <Typography>Archived Lists</Typography>
+        <ExpandedArchived />
         {archived.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
-      </div>
+      </div> */}
 
       <div>
         <IconButton
@@ -67,10 +88,3 @@ export const Homepage = ({ setUser, token }) => {
   );
 };
 
-//  <div className="archived-folder">
-//  <span className="material-symbols-outlined">
-//  <Link to="/Archives">folder</Link>
-//  </span>
-//  <span>Archived</span>
-//  <ExpandedFolder />
-//  </div>
