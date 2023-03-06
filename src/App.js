@@ -27,7 +27,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        {!loggedIn ? (
+        {!token ? (
           <div>
             <Routes>
               <Route path="/Login" element={<Login setUser={setUser} />} />
@@ -77,7 +77,13 @@ function App() {
               />
               <Route
                 path="/lists/edit/:listID/"
-                element={<EditList token={token} username={username} />}
+                element={
+                  <EditList
+                    token={token}
+                    setToken={setToken}
+                    username={username}
+                  />
+                }
               />
             </Routes>
           </>

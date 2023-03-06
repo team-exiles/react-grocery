@@ -13,7 +13,7 @@ import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import RemoveUser from "./RemoveUser";
 
-export const EditList = ({ username }) => {
+export const EditList = ({ token, username, setToken }) => {
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
   const [title, setTitle] = useState("");
@@ -28,7 +28,10 @@ export const EditList = ({ username }) => {
 
   const { listID } = useParams();
   //const archiveStatus = location.state?.archiveStatus;
-  const token = location.state?.token;
+  if (token === undefined) {
+    setToken(location.state?.token);
+  }
+  //console.log(token);
 
   useEffect(() => {
     axios
