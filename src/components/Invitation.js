@@ -21,9 +21,27 @@ export default function InviteLogin() {
   const [token, setToken] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     requestLogin(username, password).then((res) => {
       setToken(res.data.auth_token);
+
+      // event.preventDefault();
+      // axios
+      //   .post(
+      //     "https://safe-plains-62725.herokuapp.com/auth/token/login/",
+      //     { username: `${username}`, password: `${password}` },
+      //     {
+      //       headers: {
+      //         authorization: `token ${token}`,
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     setToken(res.data.auth_token);
+      //     console.log(token);
+      // // console.log(username);
+      // // console.log(password);
+      // // console.log(token);
+
       axios
         .get(`https://safe-plains-62725.herokuapp.com/lists/`, {
           headers: {
@@ -34,25 +52,29 @@ export default function InviteLogin() {
           const listCheck = res.data.filter(
             (list) => list.auth_id === inviteID
           );
+          console.log(listCheck);
 
           if (listID === listCheck[0].id.toString()) {
-            console.log(`User: ${username}`);
-            axios.post(
-              `https://safe-plains-62725.herokuapp.com/lists/${username}/invite/`,
+            // console.log(`User: ${username}`);
+            axios.put(
+              `https://safe-plains-62725.herokuapp.com/lists/${listID}/invite/`,
+              { username: `${username}` },
               {
                 headers: {
                   authorization: `token ${token}`,
                 },
               }
             );
-
-            navigate(`/lists/edit/${listID}/`, {
-              state: {
-                token: token,
-              },
-            });
           }
         });
+
+      //       navigate(`/lists/edit/${listID}/`, {
+      //         state: {
+      //           token: token,
+      //         },
+      //       });
+      //     }
+      //   });
     });
   };
 
