@@ -8,7 +8,7 @@ import { Register } from "./components/Register";
 import { Archive } from "./components/Archives";
 import Shopping from "./components/Shopping";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+//import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -74,7 +74,7 @@ function App() {
           </>
         )}
       </div>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
     </QueryClientProvider>
   );
 }
