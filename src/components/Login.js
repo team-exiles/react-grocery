@@ -9,7 +9,6 @@ import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import { Link } from "react-router-dom";
-//import Link from "@mui/joy/Link";
 import { Register } from "./Register";
 
 export const Login = ({ setUser }) => {
