@@ -23,12 +23,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export const Homepage = ({ setUser, username, token }) => {
   const [lists, setLists] = useState([]);
   const location = useLocation();
-
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
-  console.log(username);
   //  const navigate = useNavigate();
   let active = [];
   let archived = [];
+
+  //console.log(username);
 
   useEffect(() => {
     requestMyLists(token).then((res) => {
@@ -91,9 +91,6 @@ export const Homepage = ({ setUser, username, token }) => {
       </div>
       <Divider />
       <ExpandedArchived />
-      {/* <Link component={RouterLink} to="/shopping" state={{ token: token }}>
-        <Button>Shopping Polling Test</Button>
-      </Link> */}
       <div>
         <IconButton
           sx={{ position: "absolute", top: 18, right: 18 }}

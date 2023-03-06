@@ -114,27 +114,3 @@ export default function InviteLogin() {
     </CssVarsProvider>
   );
 }
-
-// function Invitation({ token, username }) {
-//   const { listID, inviteID } = useParams();
-
-//   axios
-//     .get(`https://safe-plains-62725.herokuapp.com/lists/`, {
-//       headers: {
-//         authorization: `token ${token}`,
-//       },
-//     })
-//     .then((res) => {
-//       const listCheck = res.data.filter((list) => list.auth_id === inviteID);
-
-//       if (listID === listCheck[0].id.toString()) {
-//         console.log(`User: ${username}`);
-//       }
-//     });
-
-//   return (
-//     <>
-//       <p>Invite Succesful</p>
-//     </>
-//   );
-// }

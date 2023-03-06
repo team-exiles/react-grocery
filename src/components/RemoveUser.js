@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as React from "react";
 import {
   Button,
@@ -8,13 +9,11 @@ import {
   DialogTitle,
   Slide,
   IconButton,
-  TextField,
   Snackbar,
 } from "@mui/material/";
+import { Typography } from "@mui/material/";
 import MuiAlert from "@mui/material/Alert";
-
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -24,30 +23,60 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function InviteButton({ listID, authID }) {
+export default function RemoveUser({
+  listID,
+  token,
+  setHasGuests,
+  numberShared,
+}) {
   const [open, setOpen] = React.useState(false);
   const [openBar, setOpenBar] = React.useState(false);
-  const inviteLink = `https://safe-plains-62725.herokuapp.com/invite/${listID}/${authID}/`;
+  const [sharedUsers, setSharedUsers] = React.useState([]);
+
+  React.useEffect(() => {
+    axios
+      .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
+        headers: {
+          authorization: `token ${token}`,
+        },
+      })
+      .then((res) => {
+        setSharedUsers(res.data.shared_users);
+      });
+  }, [listID, token]);
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log(inviteLink);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleCopy = (e) => {
-    navigator.clipboard.writeText(inviteLink);
+  const handleRemove = (user) => {
     setOpen(false);
+    axios
+      .delete(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/remove/${user}/`,
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (numberShared - 1 === 0) {
+          setHasGuests(false);
+        }
+      });
+
     setOpenBar(true);
   };
 
   return (
     <div>
       <IconButton onClick={handleClickOpen} sx={{ mr: 1.5 }}>
-        <PersonAddIcon />
+        <PersonRemoveIcon />
       </IconButton>
       <Dialog
         open={open}
@@ -56,22 +85,22 @@ export default function InviteButton({ listID, authID }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>Invite Link</DialogTitle>
+        <DialogTitle>Remove Guests?</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Click button to copy the link. Share it with someone to invite them
-            to edit list!
+            Click the icon on next the username to remove the user from this
+            list immediately.
           </DialogContentText>
           <br />
-          <TextField
-            defaultValue={inviteLink}
-            size="small"
-            sx={{ color: "blue" }}
-            inputProps={{ readOnly: true }}
-          />{" "}
-          <IconButton onClick={(e) => handleCopy(e)}>
-            <ContentCopyIcon sx={{ color: "black" }} />
-          </IconButton>
+
+          {sharedUsers.map((m) => (
+            <Typography variant="subtitle1" key={m.id} sx={{ ml: 2, mb: 1 }}>
+              {m.username}
+              <IconButton onClick={(user) => handleRemove(m.username)}>
+                <PersonRemoveIcon />
+              </IconButton>
+            </Typography>
+          ))}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -84,7 +113,7 @@ export default function InviteButton({ listID, authID }) {
         anchorOrigin={{ horizontal: "center", vertical: "top" }}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Copied to clipboard!
+          Removed user.
         </Alert>
       </Snackbar>
     </div>

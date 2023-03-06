@@ -11,12 +11,15 @@ import InviteButton from "./InviteButton.js";
 import DeleteList from "./DeleteList";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
+import RemoveUser from "./RemoveUser";
 
-export const EditList = () => {
+export const EditList = ({ username }) => {
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
   const [title, setTitle] = useState("");
   const [archiveStatus, setArchivedStatus] = useState(null);
+  const [hasGuests, setHasGuests] = useState();
+  const [numberShared, setNumberShared] = useState();
   const location = useLocation();
   const navigate = useNavigate("");
 
@@ -39,6 +42,12 @@ export const EditList = () => {
         setAuthID(res.data.auth_id);
         setTitle(res.data.title);
         setArchivedStatus(res.data.archived);
+        setNumberShared(res.data.shared_users.length);
+
+        if (res.data.shared_users.length > 0) {
+          setHasGuests(true);
+        }
+
         // console.log(items);
       });
   }, [listID, token]);
@@ -93,6 +102,15 @@ export const EditList = () => {
             {title}
           </Typography>
           <InviteButton listID={listID} authID={authID} token={token} />
+          {hasGuests ? (
+            <RemoveUser
+              listID={listID}
+              token={token}
+              setHasGuests={setHasGuests}
+              numberShared={numberShared}
+            />
+          ) : null}
+
           <DeleteList listID={listID} token={token} title={title} />
 
           {/* </div> */}
