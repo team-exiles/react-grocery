@@ -7,8 +7,9 @@ import { EditList } from "./components/List";
 import { Register } from "./components/Register";
 import { Archive } from "./components/Archives";
 import Shopping from "./components/Shopping";
+import InviteLogin from "./components/Invitation";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+//import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -26,13 +27,17 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        {!loggedIn ? (
+        {!token ? (
           <div>
-            {/* <Login setUser={setUser} /> */}
             <Routes>
               <Route path="/Login" element={<Login setUser={setUser} />} />
+              <Route path="/Homepage" element={<Login setUser={setUser} />} />
               <Route path="/sign-up" element={<Register setUser={setUser} />} />
               <Route path="/" element={<Login setUser={setUser} />} />
+              <Route
+                path="/invite/:listID/:inviteID/"
+                element={<InviteLogin token={token} setToken={setToken} />}
+              />
             </Routes>
           </div>
         ) : (
@@ -58,7 +63,12 @@ function App() {
                   />
                 }
               />
-              <Route path="/Create" element={<EditList token={token} />} />
+              <Route
+                path="/invite/:listID/:inviteID/"
+                element={<InviteLogin token={token} setToken={setToken} />}
+              />
+              {/* <Route path="/Create" element={<EditList token={token} />} /> */}
+              <Route path="/Create" element={<EditList />} />
               <Route path="/Login" element={<Login setUser={setUser} />} />
               <Route path="/Archives" element={<Archive setUser={setUser} />} />
               <Route path="/sign-up" element={<Register setUser={setUser} />} />
@@ -68,13 +78,19 @@ function App() {
               />
               <Route
                 path="/lists/edit/:listID/"
-                element={<EditList token={token} />}
+                element={
+                  <EditList
+                    token={token}
+                    setToken={setToken}
+                    username={username}
+                  />
+                }
               />
             </Routes>
           </>
         )}
       </div>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
     </QueryClientProvider>
   );
 }

@@ -11,6 +11,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import { IconButton } from "@mui/material";
 
 export function ShowListItems({ items, setItems, token, listID }) {
   //const [state, setState] = useState({});
@@ -60,6 +62,9 @@ export function ShowListItems({ items, setItems, token, listID }) {
             />
 
             <ListItemText primary={item.item} />
+            <IconButton>
+              <IndeterminateCheckBoxIcon fontSize="small" />
+            </IconButton>
             <DeleteItem
               token={token}
               deleteItem={deleteItem}
