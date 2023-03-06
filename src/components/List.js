@@ -52,8 +52,13 @@ export const EditList = ({ token, username, setToken }) => {
         }
 
         // console.log(items);
+      })
+      .catch((error) => {
+        if (error.message === "Request failed with status code 403") {
+          navigate("/Login");
+        }
       });
-  }, [listID, token]);
+  }, [listID, token, navigate]);
 
   const handleBack = (event) => {
     event.preventDefault();
