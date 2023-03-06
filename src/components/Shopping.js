@@ -21,7 +21,7 @@ export default function Shopping({ token }) {
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
-  const [color, setColor] = useState("success");
+  //const [color, setColor] = useState("success");
 
   const { listID } = useParams();
   const title = location.state?.title;
