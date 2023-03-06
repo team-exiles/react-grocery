@@ -10,13 +10,13 @@ import Button from "@mui/joy/Button";
 //import IconButton from "@mui/material/IconButton";
 //import { InputLabel } from "@mui/material";
 //import InputAdornment from "@mui/material/InputAdornment";
-//import Visibility from "@mui/icons-material/Visibility"; 
-//import VisibilityOff from "@mui/icons-material/VisibilityOff"; 
+//import Visibility from "@mui/icons-material/Visibility";
+//import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 
 export const Register = ({ setUser }) => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   /* const [values, setValues] = useState({ password: "", showPassword: false }); */
   const navigate = useNavigate("");
 
@@ -28,7 +28,7 @@ export const Register = ({ setUser }) => {
       })
       .then((res) => {
         setUser(username, res.data.auth_token);
-        navigate("/Login");
+        navigate(-1);
       });
   };
 
@@ -42,7 +42,7 @@ export const Register = ({ setUser }) => {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  }; */ 
+  }; */
 
   return (
     <div>
@@ -88,9 +88,9 @@ export const Register = ({ setUser }) => {
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            </FormControl>
+          </FormControl>
 
-         {/*} <div>
+          {/*} <div>
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
@@ -112,7 +112,6 @@ export const Register = ({ setUser }) => {
                 }
             />
               </div> */}
-          
 
           <FormControl>
             <FormLabel>Confirm Password</FormLabel>
@@ -123,17 +122,13 @@ export const Register = ({ setUser }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
-          <Button
-            variant="soft"
-            onClick={handleSubmit}
-            sx={{ mt: 2 /* margin top */ }}
-          >
+          <Button onClick={handleSubmit} sx={{ mt: 2 /* margin top */ }}>
             Register
           </Button>
           <Button
-            variant="soft"
+            variant="outlined"
             onClick={(e) => {
-              navigate("/Login");
+              navigate(-1);
             }}
           >
             Back

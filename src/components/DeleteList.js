@@ -1,18 +1,21 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+  IconButton,
+} from "@mui/material/";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="down" ref={ref} {...props} />;
 });
 
 export default function DeleteList({ listID, token, title }) {
@@ -36,7 +39,11 @@ export default function DeleteList({ listID, token, title }) {
         authorization: `token ${token}`,
       },
     }).then((res) => {
-      navigate("/Homepage");
+      navigate("/Homepage", {
+        state: {
+          openSnackBar: true,
+        },
+      });
     });
   };
 
