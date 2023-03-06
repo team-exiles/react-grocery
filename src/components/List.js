@@ -1,8 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 // import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -14,8 +13,7 @@ import Fab from "@mui/material/Fab";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
-export const EditList = () => {
-
+export const EditList = ({ token }) => {
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
@@ -25,7 +23,7 @@ export const EditList = () => {
   const { listID } = useParams();
   const title = location.state?.title;
   const archiveStatus = location.state?.archiveStatus;
-  const token = location.state?.token;
+  //const token = location.state?.token;
 
   useEffect(() => {
     axios
@@ -60,26 +58,36 @@ export const EditList = () => {
       .then((res) => navigate("/Homepage"));
   };
 
+  //Original Shopping Handler (PRE REACT QUERY)
+  // const handleShopping = () => {
+  //   if (color === "success") {
+  //     setColor("error");
+  //     setShoppingMode("stop shopping & Archive List");
+  //   }
+  //   if (color === "error") {
+  //     setColor("success");
+  //     setShoppingMode("go shopping");
+  //     axios
+  //       .patch(
+  //         `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+  //         { archived: true },
+  //         {
+  //           headers: {
+  //             authorization: `token ${token}`,
+  //           },
+  //         }
+  //       )
+  //       .then((res) => navigate("/Homepage"));
+  //   }
+  // };
+
   const handleShopping = () => {
-    if (color === "success") {
-      setColor("error");
-      setShoppingMode("stop shopping & Archive List");
-    }
-    if (color === "error") {
-      setColor("success");
-      setShoppingMode("go shopping");
-      axios
-        .patch(
-          `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
-          { archived: true },
-          {
-            headers: {
-              authorization: `token ${token}`,
-            },
-          }
-        )
-        .then((res) => navigate("/Homepage"));
-    }
+    navigate(`/shopping/${listID}/`, {
+      state: {
+        title: title,
+        id: listID,
+      },
+    });
   };
 
 
@@ -122,7 +130,7 @@ export const EditList = () => {
         {archiveStatus ? (
           <Fab
             sx={{ position: "absolute", bottom: 30, right: 30 }}
-            color={"secondary"}
+            color="secondary"
             variant="extended"
             onClick={handleUnarchive}
           >
@@ -132,12 +140,12 @@ export const EditList = () => {
         ) : (
           <Fab
             sx={{ position: "absolute", bottom: 30, right: 30 }}
-            color={color}
+            color="success"
             variant="extended"
             onClick={handleShopping}
           >
             <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-            {shoppingMode}
+            Go Shopping
           </Fab>
         )}
       </div>

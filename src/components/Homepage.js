@@ -1,4 +1,4 @@
-import { Link as RouterLink } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
 import { requestMyLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
@@ -14,8 +14,7 @@ import Button from "@mui/material/Button";
 
 export const Homepage = ({ setUser, token }) => {
   const [lists, setLists] = useState([]);
-  // const [activeList, setActiveList] = useState([]);
-  // const [archivedList, setArchivedList] = useState([]);
+  const navigate = useNavigate();
   let active = [];
   let archived = [];
 
@@ -30,22 +29,25 @@ export const Homepage = ({ setUser, token }) => {
     archived = lists.filter((list) => list.archived === true);
   };
 
-  function ExpandedArchived(){
+  function ExpandedArchived() {
     const [isExpanded, setExpansion] = useState(false);
-  
+
     return (
-        <div>
-            <Button onClick={() => setExpansion(!isExpanded)}><strong> Archived Lists</strong></Button>
-            {isExpanded && (
-                <div className="expandedArchivedBox">
-                  <Divider sx={{ m: 2 }} />
-                  {archived.map((list) => (
-                    <ListDetails list={list} token={token} key={list.id} />
-        ))}
-                </div>
-            )}
-        </div>
-    )}
+      <div>
+        <Button onClick={() => setExpansion(!isExpanded)}>
+          <strong> Archived Lists</strong>
+        </Button>
+        {isExpanded && (
+          <div className="expandedArchivedBox">
+            <Divider sx={{ m: 2 }} />
+            {archived.map((list) => (
+              <ListDetails list={list} token={token} key={list.id} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   filterList();
 
@@ -63,15 +65,9 @@ export const Homepage = ({ setUser, token }) => {
       </div>
       <Divider />
       <ExpandedArchived />
-      {/* <div>
-      
-        <Typography>Archived Lists</Typography>
-        <ExpandedArchived />
-        {archived.map((list) => (
-          <ListDetails list={list} token={token} key={list.id} />
-        ))}
-      </div> */}
-
+      {/* <Link component={RouterLink} to="/shopping" state={{ token: token }}>
+        <Button>Shopping Polling Test</Button>
+      </Link> */}
       <div>
         <IconButton
           sx={{ position: "absolute", top: 18, right: 18 }}
@@ -88,3 +84,10 @@ export const Homepage = ({ setUser, token }) => {
   );
 };
 
+// <div>
+// <Typography>Archived Lists</Typography>
+//<ExpandedArchived />
+//{archived.map((list) => (
+//<ListDetails list={list} token={token} key={list.id} />
+//))}
+//</div> */}
