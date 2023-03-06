@@ -12,9 +12,11 @@ import DeleteList from "./DeleteList";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 
-export const EditList = ({ token }) => {
+export const EditList = () => {
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
+  const [title, setTitle] = useState("");
+  const [archiveStatus, setArchivedStatus] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
 
@@ -22,9 +24,8 @@ export const EditList = ({ token }) => {
   // const [shoppingMode, setShoppingMode] = useState("Go shopping");
 
   const { listID } = useParams();
-  const title = location.state?.title;
-  const archiveStatus = location.state?.archiveStatus;
-  //const token = location.state?.token;
+  //const archiveStatus = location.state?.archiveStatus;
+  const token = location.state?.token;
 
   useEffect(() => {
     axios
@@ -36,6 +37,8 @@ export const EditList = ({ token }) => {
       .then((res) => {
         setItems(res.data.listForItems);
         setAuthID(res.data.auth_id);
+        setTitle(res.data.title);
+        setArchivedStatus(res.data.archived);
         // console.log(items);
       });
   }, [listID, token]);

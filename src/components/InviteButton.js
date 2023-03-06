@@ -70,11 +70,8 @@ export default function InviteButton({ listID, authID, token }) {
             sx={{ color: "blue" }}
             inputProps={{ readOnly: true }}
           />{" "}
-          <IconButton>
-            <ContentCopyIcon
-              onClick={(e) => handleCopy(e)}
-              sx={{ color: "black" }}
-            />
+          <IconButton onClick={(e) => handleCopy(e)}>
+            <ContentCopyIcon sx={{ color: "black" }} />
           </IconButton>
         </DialogContent>
         <DialogActions>

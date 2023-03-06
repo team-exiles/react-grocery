@@ -20,12 +20,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export const Homepage = ({ setUser, token }) => {
+export const Homepage = ({ setUser, username, token }) => {
   const [lists, setLists] = useState([]);
   const location = useLocation();
 
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
-
+  console.log(username);
   //  const navigate = useNavigate();
   let active = [];
   let archived = [];

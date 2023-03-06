@@ -7,6 +7,7 @@ import { EditList } from "./components/List";
 import { Register } from "./components/Register";
 import { Archive } from "./components/Archives";
 import Shopping from "./components/Shopping";
+import InviteLogin from "./components/Invitation";
 import { QueryClientProvider, QueryClient } from "react-query";
 //import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -28,11 +29,14 @@ function App() {
       <div className="App">
         {!loggedIn ? (
           <div>
-            {/* <Login setUser={setUser} /> */}
             <Routes>
               <Route path="/Login" element={<Login setUser={setUser} />} />
               <Route path="/sign-up" element={<Register setUser={setUser} />} />
               <Route path="/" element={<Login setUser={setUser} />} />
+              <Route
+                path="/invite/:listID/:inviteID/"
+                element={<InviteLogin token={token} />}
+              />
             </Routes>
           </div>
         ) : (
@@ -58,7 +62,12 @@ function App() {
                   />
                 }
               />
-              <Route path="/Create" element={<EditList token={token} />} />
+              <Route
+                path="/invite/:listID/:inviteID/"
+                element={<InviteLogin token={token} />}
+              />
+              {/* <Route path="/Create" element={<EditList token={token} />} /> */}
+              <Route path="/Create" element={<EditList />} />
               <Route path="/Login" element={<Login setUser={setUser} />} />
               <Route path="/Archives" element={<Archive setUser={setUser} />} />
               <Route path="/sign-up" element={<Register setUser={setUser} />} />
@@ -68,7 +77,7 @@ function App() {
               />
               <Route
                 path="/lists/edit/:listID/"
-                element={<EditList token={token} />}
+                element={<EditList token={token} username={username} />}
               />
             </Routes>
           </>
