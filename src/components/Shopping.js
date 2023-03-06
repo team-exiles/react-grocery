@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 import { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -21,7 +21,7 @@ export default function Shopping({ token }) {
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
-  const [color, setColor] = useState("success");
+  //const [color, setColor] = useState("success");
 
   const { listID } = useParams();
   const title = location.state?.title;
@@ -53,6 +53,8 @@ export default function Shopping({ token }) {
 
   //console.log(data.data.listForItems);
 
+
+
   const handleShopping = () => {
     axios
       .patch(
@@ -66,6 +68,9 @@ export default function Shopping({ token }) {
       )
       .then((res) => navigate("/Homepage"));
   };
+//This patch request does not work with the invited user. Only with the original owner of list. 
+
+
 
   return (
     <div className="list-display">
