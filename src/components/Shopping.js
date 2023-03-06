@@ -1,8 +1,7 @@
 import { useQuery } from "react-query";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-
 import { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -14,8 +13,7 @@ import DeleteList from "./DeleteList";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import Fab from "@mui/material/Fab";
-
-//import useWebSocket, { ReadyState } from "react-use-websocket";
+import useWebSocket, { ReadyState } from "react-use-websocket";
 
 export default function Shopping({ token }) {
   const [items, setItems] = useState(null);
@@ -25,6 +23,17 @@ export default function Shopping({ token }) {
 
   const { listID } = useParams();
   const title = location.state?.title;
+
+
+const WS_URL = 'ws://safe-plains-62725.herokuapp.com/ws/lists/1/'
+
+function Connect() {
+  useWebSocket(WS_URL, {
+    onOpen: () => {
+      console.log('WebSocket connection established.');
+    }
+  })
+};
 
   const fetchList = () => {
     return axios.get(
@@ -69,6 +78,9 @@ export default function Shopping({ token }) {
 
   return (
     <div className="list-display">
+      <div>
+        <Connect />
+      </div>
       <Stack
         direction="row"
         justifyContent="space-evenly"

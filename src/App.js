@@ -5,7 +5,6 @@ import { Login } from "./components/Login";
 import { Homepage } from "./components/Homepage";
 import { EditList } from "./components/List";
 import { Register } from "./components/Register";
-import { Archive } from "./components/Archives";
 import Shopping from "./components/Shopping";
 import InviteLogin from "./components/Invitation";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -21,8 +20,6 @@ function App() {
     setToken(token);
     setUsername(username);
   };
-
-  const loggedIn = (token, username);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -70,7 +67,6 @@ function App() {
               {/* <Route path="/Create" element={<EditList token={token} />} /> */}
               <Route path="/Create" element={<EditList />} />
               <Route path="/Login" element={<Login setUser={setUser} />} />
-              <Route path="/Archives" element={<Archive setUser={setUser} />} />
               <Route path="/sign-up" element={<Register setUser={setUser} />} />
               <Route
                 path="/shopping/:listID/"
