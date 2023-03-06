@@ -35,7 +35,7 @@ function App() {
               <Route path="/" element={<Login setUser={setUser} />} />
               <Route
                 path="/invite/:listID/:inviteID/"
-                element={<InviteLogin token={token} />}
+                element={<InviteLogin token={token} setToken={setToken} />}
               />
             </Routes>
           </div>
@@ -64,7 +64,7 @@ function App() {
               />
               <Route
                 path="/invite/:listID/:inviteID/"
-                element={<InviteLogin token={token} />}
+                element={<InviteLogin token={token} setToken={setToken} />}
               />
               {/* <Route path="/Create" element={<EditList token={token} />} /> */}
               <Route path="/Create" element={<EditList />} />

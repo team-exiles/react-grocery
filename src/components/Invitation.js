@@ -13,34 +13,16 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router";
 
-export default function InviteLogin() {
+export default function InviteLogin({ token, setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { listID, inviteID } = useParams();
   const navigate = useNavigate("");
-  const [token, setToken] = useState("");
 
   const handleSubmit = (event) => {
     requestLogin(username, password).then((res) => {
       setToken(res.data.auth_token);
-
-      // event.preventDefault();
-      // axios
-      //   .post(
-      //     "https://safe-plains-62725.herokuapp.com/auth/token/login/",
-      //     { username: `${username}`, password: `${password}` },
-      //     {
-      //       headers: {
-      //         authorization: `token ${token}`,
-      //       },
-      //     }
-      //   )
-      //   .then((res) => {
-      //     setToken(res.data.auth_token);
-      //     console.log(token);
-      // // console.log(username);
-      // // console.log(password);
-      // // console.log(token);
+      console.log(token);
 
       axios
         .get(`https://safe-plains-62725.herokuapp.com/lists/`, {
@@ -56,25 +38,25 @@ export default function InviteLogin() {
 
           if (listID === listCheck[0].id.toString()) {
             // console.log(`User: ${username}`);
-            axios.put(
-              `https://safe-plains-62725.herokuapp.com/lists/${listID}/invite/`,
-              { username: `${username}` },
-              {
-                headers: {
-                  authorization: `token ${token}`,
-                },
-              }
-            );
+            axios
+              .put(
+                `https://safe-plains-62725.herokuapp.com/lists/${listID}/invite/`,
+                { username: `${username}` },
+                {
+                  headers: {
+                    authorization: `token ${token}`,
+                  },
+                }
+              )
+              .then((res) => {
+                navigate(`/lists/edit/${listID}/`, {
+                  state: {
+                    token: token,
+                  },
+                });
+              });
           }
         });
-
-      //       navigate(`/lists/edit/${listID}/`, {
-      //         state: {
-      //           token: token,
-      //         },
-      //       });
-      //     }
-      //   });
     });
   };
 
