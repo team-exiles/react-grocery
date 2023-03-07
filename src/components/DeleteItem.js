@@ -1,7 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import axios from "axios";
-// import { useState } from "react";
 
 export default function DeleteItem({ token, deleteItem, itemID }) {
   const handleDelete = () => {

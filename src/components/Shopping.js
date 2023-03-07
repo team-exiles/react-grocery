@@ -1,8 +1,7 @@
 import { useQuery } from "react-query";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-
 import { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -47,11 +46,9 @@ export default function Shopping({ token }) {
 
   const handleBack = (event) => {
     event.preventDefault();
-    setItems([]);
+    setItems([]); 
     navigate("/Homepage");
   };
-
-  //console.log(data.data.listForItems);
 
   const handleShopping = () => {
     axios

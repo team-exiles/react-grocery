@@ -1,25 +1,3 @@
-/* .App {
-  text-align: center;
-  background-color: rgb(25, 168, 20);
-  color: white;
-  text-align: center;
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-.App-header {
-  background-color: #282c34;
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  .nav-bar {
-    background-color: blue;
-  }
-}
-*/
 
 .App {
   font-family: "Inter", sans-serif;
@@ -39,50 +17,9 @@ html {
   /* margin-right:5px; */
 }
 
-.login-field {
-  /* padding: 20px; */
-  margin: 20px;
-  text-align: center;
-  /* background-color: rgb(214, 155, 149); */
-}
-
 .login-input,
 .password {
   margin-bottom: 10px;
-}
-
-.login-button {
-  text-align: center;
-  width: 70%;
-  height: 30px;
-  color: white;
-  background-color: #12aec2;
-  border: none;
-  border-radius: 25px;
-}
-
-.social-login {
-  margin: 50px;
-  padding: 20px;
-}
-
-.social-button {
-  height: 60px;
-}
-
-.twitter-image {
-  height: 40px;
-  width: 150px;
-}
-
-.facebook-image {
-  height: 60px;
-  width: 150px;
-}
-
-.google-image {
-  height: 40px;
-  width: 150px;
 }
 
 .avatar {
@@ -103,15 +40,6 @@ html {
   border-bottom: solid 2px lightgray;
 }
 
-.logged-in-user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: center; */
-  /* border: black 1px solid; */
-  margin-bottom: 10px;
-}
-
 .user-info {
   text-align: left;
   margin-left: 3%;
@@ -121,24 +49,7 @@ html {
   margin-left: 0;
 }
 
-.user-email {
-  padding-bottom: 1%;
-  color: gray;
-}
-
-.action-buttons {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
 .Make-New-Folder {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-}
-
-.Make-New-List {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -150,29 +61,12 @@ html {
   border-radius: 50%;
 }
 
-/* .active-lists {
-  border-bottom: solid 2px lightgray;
-  padding: 10px;
-} */
-
 .list-homepage-line {
   display: flex;
   flex-direction: row;
   height: 25px;
   line-height: 25px;
   /* border: black 1px solid; */
-}
-
-.listbutt {
-  margin: 5px;
-  background-color: #282c34;
-  color: white;
-}
-
-.folders {
-  padding: 10px;
-  display: block;
-  flex-direction: column;
 }
 
 .archived-folder,
@@ -187,14 +81,6 @@ html {
   display: flex;
   flex: row;
 }
-
-/*
-.archived-folder {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  border: black 1px solid; 
-}*/
 
 .new-list-pop-up {
   position: absolute;
@@ -303,51 +189,15 @@ html {
   justify-content: center;
 }
 
-.cancel-list {
-  position: fixed;
-  top: 2%;
-  left: 2%;
-}
-
 .send-item-input {
   /* border: 5px solid red; */
   padding: 20px;
-}
-
-.expandedBox {
-  border: 5px solid red;
 }
 
 .register {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.regi-name {
-  text-align: center;
-}
-
-.regi-butt {
-  width: 80px;
-  height: 60px;
-  border-radius: 50%;
-  bottom: 15%;
-  right: 5%;
-  margin: 10px;
-  background-color: rgb(64, 182, 66);
-  color: white;
-}
-.regi-butt:hover {
-  background-color: rgb(25, 118, 26);
-  color: white;
-}
-
-.regi-close {
-  border: 1px solid black;
-  padding: 10px;
-  margin: 10px;
-  background-color: rgb(234, 254, 102);
 }
 
 .passwordfield {

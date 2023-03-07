@@ -1,6 +1,4 @@
 //import { useNavigate } from "react-router-dom";
-// import Card from "@mui/material/Card";
-// import Fab from "@mui/material/Fab";
 import * as React from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
@@ -29,7 +27,6 @@ export const Homepage = ({ setUser, username, token }) => {
   let active = [];
   let archived = [];
 
-  //console.log(username);
 
   useEffect(() => {
     requestMyLists(token).then((res) => {

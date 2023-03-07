@@ -57,8 +57,6 @@ export const EditList = ({ token, username, setToken }) => {
         if (res.data.shared_users.length > 0) {
           setHasGuests(true);
         }
-
-        // console.log(items);
       })
       .catch((error) => {
         if (error.message === "Request failed with status code 403") {
