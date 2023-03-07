@@ -13,6 +13,15 @@ import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import RemoveUser from "./RemoveUser";
 
+const style = {
+  margin: 0,
+  top: "auto",
+  right: 35,
+  bottom: 35,
+  left: "auto",
+  position: "fixed",
+};
+
 export const EditList = ({ token, username, setToken }) => {
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
@@ -148,7 +157,7 @@ export const EditList = ({ token, username, setToken }) => {
           </Fab>
         ) : (
           <Fab
-            sx={{ position: "absolute", bottom: 30, right: 30 }}
+            sx={style}
             color="success"
             variant="extended"
             onClick={handleShopping}

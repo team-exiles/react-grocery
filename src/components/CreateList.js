@@ -13,6 +13,15 @@ import AddIcon from "@mui/icons-material/Add";
 // import IconButton from "@mui/material/IconButton";
 import { Fab } from "@mui/material";
 
+const style = {
+  margin: 0,
+  top: "auto",
+  right: 35,
+  bottom: 35,
+  left: "auto",
+  position: "fixed",
+};
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -56,14 +65,15 @@ export default function CreateList({ token }) {
   return (
     <div>
       <Fab
-        sx={{ position: "absolute", bottom: 40, right: 40 }}
+        sx={style}
+        // sx={{ position: "absolute", bottom: 40, right: 40 }}
         variant="extended"
         color="primary"
         onClick={handleClickOpen}
         size="large"
       >
         <AddIcon sx={{ mr: 1 }} />
-        New List
+        <strong>New List</strong>
       </Fab>
       <Dialog
         open={open}

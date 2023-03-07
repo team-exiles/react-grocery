@@ -95,14 +95,14 @@ export const Homepage = ({ setUser, username, token }) => {
       </Typography>
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
-        <Typography>Grocery Lists</Typography>
+        <Typography variant="h5">Grocery Lists</Typography>
         {active.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
       </div>
       <Divider />
       <div className="shared-lists">
-        <Typography>Shared Lists</Typography>
+        <Typography variant="h5">Shared Lists</Typography>
         {sharedLists.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
@@ -124,11 +124,3 @@ export const Homepage = ({ setUser, username, token }) => {
     </section>
   );
 };
-
-// <div>
-// <Typography>Archived Lists</Typography>
-//<ExpandedArchived />
-//{archived.map((list) => (
-//<ListDetails list={list} token={token} key={list.id} />
-//))}
-//</div> */}
