@@ -11,12 +11,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
-import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton } from "@mui/material";
 
 export function ShowListItems({ items, setItems, token, listID }) {
-  //const [state, setState] = useState({});
-
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
     axios
@@ -32,7 +30,6 @@ export function ShowListItems({ items, setItems, token, listID }) {
         }
       )
       .then((res) => {
-        //(items.find((id) => id.id === item.id));
         axios
           .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
             headers: {
@@ -50,21 +47,50 @@ export function ShowListItems({ items, setItems, token, listID }) {
     setItems(newItemArray);
   };
 
+  const handleMissing = (flag, itemID) => {
+    const newFlag = !flag;
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/items/${itemID}/`,
+        { missing: newFlag },
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        axios
+          .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
+            headers: {
+              authorization: `token ${token}`,
+            },
+          })
+          .then((res) => {
+            setItems(res.data.listForItems);
+          });
+      });
+  };
+
   return (
     <List>
       {items.map((item) => (
         <div key={item.id}>
           <Divider />
-          <ListItem>
+          <ListItem
+            sx={{ backgroundColor: item.missing ? "rgb(214, 155, 149)" : null }}
+          >
             <Checkbox
               checked={item.check_box}
               onChange={() => handleClick(item)}
             />
 
             <ListItemText primary={item.item} />
-            <IconButton>
-              <IndeterminateCheckBoxIcon fontSize="small" />
+
+            <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
+              <FlagIcon />
             </IconButton>
+
             <DeleteItem
               token={token}
               deleteItem={deleteItem}
@@ -78,21 +104,3 @@ export function ShowListItems({ items, setItems, token, listID }) {
     </List>
   );
 }
-
-// return (
-//   <Box sx={{ mx: 3, display: "flex" }}>
-//     <FormGroup>
-//       {items.map((item) => (
-//         <FormControlLabel
-//           control={
-//             <Checkbox
-//               checked={item.check_box}
-//               onChange={() => handleClick(item)}
-//             />
-//           }
-//           label={item.item}
-//         />
-//       ))}
-//     </FormGroup>
-//   </Box>
-// );

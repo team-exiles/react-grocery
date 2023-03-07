@@ -43,6 +43,7 @@ html {
   /* padding: 20px; */
   margin: 20px;
   text-align: center;
+  /* background-color: rgb(214, 155, 149); */
 }
 
 .login-input,
@@ -361,4 +362,19 @@ html {
   height: 40px;
   width: 70px;
   border-radius: 50%;
+}
+
+.blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

@@ -21,7 +21,7 @@ export default function Shopping({ token }) {
   const [items, setItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate("");
-  const [color, setColor] = useState("success");
+  //const [color, setColor] = useState("success");
 
   const { listID } = useParams();
   const title = location.state?.title;
@@ -57,7 +57,7 @@ export default function Shopping({ token }) {
     axios
       .patch(
         `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
-        { archived: true },
+        { archived: true, active_shopping: false },
         {
           headers: {
             authorization: `token ${token}`,
@@ -101,7 +101,7 @@ export default function Shopping({ token }) {
       />
 
       <Fab
-        sx={{ position: "absolute", bottom: 30, right: 30 }}
+        sx={{ position: "fixed", bottom: 30, right: 30 }}
         color="error"
         variant="extended"
         onClick={handleShopping}

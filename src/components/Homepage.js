@@ -1,15 +1,15 @@
-import * as React from "react";
 //import { useNavigate } from "react-router-dom";
+// import Card from "@mui/material/Card";
+// import Fab from "@mui/material/Fab";
+import * as React from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
-import { requestMyLists } from "./Requests";
+import { requestMyLists, requestSharedLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import CreateList from "./CreateList";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-// import Card from "@mui/material/Card";
-// import Fab from "@mui/material/Fab";
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
@@ -22,6 +22,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export const Homepage = ({ setUser, username, token }) => {
   const [lists, setLists] = useState([]);
+  const [sharedLists, setSharedLists] = useState([]);
   const location = useLocation();
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
   //  const navigate = useNavigate();
@@ -33,6 +34,12 @@ export const Homepage = ({ setUser, username, token }) => {
   useEffect(() => {
     requestMyLists(token).then((res) => {
       setLists(res.data);
+    });
+  }, [token]);
+
+  useEffect(() => {
+    requestSharedLists(token).then((res) => {
+      setSharedLists(res.data);
     });
   }, [token]);
 
@@ -50,14 +57,17 @@ export const Homepage = ({ setUser, username, token }) => {
 
     return (
       <div>
-        <Button onClick={() => setExpansion(!isExpanded)}>
-          <strong>Archived Lists</strong>
+        <Button onClick={() => setExpansion(!isExpanded)} size="large">
+          <strong>
+            Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
+          </strong>
         </Button>
         {isExpanded && (
           <div className="expandedArchivedBox">
-            <Divider sx={{ m: 2 }} />
             {archived.map((list) => (
-              <ListDetails list={list} token={token} key={list.id} />
+              <div style={{ marginLeft: "30px" }}>
+                <ListDetails list={list} token={token} key={list.id} />
+              </div>
             ))}
           </div>
         )}
@@ -65,6 +75,7 @@ export const Homepage = ({ setUser, username, token }) => {
     );
   }
 
+  //Calls Filtering function to separate the lists from archived and unarchived.
   filterList();
 
   return (
@@ -84,8 +95,15 @@ export const Homepage = ({ setUser, username, token }) => {
       </Typography>
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
-        <Typography>Grocery Lists</Typography>
+        <Typography variant="h5">Grocery Lists</Typography>
         {active.map((list) => (
+          <ListDetails list={list} token={token} key={list.id} />
+        ))}
+      </div>
+      <Divider />
+      <div className="shared-lists">
+        <Typography variant="h5">Shared Lists</Typography>
+        {sharedLists.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
       </div>
@@ -106,11 +124,3 @@ export const Homepage = ({ setUser, username, token }) => {
     </section>
   );
 };
-
-// <div>
-// <Typography>Archived Lists</Typography>
-//<ExpandedArchived />
-//{archived.map((list) => (
-//<ListDetails list={list} token={token} key={list.id} />
-//))}
-//</div> */}
