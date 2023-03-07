@@ -9,8 +9,17 @@ import { Archive } from "./components/Archives";
 import Shopping from "./components/Shopping";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+// import { createTheme, ThemeProvider } from '@mui/material';
 
 const queryClient = new QueryClient();
+
+// const theme = createTheme({
+//   palette: {
+//     primary:{
+//       main: '#4db6ac'
+//     }
+//   }
+// })
 
 function App() {
   const [token, setToken] = useLocalStorageState("token", null);
@@ -25,6 +34,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* <ThemeProvider theme={theme}> */}
       <div className="App">
         {!loggedIn ? (
           <div>
@@ -74,6 +84,7 @@ function App() {
           </>
         )}
       </div>
+    {/* </ThemeProvider> */}
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );

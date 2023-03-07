@@ -11,7 +11,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
-import FlagIcon from "@mui/icons-material/Flag";
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+// import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton } from "@mui/material";
 
 export function ShowListItems({ items, setItems, token, listID }) {
@@ -93,11 +94,11 @@ export function ShowListItems({ items, setItems, token, listID }) {
             sx={{ p: 1,
               height: 20,
               width: 20,
-            border: '2px solid black',
+            // border: '2px solid black',
             borderRadius: '8px',
-            backgroundColor: ''
+            backgroundColor: '#cfd8dc'
             }}>
-              <FlagIcon/>
+              <PriorityHighIcon sx={{color:'black'}}/>
               </Box>
             </IconButton>
             

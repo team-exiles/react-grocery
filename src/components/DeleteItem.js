@@ -24,11 +24,11 @@ export default function DeleteItem({ token, deleteItem, itemID }) {
             sx={{ p: 1,
               height: 20,
               width: 20,
-            border: '2px solid black',
+            // border: '2px solid black',
             borderRadius: '8px',
-            backgroundColor: ''
+            backgroundColor: '#cfd8dc'
             }}>
-        <DeleteIcon fontSize="small" />
+        <DeleteIcon sx={{color:'black'}} />
         </Box>
       </IconButton>
     </div>
