@@ -90,7 +90,7 @@ export const EditList = ({ token, username, setToken }) => {
   const handleShopping = () => {
     axios
       .patch(
-        `https://safe-plains-62725.herokuapp.com/items/${listID}/`,
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
         { active_shopping: true },
         {
           headers: {
@@ -158,7 +158,7 @@ export const EditList = ({ token, username, setToken }) => {
         />
         {archiveStatus ? (
           <Fab
-            sx={{ position: "absolute", bottom: 30, right: 30 }}
+            sx={{ position: "fixed", bottom: 30, right: 30 }}
             color="secondary"
             variant="extended"
             onClick={handleUnarchive}

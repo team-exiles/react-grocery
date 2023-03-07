@@ -24,6 +24,7 @@ export const ListDetails = ({ list, token }) => {
           justifyContent: "flex-start",
           vericalAlign: "center",
           border: "2px solid",
+          display: "flex",
         }}
         color="primary"
         variant="outlined"
@@ -33,8 +34,13 @@ export const ListDetails = ({ list, token }) => {
         <Typography sx={{ mt: 0.56, fontWeight: "bolder" }}>
           {list.title}
         </Typography>
+        <div className="dot-width" />
         {list.active_shopping ? (
-          <FiberManualRecordIcon color="success" className="blink" />
+          <FiberManualRecordIcon
+            color="success"
+            className="blink"
+            fontSize="small"
+          />
         ) : null}
       </Button>
     </Link>
