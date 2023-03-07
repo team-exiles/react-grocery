@@ -4,7 +4,7 @@
 import * as React from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
-import { requestMyLists } from "./Requests";
+import { requestMyLists, requestSharedLists } from "./Requests";
 import { ListDetails } from "./ListDetails";
 import { useEffect, useState } from "react";
 import CreateList from "./CreateList";
@@ -22,6 +22,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export const Homepage = ({ setUser, username, token }) => {
   const [lists, setLists] = useState([]);
+  const [sharedLists, setSharedLists] = useState([]);
   const location = useLocation();
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
   //  const navigate = useNavigate();
@@ -33,6 +34,12 @@ export const Homepage = ({ setUser, username, token }) => {
   useEffect(() => {
     requestMyLists(token).then((res) => {
       setLists(res.data);
+    });
+  }, [token]);
+
+  useEffect(() => {
+    requestSharedLists(token).then((res) => {
+      setSharedLists(res.data);
     });
   }, [token]);
 
@@ -50,14 +57,17 @@ export const Homepage = ({ setUser, username, token }) => {
 
     return (
       <div>
-        <Button onClick={() => setExpansion(!isExpanded)}>
-          <strong>Archived Lists</strong>
+        <Button onClick={() => setExpansion(!isExpanded)} size="large">
+          <strong>
+            Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
+          </strong>
         </Button>
         {isExpanded && (
           <div className="expandedArchivedBox">
-            <Divider sx={{ m: 2 }} />
             {archived.map((list) => (
-              <ListDetails list={list} token={token} key={list.id} />
+              <div style={{ marginLeft: "30px" }}>
+                <ListDetails list={list} token={token} key={list.id} />
+              </div>
             ))}
           </div>
         )}
@@ -65,6 +75,7 @@ export const Homepage = ({ setUser, username, token }) => {
     );
   }
 
+  //Calls Filtering function to separate the lists from archived and unarchived.
   filterList();
 
   return (
@@ -86,6 +97,13 @@ export const Homepage = ({ setUser, username, token }) => {
       <div className="active-lists">
         <Typography>Grocery Lists</Typography>
         {active.map((list) => (
+          <ListDetails list={list} token={token} key={list.id} />
+        ))}
+      </div>
+      <Divider />
+      <div className="shared-lists">
+        <Typography>Shared Lists</Typography>
+        {sharedLists.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
       </div>

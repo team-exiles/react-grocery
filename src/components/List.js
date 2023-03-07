@@ -20,11 +20,10 @@ export const EditList = ({ token, username, setToken }) => {
   const [archiveStatus, setArchivedStatus] = useState(null);
   const [hasGuests, setHasGuests] = useState();
   const [numberShared, setNumberShared] = useState();
+  const [flagColor, setFlagColor] = useState("");
+  const [missingFlag, setMissingFlag] = useState();
   const location = useLocation();
   const navigate = useNavigate("");
-
-  // const [color, setColor] = useState("success");
-  // const [shoppingMode, setShoppingMode] = useState("Go shopping");
 
   const { listID } = useParams();
   //const archiveStatus = location.state?.archiveStatus;
@@ -135,6 +134,7 @@ export const EditList = ({ token, username, setToken }) => {
           setItems={setItems}
           token={token}
           listID={listID}
+          flagColor={flagColor}
         />
         {archiveStatus ? (
           <Fab
