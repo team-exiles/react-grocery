@@ -82,6 +82,7 @@ export function ShowListItems({ items, setItems, token, listID }) {
             sx={{ backgroundColor: item.missing ? "rgb(214, 155, 149)" : null }}
           >
             <Checkbox
+              defaultChecked color="success"
               checked={item.check_box}
               onChange={() => handleClick(item)}
             />

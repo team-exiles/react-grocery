@@ -56,12 +56,13 @@ export function SendItems({ items, setItems, token, listID }) {
             required
             id="list"
             label="Add Item"
+            color="success"
             onChange={handleText}
             value={textInput}
             autoFocus
             autoComplete="off"
           />
-          <Button type="submit" variant="contained" onClick={handleSubmit}>
+          <Button sx={{ backgroundColor:'black' }} type="submit" variant="contained" onClick={handleSubmit}>
             Add
           </Button>
         </Stack>
