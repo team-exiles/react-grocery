@@ -30,7 +30,6 @@ export const EditList = ({ token, username, setToken }) => {
   const [hasGuests, setHasGuests] = useState();
   const [numberShared, setNumberShared] = useState();
   const [flagColor, setFlagColor] = useState("");
-  const [missingFlag, setMissingFlag] = useState();
   const location = useLocation();
   const navigate = useNavigate("");
 
@@ -89,12 +88,24 @@ export const EditList = ({ token, username, setToken }) => {
   };
 
   const handleShopping = () => {
-    navigate(`/shopping/${listID}/`, {
-      state: {
-        title: title,
-        id: listID,
-      },
-    });
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+        { active_shopping: true },
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then(
+        navigate(`/shopping/${listID}/`, {
+          state: {
+            title: title,
+            id: listID,
+          },
+        })
+      );
   };
 
   return (
@@ -147,7 +158,7 @@ export const EditList = ({ token, username, setToken }) => {
         />
         {archiveStatus ? (
           <Fab
-            sx={{ position: "absolute", bottom: 30, right: 30 }}
+            sx={{ position: "fixed", bottom: 30, right: 30 }}
             color="secondary"
             variant="extended"
             onClick={handleUnarchive}
