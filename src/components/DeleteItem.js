@@ -1,6 +1,7 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import axios from "axios";
+import Box from '@mui/material/Box';
 // import { useState } from "react";
 
 export default function DeleteItem({ token, deleteItem, itemID }) {
@@ -19,7 +20,16 @@ export default function DeleteItem({ token, deleteItem, itemID }) {
   return (
     <div>
       <IconButton onClick={handleDelete}>
+      <Box component="span" 
+            sx={{ p: 1,
+              height: 20,
+              width: 20,
+            border: '2px solid black',
+            borderRadius: '8px',
+            backgroundColor: ''
+            }}>
         <DeleteIcon fontSize="small" />
+        </Box>
       </IconButton>
     </div>
   );

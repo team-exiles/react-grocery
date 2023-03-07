@@ -1,44 +1,29 @@
 import { useEffect, useState } from "react";
-import * as React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import { Stack, Fab, Typography } from "@mui/material";
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import UnarchiveIcon from "@mui/icons-material/Unarchive";
-import IconButton from "@mui/material/IconButton";
-import InviteButton from "./InviteButton.js";
-import DeleteList from "./DeleteList";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
-import RemoveUser from "./RemoveUser";
+import axios from "axios";
+// import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import { Stack } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import DeleteList from "./DeleteList";
+import Typography from "@mui/material/Typography";
+import Fab from "@mui/material/Fab";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
-const style = {
-  margin: 0,
-  top: "auto",
-  right: 35,
-  bottom: 35,
-  left: "auto",
-  position: "fixed",
-};
-
-export const EditList = ({ token, username, setToken }) => {
+export const EditList = ({ token }) => {
   const [items, setItems] = useState(null);
-  const [authID, setAuthID] = useState("");
-  const [title, setTitle] = useState("");
-  const [archiveStatus, setArchivedStatus] = useState(null);
-  const [hasGuests, setHasGuests] = useState();
-  const [numberShared, setNumberShared] = useState();
-  const [flagColor, setFlagColor] = useState("");
   const location = useLocation();
   const navigate = useNavigate("");
+  const [color, setColor] = useState("success");
+  const [shoppingMode, setShoppingMode] = useState("Go shopping");
 
   const { listID } = useParams();
-  //const archiveStatus = location.state?.archiveStatus;
-  if (token === undefined) {
-    setToken(location.state?.token);
-  }
-  //console.log(token);
+  const title = location.state?.title;
+  const archiveStatus = location.state?.archiveStatus;
+  //const token = location.state?.token;
 
   useEffect(() => {
     axios
@@ -49,23 +34,9 @@ export const EditList = ({ token, username, setToken }) => {
       })
       .then((res) => {
         setItems(res.data.listForItems);
-        setAuthID(res.data.auth_id);
-        setTitle(res.data.title);
-        setArchivedStatus(res.data.archived);
-        setNumberShared(res.data.shared_users.length);
-
-        if (res.data.shared_users.length > 0) {
-          setHasGuests(true);
-        }
-
         // console.log(items);
-      })
-      .catch((error) => {
-        if (error.message === "Request failed with status code 403") {
-          navigate("/Login");
-        }
       });
-  }, [listID, token, navigate]);
+  }, [listID, token]);
 
   const handleBack = (event) => {
     event.preventDefault();
@@ -87,25 +58,36 @@ export const EditList = ({ token, username, setToken }) => {
       .then((res) => navigate("/Homepage"));
   };
 
+  //Original Shopping Handler (PRE REACT QUERY)
+  // const handleShopping = () => {
+  //   if (color === "success") {
+  //     setColor("error");
+  //     setShoppingMode("stop shopping & Archive List");
+  //   }
+  //   if (color === "error") {
+  //     setColor("success");
+  //     setShoppingMode("go shopping");
+  //     axios
+  //       .patch(
+  //         `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+  //         { archived: true },
+  //         {
+  //           headers: {
+  //             authorization: `token ${token}`,
+  //           },
+  //         }
+  //       )
+  //       .then((res) => navigate("/Homepage"));
+  //   }
+  // };
+
   const handleShopping = () => {
-    axios
-      .patch(
-        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
-        { active_shopping: true },
-        {
-          headers: {
-            authorization: `token ${token}`,
-          },
-        }
-      )
-      .then(
-        navigate(`/shopping/${listID}/`, {
-          state: {
-            title: title,
-            id: listID,
-          },
-        })
-      );
+    navigate(`/shopping/${listID}/`, {
+      state: {
+        title: title,
+        id: listID,
+      },
+    });
   };
 
   return (
@@ -128,21 +110,10 @@ export const EditList = ({ token, username, setToken }) => {
           <Typography variant="h5" width="100%" justifyContent="center">
             {title}
           </Typography>
-          <InviteButton listID={listID} authID={authID} token={token} />
-          {hasGuests ? (
-            <RemoveUser
-              listID={listID}
-              token={token}
-              setHasGuests={setHasGuests}
-              numberShared={numberShared}
-            />
-          ) : null}
-
           <DeleteList listID={listID} token={token} title={title} />
 
           {/* </div> */}
         </Stack>
-
         <SendItems
           items={items}
           setItems={setItems}
@@ -154,11 +125,10 @@ export const EditList = ({ token, username, setToken }) => {
           setItems={setItems}
           token={token}
           listID={listID}
-          flagColor={flagColor}
         />
         {archiveStatus ? (
           <Fab
-            sx={{ position: "fixed", bottom: 30, right: 30 }}
+            sx={{ position: "absolute", bottom: 30, right: 30 }}
             color="secondary"
             variant="extended"
             onClick={handleUnarchive}
@@ -168,7 +138,7 @@ export const EditList = ({ token, username, setToken }) => {
           </Fab>
         ) : (
           <Fab
-            sx={style}
+            sx={{ position: "absolute", bottom: 30, right: 30 }}
             color="success"
             variant="extended"
             onClick={handleShopping}

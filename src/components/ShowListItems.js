@@ -1,9 +1,9 @@
 // import Button from "@mui/joy/Button";
 // import FormGroup from "@mui/material/FormGroup";
 // import FormControlLabel from "@mui/material/FormControlLabel";
-// import Box from "@mui/material/Box";
 // import { roleElements } from "aria-query";
 //import { useState } from "react";
+import Box from '@mui/material/Box';
 import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
@@ -87,10 +87,20 @@ export function ShowListItems({ items, setItems, token, listID }) {
 
             <ListItemText primary={item.item} />
 
+            
             <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
-              <FlagIcon />
+            <Box component="span" 
+            sx={{ p: 1,
+              height: 20,
+              width: 20,
+            border: '2px solid black',
+            borderRadius: '8px',
+            backgroundColor: ''
+            }}>
+              <FlagIcon/>
+              </Box>
             </IconButton>
-
+            
             <DeleteItem
               token={token}
               deleteItem={deleteItem}

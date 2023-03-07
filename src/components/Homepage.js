@@ -94,10 +94,11 @@ export const Homepage = ({ setUser, username, token }) => {
         Forgot Milk?
       </Typography>
       <Divider sx={{ m: 2 }} />
+
       <div className="active-lists">
         <Typography variant="h5">Grocery Lists</Typography>
-        {active.map((list) => (
-          <ListDetails list={list} token={token} key={list.id} />
+          {active.map((list) => (
+            <ListDetails list={list} token={token} key={list.id} />
         ))}
       </div>
       <Divider />
