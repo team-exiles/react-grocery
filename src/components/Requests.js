@@ -11,21 +11,33 @@ export const requestLogin = (username, password) => {
 };
 
 export const requestMyLists = (token) => {
-    const url = 'https://safe-plains-62725.herokuapp.com/lists/me/';
+  const url = "https://safe-plains-62725.herokuapp.com/lists/me/";
 
-    const response = axios.get(url, {
-        headers: { Authorization: `token ${token}` }
-    }); 
-    return response; 
+  const response = axios.get(url, {
+    headers: { Authorization: `token ${token}` },
+  });
+  return response;
+};
+export const requestSharedLists = (token) => {
+  const url = "https://safe-plains-62725.herokuapp.com/lists/shared/";
+
+  const response = axios.get(url, {
+    headers: { Authorization: `token ${token}` },
+  });
+  return response;
 };
 
 export const requestMakeList = (token, title) => {
-    const url = 'https://safe-plains-62725.herokuapp.com/lists/me/'
+  const url = "https://safe-plains-62725.herokuapp.com/lists/me/";
 
-    const response = axios.post(url, {title}, {
-        headers: {Authorization: `token ${token}`}
-    });
-    return response;
+  const response = axios.post(
+    url,
+    { title },
+    {
+      headers: { Authorization: `token ${token}` },
+    }
+  );
+  return response;
 };
 
 export const requestRegisterUser = ({ email, password }) => {

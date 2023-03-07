@@ -33,7 +33,20 @@ export default function RemoveUser({
   const [openBar, setOpenBar] = React.useState(false);
   const [sharedUsers, setSharedUsers] = React.useState([]);
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
+  //   axios
+  //     .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
+  //       headers: {
+  //         authorization: `token ${token}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setSharedUsers(res.data.shared_users);
+  //     });
+  // }, [listID, token]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
     axios
       .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
         headers: {
@@ -43,10 +56,6 @@ export default function RemoveUser({
       .then((res) => {
         setSharedUsers(res.data.shared_users);
       });
-  }, [listID, token]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
   };
 
   const handleClose = () => {
