@@ -26,7 +26,7 @@
 }
 
 html {
-  background: #eceff1;
+  background: #d1dadb;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -377,4 +377,9 @@ html {
   to {
     visibility: hidden;
   }
+}
+
+.list-display {
+  border: 2px solid black;
+  max-height: 90%;
 }

@@ -143,8 +143,10 @@ export const EditList = ({ token }) => {
             variant="extended"
             onClick={handleShopping}
           >
+            <div>
             <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
             Go Shopping
+            </div>
           </Fab>
         )}
       </div>

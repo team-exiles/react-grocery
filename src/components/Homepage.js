@@ -111,6 +111,7 @@ export const Homepage = ({ setUser, username, token }) => {
       <Divider />
       <ExpandedArchived />
       <div>
+
         <IconButton
           sx={{ position: "absolute", top: 18, right: 18 }}
           onClick={() => setUser(null)}
