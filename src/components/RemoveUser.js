@@ -28,22 +28,12 @@ export default function RemoveUser({
   token,
   setHasGuests,
   numberShared,
+  username,
+  owner,
 }) {
   const [open, setOpen] = React.useState(false);
   const [openBar, setOpenBar] = React.useState(false);
   const [sharedUsers, setSharedUsers] = React.useState([]);
-
-  // React.useEffect(() => {
-  //   axios
-  //     .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
-  //       headers: {
-  //         authorization: `token ${token}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setSharedUsers(res.data.shared_users);
-  //     });
-  // }, [listID, token]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,7 +63,7 @@ export default function RemoveUser({
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         if (numberShared - 1 === 0) {
           setHasGuests(false);
         }
@@ -104,7 +94,7 @@ export default function RemoveUser({
 
           {sharedUsers.map((m) => (
             <Typography variant="subtitle1" key={m.id} sx={{ ml: 2, mb: 1 }}>
-              {m.username}
+              {owner === username ? m.username : username}
               <IconButton onClick={(user) => handleRemove(m.username)}>
                 <PersonRemoveIcon />
               </IconButton>

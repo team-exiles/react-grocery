@@ -83,7 +83,7 @@ export const Homepage = ({ setUser, username, token }) => {
           <div className="expandedArchivedBox">
             {archived.map((list) => (
               <div style={{ marginLeft: "30px" }} key={list.id}>
-                <ListDetails list={list} token={token} />
+                <ListDetails list={list} token={token} username={username} />
               </div>
             ))}
           </div>
@@ -114,7 +114,12 @@ export const Homepage = ({ setUser, username, token }) => {
       <div className="active-lists">
         <Typography variant="h5">My Grocery Lists</Typography>
         {active.map((list) => (
-          <ListDetails list={list} token={token} key={list.id} />
+          <ListDetails
+            list={list}
+            token={token}
+            key={list.id}
+            username={username}
+          />
         ))}
       </div>
       <Divider sx={{ m: "10px" }} />
@@ -122,7 +127,12 @@ export const Homepage = ({ setUser, username, token }) => {
         <Typography variant="h5">Shared Lists</Typography>
         {sharedLists.map((list) =>
           list.archived ? null : (
-            <ListDetails list={list} token={token} key={list.id} />
+            <ListDetails
+              list={list}
+              token={token}
+              key={list.id}
+              username={username}
+            />
           )
         )}
       </div>

@@ -48,8 +48,20 @@ export default function Shopping({ token }) {
 
   const handleBack = (event) => {
     event.preventDefault();
-    setItems([]);
-    navigate("/Homepage");
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+        { active_shopping: false },
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setItems([]);
+        navigate("/Homepage");
+      });
   };
 
   //console.log(data.data.listForItems);

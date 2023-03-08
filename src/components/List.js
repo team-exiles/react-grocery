@@ -23,7 +23,7 @@ const style = {
   position: "fixed",
 };
 
-export const EditList = ({ token, username, setToken }) => {
+export const EditList = ({ token, username, setToken, setUsername }) => {
   const scroll = useRef();
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
@@ -42,6 +42,12 @@ export const EditList = ({ token, username, setToken }) => {
   if (token === undefined) {
     setToken(location.state?.token);
   }
+  if (username === undefined) {
+    setUsername(location.state?.username);
+  }
+
+  console.log(owner);
+  console.log(username);
 
   useEffect(() => {
     axios
@@ -121,16 +127,11 @@ export const EditList = ({ token, username, setToken }) => {
             token={token}
             setHasGuests={setHasGuests}
             numberShared={numberShared}
+            username={username}
+            owner={owner}
           />
         ) : null}
-        {owner !== username ? (
-          <RemoveUser
-            listID={listID}
-            token={token}
-            setHasGuests={setHasGuests}
-            numberShared={numberShared}
-          />
-        ) : null}
+
         <DeleteList listID={listID} token={token} title={title} />
       </>
     );
@@ -157,7 +158,16 @@ export const EditList = ({ token, username, setToken }) => {
               <Typography variant="h5" width="100%" justifyContent="center">
                 {title}
               </Typography>
-              {username === owner ? titleBarButtons(hasGuests) : null}
+              {username === owner ? (
+                titleBarButtons(hasGuests)
+              ) : owner !== username ? (
+                <RemoveUser
+                  listID={listID}
+                  token={token}
+                  setHasGuests={setHasGuests}
+                  numberShared={numberShared}
+                />
+              ) : null}
             </Stack>
 
             <SendItems

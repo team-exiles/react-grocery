@@ -5,7 +5,7 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Button } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
-export const ListDetails = ({ list, token }) => {
+export const ListDetails = ({ list, token, username }) => {
   return (
     <Link
       to={`/lists/edit/${list.id}/`}
@@ -15,6 +15,7 @@ export const ListDetails = ({ list, token }) => {
         //title: list.title,
         //id: list.id,
         token: token,
+        username: username,
         //archiveStatus: list.archived,
       }}
     >

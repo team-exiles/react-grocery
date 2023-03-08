@@ -49,6 +49,7 @@ export default function InviteLogin({ token, setToken }) {
                 navigate(`/lists/edit/${listID}/`, {
                   state: {
                     token: token,
+                    userame: username,
                   },
                 });
               });
