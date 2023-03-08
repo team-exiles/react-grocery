@@ -381,7 +381,7 @@
 }
 
 .list-container {
-  overflow-x: scroll;
+  overflow-y: scroll;
   margin: 30px auto;
 
   height: 80vh;
