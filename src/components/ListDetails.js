@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 // import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { Button } from "@mui/material";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 export const ListDetails = ({ list, token, username }) => {
   return (
@@ -20,21 +19,30 @@ export const ListDetails = ({ list, token, username }) => {
       }}
     >
       <Button
-        fullWidth
         sx={{
           mb: 2,
           justifyContent: "flex-start",
           vericalAlign: "center",
-          border: "2px solid",
+          border: "none",
           display: "flex",
-          borderRadius: 28,
+          //borderRadius: 28,
+          color: "black",
         }}
-        color="primary"
         variant="outlined"
-        startIcon={<FormatListBulletedIcon />}
+        // startIcon={<FormatListBulletedIcon />}
         key={list.id}
+        endIcon={<DoubleArrowIcon />}
       >
-        <Typography sx={{ mt: 0.56, fontWeight: "bolder" }}>
+        <Typography
+          sx={{
+            justifyText: "left",
+            mt: 0.56,
+            // fontWeight: "bolder",
+            fontSize: "18px",
+            fontWeight: "700",
+            fontFamily: "Sans Serif",
+          }}
+        >
           {list.title}
         </Typography>
         <div className="dot-width" />
@@ -45,7 +53,7 @@ export const ListDetails = ({ list, token, username }) => {
           //   fontSize="small"
           // />
           <Button color="success" size="small" className="blink">
-            Live
+            <strong style={{ fontSize: "15px" }}>Live</strong>
           </Button>
         ) : null}
       </Button>

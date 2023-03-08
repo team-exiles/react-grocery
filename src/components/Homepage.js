@@ -16,7 +16,8 @@ import MuiAlert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import Card from "@mui/material/Card";
-
+import Box from "@mui/material/Box";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -81,6 +82,11 @@ export const Homepage = ({ setUser, username, token }) => {
           // size="large"
           variant="contained"
           sx={{ mb: "10px" }}
+          endIcon={
+            <ExpandCircleDownIcon
+              sx={{ fontSize: "larger", rotate: "90deg" }}
+            />
+          }
         >
           <strong>
             Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
@@ -103,7 +109,7 @@ export const Homepage = ({ setUser, username, token }) => {
   filterList();
 
   return (
-    <section className="homepage">
+    <section className="homepage" style={{ margin: "20px" }}>
       <Snackbar
         open={snackBar}
         onClose={() => setSnackBar(false)}
@@ -114,39 +120,72 @@ export const Homepage = ({ setUser, username, token }) => {
           List Deleted
         </Alert>
       </Snackbar>
-      <Typography variant="h4" align="center">
-        <strong>Forgot Milk?</strong>
-      </Typography>
-      <Divider sx={{ m: 2 }} />
-      <div className="active-lists">
-        <Typography variant="h5" sx={{ mb: "5px" }}>
-          My Grocery Lists
+      <Box sx={{ border: "7px black solid", padding: "15px" }}>
+        <Typography
+          align="left"
+          sx={{ fontWeight: "700", fontFamily: "Sans Serif", fontSize: "40px" }}
+        >
+          <strong>Forgot Milk?</strong>
         </Typography>
-        {active.map((list) => (
-          <ListDetails
-            list={list}
-            token={token}
-            key={list.id}
-            username={username}
-          />
-        ))}
-      </div>
-      <Divider sx={{ m: "10px" }} />
-      <div className="shared-lists">
-        <Typography variant="h5" sx={{ mb: "5px" }}>
-          Shared Lists
-        </Typography>
-        {sharedLists.map((list) =>
-          list.archived ? null : (
+      </Box>
+      {/* <Divider sx={{ m: 2 }} /> */}
+      <Box
+        sx={{
+          border: "7px black solid",
+          borderBottom: "none",
+          padding: "15px",
+        }}
+      >
+        <div className="active-lists">
+          <Typography
+            sx={{
+              mb: "5px",
+              fontSize: "30px",
+              fontWeight: "600",
+              fontFamily: "Sans Serif",
+              borderBottom: "5px black solid",
+            }}
+          >
+            My Grocery Lists
+          </Typography>
+          {active.map((list) => (
             <ListDetails
               list={list}
               token={token}
               key={list.id}
               username={username}
             />
-          )
-        )}
-      </div>
+          ))}
+        </div>
+      </Box>
+      {/* <Divider sx={{ m: "10px" }} /> */}
+      <Box
+        sx={{ border: "7px black solid", borderTop: "none", padding: "15px" }}
+      >
+        <div className="shared-lists">
+          <Typography
+            sx={{
+              mb: "5px",
+              fontSize: "30px",
+              fontWeight: "600",
+              fontFamily: "Sans Serif",
+              borderBottom: "5px black solid",
+            }}
+          >
+            Shared Lists
+          </Typography>
+          {sharedLists.map((list) =>
+            list.archived ? null : (
+              <ListDetails
+                list={list}
+                token={token}
+                key={list.id}
+                username={username}
+              />
+            )
+          )}
+        </div>
+      </Box>
       <Divider sx={{ m: "10px" }} />
       <ExpandedArchived />
       <div>
