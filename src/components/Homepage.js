@@ -81,8 +81,8 @@ export const Homepage = ({ setUser, username, token }) => {
         {isExpanded && (
           <div className="expandedArchivedBox">
             {archived.map((list) => (
-              <div style={{ marginLeft: "30px" }}>
-                <ListDetails list={list} token={token} key={list.id} />
+              <div style={{ marginLeft: "30px" }} key={list.id}>
+                <ListDetails list={list} token={token} />
               </div>
             ))}
           </div>

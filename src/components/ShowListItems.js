@@ -103,6 +103,7 @@ export function ShowListItems({ items, setItems, token, listID }) {
           <Divider />
         </div>
       ))}
+      <ListItem sx={{ height: "90px" }}></ListItem>
     </List>
   );
 }
