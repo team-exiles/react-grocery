@@ -1,3 +1,25 @@
+# React Single-Page Mobile Application: Forgot Milk? 
+Forgot Milk? -- a live-updating, shareable shopping list. 
+
+## Netlify Link: https://dancing-meerkat-788dd9.netlify.app/
+
+## Github Project Link: https://github.com/team-exiles/react-grocery
+
+
+## Installation Instructions --> Local Repositories 
+* Create a local repository
+* Clone project from GitHub within your terminal, using the command: [`git clone <remoteRepo>`]
+* Run the following commands: 
+
+[`npm install`] (to download all the required dependencies/node modules)
+
+[`npm start`] (to run the app on a local server)
+
+Congratulations. You can now shop locally. 
+May you never starve due to the lack of a useful grocery app ever again. 
+Hip hip hooray. Hip hip hooray. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
