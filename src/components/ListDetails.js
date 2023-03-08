@@ -39,11 +39,14 @@ export const ListDetails = ({ list, token, username }) => {
         </Typography>
         <div className="dot-width" />
         {list.active_shopping ? (
-          <FiberManualRecordIcon
-            color="success"
-            className="blink"
-            fontSize="small"
-          />
+          // <FiberManualRecordIcon
+          //   color="success"
+          //   className="blink"
+          //   fontSize="small"
+          // />
+          <Button color="success" size="small" className="blink">
+            Live
+          </Button>
         ) : null}
       </Button>
     </Link>

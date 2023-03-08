@@ -74,7 +74,12 @@ export const Homepage = ({ setUser, username, token }) => {
 
     return (
       <div>
-        <Button onClick={() => setExpansion(!isExpanded)} size="large">
+        <Button
+          onClick={() => setExpansion(!isExpanded)}
+          size="large"
+          variant="contained"
+          sx={{ mb: "10px" }}
+        >
           <strong>
             Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
           </strong>
@@ -136,7 +141,7 @@ export const Homepage = ({ setUser, username, token }) => {
           )
         )}
       </div>
-      <Divider />
+      <Divider sx={{ m: "10px" }} />
       <ExpandedArchived />
       <div>
         <Tooltip title="Logout" arrow>

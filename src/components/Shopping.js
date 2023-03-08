@@ -60,7 +60,7 @@ export default function Shopping({ token }) {
       )
       .then((res) => {
         setItems([]);
-        navigate("/Homepage");
+        navigate(-1);
       });
   };
 
