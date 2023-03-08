@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import { Box } from '@mui/system';
 
 export const EditList = ({ token }) => {
   const [items, setItems] = useState(null);
@@ -98,7 +99,7 @@ export const EditList = ({ token }) => {
           direction="row"
           justifyContent="space-evenly"
           alignItems="center"
-          sx={{ mt: 4 }}
+          sx={{ mt: 4}}
         >
           <IconButton
             aria-label="back to homepage"
@@ -120,12 +121,18 @@ export const EditList = ({ token }) => {
           token={token}
           listID={listID}
         />
+        <Box
+        sx={{
+          border:1,
+          b:14,
+        }}>
         <ShowListItems
           items={items}
           setItems={setItems}
           token={token}
-          listID={listID}
-        />
+          listID={listID}/>
+        </Box>
+
         {archiveStatus ? (
           <Fab
             sx={{ position: "absolute", bottom: 30, right: 30 }}
