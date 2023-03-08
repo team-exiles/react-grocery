@@ -8,7 +8,7 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const Register = ({ setUser }) => {
   const [username, setUsername] = useState("");
@@ -24,7 +24,11 @@ export const Register = ({ setUser }) => {
       })
       .then((res) => {
         setUser(username, res.data.auth_token);
-        navigate(-1);
+        navigate("/Login", {
+          state: {
+            openSnackBar: true,
+          },
+        });
       });
   };
 

@@ -73,7 +73,14 @@ export function ShowListItems({ items, setItems, token, listID }) {
   };
 
   return (
-    <List>
+    <List
+    sx={{
+      width: '100%',
+      maxWidth: 360,
+      position: 'relative',
+      overflow: 'auto',
+      maxHeight: 560,
+    }}>
       {items.map((item) => (
         <div key={item.id}>
           <Divider />

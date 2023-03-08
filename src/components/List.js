@@ -155,6 +155,7 @@ export const EditList = ({ token, username, setToken }) => {
           listID={listID}
           flagColor={flagColor}
         />
+
         {archiveStatus ? (
           <Fab
             sx={{ position: "fixed", bottom: 30, right: 30 }}

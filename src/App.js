@@ -8,7 +8,6 @@ import { Register } from "./components/Register";
 import Shopping from "./components/Shopping";
 import InviteLogin from "./components/Invitation";
 import { QueryClientProvider, QueryClient } from "react-query";
-//import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -88,7 +87,6 @@ function App() {
           </>
         )}
       </div>
-      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
     </QueryClientProvider>
   );
 }
