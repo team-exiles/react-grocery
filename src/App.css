@@ -10,10 +10,8 @@ html {
   background-size: cover;
 }
 
-/* Material UI symbols from the index.html  */
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 48;
-  /* margin-right:5px; */
 }
 
 .password {
@@ -25,7 +23,6 @@ html {
 }
 
 .send-item-input {
-  /* border: 5px solid red; */
   padding: 20px;
 }
 

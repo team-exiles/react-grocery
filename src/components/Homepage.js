@@ -1,4 +1,3 @@
-//import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
@@ -23,7 +22,6 @@ export const Homepage = ({ setUser, username, token }) => {
   const [sharedLists, setSharedLists] = useState([]);
   const location = useLocation();
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
-  //  const navigate = useNavigate();
   let active = [];
   let archived = [];
 
@@ -72,7 +70,6 @@ export const Homepage = ({ setUser, username, token }) => {
     );
   }
 
-  //Calls Filtering function to separate the lists from archived and unarchived.
   filterList();
 
   return (

@@ -64,7 +64,6 @@ export default function CreateList({ token }) {
     <div>
       <Fab
         sx={style}
-        // sx={{ position: "absolute", bottom: 40, right: 40 }}
         variant="extended"
         color="primary"
         onClick={handleClickOpen}

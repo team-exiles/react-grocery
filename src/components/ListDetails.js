@@ -10,10 +10,7 @@ export const ListDetails = ({ list, token }) => {
       to={`/lists/edit/${list.id}/`}
       path="relative"
       state={{
-        //title: list.title,
-        //id: list.id,
         token: token,
-        //archiveStatus: list.archived,
       }}
     >
       <Button

@@ -110,7 +110,6 @@ export const EditList = ({ token, username, setToken }) => {
   return (
     items && (
       <div className="list-display">
-        {/* <div className="title-bar"> */}
         <Stack
           direction="row"
           justifyContent="space-evenly"
