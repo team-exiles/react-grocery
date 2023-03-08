@@ -1,6 +1,5 @@
-//import { useNavigate } from "react-router-dom";
-// import Card from "@mui/material/Card";
-// import Fab from "@mui/material/Fab";
+import axios from "axios";
+import { useQuery } from "react-query";
 import * as React from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
@@ -25,12 +24,29 @@ export const Homepage = ({ setUser, username, token }) => {
   const [sharedLists, setSharedLists] = useState([]);
   const location = useLocation();
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
-  //  const navigate = useNavigate();
+
   let active = [];
   let archived = [];
 
   //console.log(username);
 
+  // const fetchList = () => {
+  //   return axios.get(`https://safe-plains-62725.herokuapp.com/lists/me/`, {
+  //     headers: {
+  //       authorization: `token ${token}`,
+  //     },
+  //   });
+  // };
+
+  // const { isLoading, data } = useQuery("listInfo", fetchList, {
+  //   refetchInterval: 2000,
+  // });
+
+  // if (isLoading) {
+  //   return <h2>Loading...</h2>;
+  // }
+
+  //Loods data into useState to prop drill
   useEffect(() => {
     requestMyLists(token).then((res) => {
       setLists(res.data);

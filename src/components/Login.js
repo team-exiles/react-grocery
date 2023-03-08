@@ -57,7 +57,7 @@ export const Login = ({ setUser }) => {
               // html input attribute
               name="username"
               type="text"
-              placeholder="Username:"
+              placeholder="username"
               onChange={(e) => setUsername(e.target.value)}
             />
           </FormControl>
