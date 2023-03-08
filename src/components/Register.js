@@ -23,7 +23,7 @@ export const Register = ({ setUser }) => {
       })
       .then((res) => {
         setUser(username, res.data.auth_token);
-        navigate("/Login", {
+        navigate(-1, {
           state: {
             openSnackBar: true,
           },
