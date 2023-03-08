@@ -16,7 +16,7 @@ import DeleteItem from "./DeleteItem";
 import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton } from "@mui/material";
 
-export function ShowListItems({ items, setItems, token, listID }) {
+export function ShowListItems({ items, setItems, token, listID, scroll }) {
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
     axios
@@ -75,35 +75,39 @@ export function ShowListItems({ items, setItems, token, listID }) {
   };
 
   return (
-    <List>
-      {items.map((item) => (
-        <div key={item.id}>
-          <Divider />
-          <ListItem
-            sx={{ backgroundColor: item.missing ? "rgb(214, 155, 149)" : null }}
-          >
-            <Checkbox
-              checked={item.check_box}
-              onChange={() => handleClick(item)}
-            />
+    <div className="list-container">
+      <List>
+        {items.map((item) => (
+          <div key={item.id}>
+            <Divider />
+            <ListItem
+              sx={{
+                backgroundColor: item.missing ? "rgb(214, 155, 149)" : null,
+              }}
+            >
+              <Checkbox
+                checked={item.check_box}
+                onChange={() => handleClick(item)}
+              />
 
-            <ListItemText primary={item.item} />
+              <ListItemText primary={item.item} />
 
-            <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
-              <FlagIcon />
-            </IconButton>
+              <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
+                <FlagIcon />
+              </IconButton>
 
-            <DeleteItem
-              token={token}
-              deleteItem={deleteItem}
-              itemID={item.id}
-            />
-          </ListItem>
+              <DeleteItem
+                token={token}
+                deleteItem={deleteItem}
+                itemID={item.id}
+              />
+            </ListItem>
 
-          <Divider />
-        </div>
-      ))}
-      <ListItem sx={{ height: "90px" }}></ListItem>
-    </List>
+            <Divider />
+          </div>
+        ))}
+        <ListItem sx={{ height: "90px" }} ref={scroll}></ListItem>
+      </List>
+    </div>
   );
 }

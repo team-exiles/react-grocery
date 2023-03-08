@@ -26,11 +26,7 @@
 }
 
 html {
-  background: url(img/kawaii-veggies-7pct.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #e3ede8;
 }
 
 /* Material UI symbols from the index.html  */
@@ -377,4 +373,17 @@ html {
   to {
     visibility: hidden;
   }
+}
+
+.topbar {
+  border-radius: 25px;
+  padding-top: 15px;
+}
+
+.list-container {
+  overflow-x: scroll;
+  margin: 30px auto;
+  background-color: #fff;
+  height: 80vh;
+  overflow-x: scroll;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -23,6 +23,7 @@ const style = {
 };
 
 export const EditList = ({ token, username, setToken }) => {
+  const scroll = useRef();
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
   const [title, setTitle] = useState("");
@@ -110,73 +111,79 @@ export const EditList = ({ token, username, setToken }) => {
 
   return (
     items && (
-      <div className="list-display">
-        {/* <div className="title-bar"> */}
-        <Stack
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="center"
-          sx={{ mt: 4 }}
-        >
-          <IconButton
-            aria-label="back to homepage"
-            variant="filled"
-            onClick={handleBack}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant="h5" width="100%" justifyContent="center">
-            {title}
-          </Typography>
-          <InviteButton listID={listID} authID={authID} token={token} />
-          {hasGuests ? (
-            <RemoveUser
-              listID={listID}
+      <div className="wrap">
+        <div className="list">
+          <div className="list-display topbar">
+            {/* <div className="title-bar"> */}
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              alignItems="center"
+              sx={{ mt: 0 }}
+            >
+              <IconButton
+                aria-label="back to homepage"
+                variant="filled"
+                onClick={handleBack}
+              >
+                <ArrowBackIcon sx={{ ml: "10px" }} />
+              </IconButton>
+              <Typography variant="h5" width="100%" justifyContent="center">
+                {title}
+              </Typography>
+              <InviteButton listID={listID} authID={authID} token={token} />
+              {hasGuests ? (
+                <RemoveUser
+                  listID={listID}
+                  token={token}
+                  setHasGuests={setHasGuests}
+                  numberShared={numberShared}
+                />
+              ) : null}
+
+              <DeleteList listID={listID} token={token} title={title} />
+
+              {/* </div> */}
+            </Stack>
+
+            <SendItems
+              items={items}
+              setItems={setItems}
               token={token}
-              setHasGuests={setHasGuests}
-              numberShared={numberShared}
+              listID={listID}
+              scroll={scroll}
             />
-          ) : null}
-
-          <DeleteList listID={listID} token={token} title={title} />
-
-          {/* </div> */}
-        </Stack>
-
-        <SendItems
-          items={items}
-          setItems={setItems}
-          token={token}
-          listID={listID}
-        />
-        <ShowListItems
-          items={items}
-          setItems={setItems}
-          token={token}
-          listID={listID}
-          flagColor={flagColor}
-        />
-        {archiveStatus ? (
-          <Fab
-            sx={{ position: "fixed", bottom: 30, right: 30 }}
-            color="secondary"
-            variant="extended"
-            onClick={handleUnarchive}
-          >
-            <UnarchiveIcon sx={{ mr: 1 }} />
-            Unarchive List
-          </Fab>
-        ) : (
-          <Fab
-            sx={style}
-            color="success"
-            variant="extended"
-            onClick={handleShopping}
-          >
-            <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-            Go Shopping
-          </Fab>
-        )}
+          </div>
+          <ShowListItems
+            items={items}
+            setItems={setItems}
+            token={token}
+            listID={listID}
+            flagColor={flagColor}
+            scroll={scroll}
+          />
+          {archiveStatus ? (
+            <Fab
+              sx={{ position: "fixed", bottom: 30, right: 30 }}
+              color="secondary"
+              variant="extended"
+              onClick={handleUnarchive}
+            >
+              <UnarchiveIcon sx={{ mr: 1 }} />
+              Unarchive List
+            </Fab>
+          ) : (
+            <Fab
+              sx={style}
+              color="success"
+              variant="extended"
+              onClick={handleShopping}
+            >
+              <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+              Go Shopping
+            </Fab>
+          )}
+        </div>
       </div>
     )
   );

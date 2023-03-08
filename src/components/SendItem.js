@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { Stack } from "@mui/material";
 
-export function SendItems({ items, setItems, token, listID }) {
+export function SendItems({ items, setItems, token, listID, scroll }) {
   const [textInput, setTextInput] = useState("");
   const [addedItem, setAddedItem] = useState("");
 
@@ -31,6 +31,7 @@ export function SendItems({ items, setItems, token, listID }) {
         setItems([...items, res.data]);
         setTextInput("");
         setAddedItem("");
+        scroll.current.scrollIntoView({ behavior: "smooth" });
       });
   };
 
