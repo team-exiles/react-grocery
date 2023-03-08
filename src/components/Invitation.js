@@ -22,40 +22,39 @@ export default function InviteLogin({ token, setToken }) {
   const handleSubmit = (event) => {
     requestLogin(username, password).then((res) => {
       setToken(res.data.auth_token);
-      console.log(token);
-    });
+      axios
+        .get(`https://safe-plains-62725.herokuapp.com/lists/`, {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        })
+        .then((res) => {
+          const listCheck = res.data.filter(
+            (list) => list.auth_id === inviteID
+          );
 
-    axios
-      .get(`https://safe-plains-62725.herokuapp.com/lists/`, {
-        headers: {
-          authorization: `token ${token}`,
-        },
-      })
-      .then((res) => {
-        const listCheck = res.data.filter((list) => list.auth_id === inviteID);
-        console.log(listCheck);
-
-        if (listID === listCheck[0].id.toString()) {
-          // console.log(`User: ${username}`);
-          axios
-            .put(
-              `https://safe-plains-62725.herokuapp.com/lists/${listID}/invite/`,
-              { username: `${username}` },
-              {
-                headers: {
-                  authorization: `token ${token}`,
-                },
-              }
-            )
-            .then((res) => {
-              navigate(`/lists/edit/${listID}/`, {
-                state: {
-                  token: token,
-                },
+          if (listID === listCheck[0].id.toString()) {
+            axios
+              .put(
+                `https://safe-plains-62725.herokuapp.com/lists/${listID}/invite/`,
+                { username: `${username}` },
+                {
+                  headers: {
+                    authorization: `token ${token}`,
+                  },
+                }
+              )
+              .then((res) => {
+                navigate(`/lists/edit/${listID}/`, {
+                  state: {
+                    token: token,
+                    userame: username,
+                  },
+                });
               });
-            });
-        }
-      });
+          }
+        });
+    });
   };
 
   return (
@@ -87,7 +86,7 @@ export default function InviteLogin({ token, setToken }) {
             // html input attribute
             name="username"
             type="text"
-            placeholder="Username:"
+            placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
           />
         </FormControl>

@@ -25,13 +25,9 @@
   font-family: "Inter", sans-serif;
 }
 
-html {
-  background: url(img/kawaii-veggies-7pct.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+/* html {
+  background-color: #E2EBE6;
+} */
 
 /* Material UI symbols from the index.html  */
 .material-symbols-outlined {
@@ -311,7 +307,7 @@ html {
 
 .send-item-input {
   /* border: 5px solid red; */
-  padding: 20px;
+  padding: 20px 20px 0 20px;
 }
 
 .expandedBox {
@@ -377,4 +373,43 @@ html {
   to {
     visibility: hidden;
   }
+}
+
+.topbar {
+  border-radius: 25px;
+  padding-top: 15px;
+}
+
+.list-container {
+  overflow-y: scroll;
+  margin: 30px auto;
+
+  height: 80vh;
+  overflow-x: scroll;
+}
+@keyframes jump-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateY(-9px);
+  }
+  35% {
+    transform: translateY(-9px) rotate(7deg);
+  }
+  55% {
+    transform: translateY(-9px) rotate(-7deg);
+  }
+  65% {
+    transform: translateY(-9px) rotate(7deg);
+  }
+  75% {
+    transform: translateY(-9px) rotate(-7deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+.rise-shake {
+  animation: jump-shaking 0.83s infinite;
 }
