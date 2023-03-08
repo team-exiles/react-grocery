@@ -35,6 +35,7 @@ export const EditList = ({ token, username, setToken }) => {
   const location = useLocation();
   const navigate = useNavigate("");
   const [owner, setOwner] = useState("");
+  const [shoppingStatus, setShoppingStatus] = useState("");
 
   const { listID } = useParams();
   //const archiveStatus = location.state?.archiveStatus;
@@ -56,6 +57,7 @@ export const EditList = ({ token, username, setToken }) => {
         setTitle(data.data.title);
         setArchivedStatus(data.data.archived);
         setNumberShared(data.data.shared_users.length);
+        setShoppingStatus(data.data.active_shopping);
 
         if (data.data.shared_users.length > 0) {
           setHasGuests(true);
@@ -191,19 +193,46 @@ export const EditList = ({ token, username, setToken }) => {
               <UnarchiveIcon sx={{ mr: 1 }} />
               Unarchive List
             </Fab>
+          ) : owner === username ? (
+            fabForUser(handleShopping, owner, username)
           ) : (
-            <Fab
-              sx={style}
-              color="success"
-              variant="extended"
-              onClick={handleShopping}
-            >
-              <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-              {owner === username ? "Go Shopping" : "Join Shopping!"}
-            </Fab>
+            fabForGuest(handleShopping, owner, username)
           )}
         </div>
       </div>
     )
   );
 };
+
+function fabForUser(handleShopping, owner, username) {
+  return (
+    <>
+      <Fab
+        sx={style}
+        color="success"
+        variant="extended"
+        onClick={handleShopping}
+      >
+        <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+        GO SHOPPING
+      </Fab>
+    </>
+  );
+}
+
+function fabForGuest(handleShopping, owner, username) {
+  return (
+    <>
+      <Fab
+        className="rise-shake"
+        sx={style}
+        color="success"
+        variant="extended"
+        onClick={handleShopping}
+      >
+        <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+        JOIN SHOPPER
+      </Fab>
+    </>
+  );
+}
