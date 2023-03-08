@@ -108,21 +108,23 @@ export const Homepage = ({ setUser, username, token }) => {
         </Alert>
       </Snackbar>
       <Typography variant="h4" align="center">
-        Forgot Milk?
+        <strong>Forgot Milk?</strong>
       </Typography>
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
-        <Typography variant="h5">Grocery Lists</Typography>
+        <Typography variant="h5">My Grocery Lists</Typography>
         {active.map((list) => (
           <ListDetails list={list} token={token} key={list.id} />
         ))}
       </div>
-      <Divider />
+      <Divider sx={{ m: "10px" }} />
       <div className="shared-lists">
         <Typography variant="h5">Shared Lists</Typography>
-        {sharedLists.map((list) => (
-          <ListDetails list={list} token={token} key={list.id} />
-        ))}
+        {sharedLists.map((list) =>
+          list.archived ? null : (
+            <ListDetails list={list} token={token} key={list.id} />
+          )
+        )}
       </div>
       <Divider />
       <ExpandedArchived />

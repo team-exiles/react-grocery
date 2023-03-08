@@ -123,6 +123,14 @@ export const EditList = ({ token, username, setToken }) => {
             numberShared={numberShared}
           />
         ) : null}
+        {owner !== username ? (
+          <RemoveUser
+            listID={listID}
+            token={token}
+            setHasGuests={setHasGuests}
+            numberShared={numberShared}
+          />
+        ) : null}
         <DeleteList listID={listID} token={token} title={title} />
       </>
     );
@@ -133,7 +141,6 @@ export const EditList = ({ token, username, setToken }) => {
       <div className="wrap">
         <div className="list">
           <div className="list-display topbar">
-            {/* <div className="title-bar"> */}
             <Stack
               direction="row"
               justifyContent="space-evenly"
@@ -151,20 +158,6 @@ export const EditList = ({ token, username, setToken }) => {
                 {title}
               </Typography>
               {username === owner ? titleBarButtons(hasGuests) : null}
-
-              {/* <InviteButton listID={listID} authID={authID} token={token} /> 
-              {hasGuests ? (
-                <RemoveUser
-                  listID={listID}
-                  token={token}
-                  setHasGuests={setHasGuests}
-                  numberShared={numberShared}
-                />
-              ) : null}
-
-               */}
-
-              {/* </div> */}
             </Stack>
 
             <SendItems
@@ -194,9 +187,9 @@ export const EditList = ({ token, username, setToken }) => {
               Unarchive List
             </Fab>
           ) : owner === username ? (
-            fabForUser(handleShopping, owner, username)
+            fabForUser(handleShopping)
           ) : (
-            fabForGuest(handleShopping, owner, username)
+            fabForGuest(handleShopping, shoppingStatus)
           )}
         </div>
       </div>
@@ -204,7 +197,7 @@ export const EditList = ({ token, username, setToken }) => {
   );
 };
 
-function fabForUser(handleShopping, owner, username) {
+function fabForUser(handleShopping) {
   return (
     <>
       <Fab
@@ -220,19 +213,21 @@ function fabForUser(handleShopping, owner, username) {
   );
 }
 
-function fabForGuest(handleShopping, owner, username) {
+function fabForGuest(handleShopping, shoppingStatus) {
   return (
     <>
-      <Fab
-        className="rise-shake"
-        sx={style}
-        color="success"
-        variant="extended"
-        onClick={handleShopping}
-      >
-        <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-        JOIN SHOPPER
-      </Fab>
+      {shoppingStatus ? (
+        <Fab
+          className="rise-shake"
+          sx={style}
+          color="success"
+          variant="extended"
+          onClick={handleShopping}
+        >
+          <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+          JOIN SHOPPER
+        </Fab>
+      ) : null}
     </>
   );
 }
