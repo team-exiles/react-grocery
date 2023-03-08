@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -12,6 +12,7 @@ import DeleteList from "./DeleteList";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import RemoveUser from "./RemoveUser";
+import { useQuery } from "react-query";
 
 const style = {
   margin: 0,
@@ -22,7 +23,8 @@ const style = {
   position: "fixed",
 };
 
-export const EditList = ({ token, username, setToken }) => {
+export const EditList = ({ token, username, setToken, setUsername }) => {
+  const scroll = useRef();
   const [items, setItems] = useState(null);
   const [authID, setAuthID] = useState("");
   const [title, setTitle] = useState("");
@@ -32,13 +34,17 @@ export const EditList = ({ token, username, setToken }) => {
   const [flagColor, setFlagColor] = useState("");
   const location = useLocation();
   const navigate = useNavigate("");
+  const [owner, setOwner] = useState("");
+  const [shoppingStatus, setShoppingStatus] = useState("");
 
   const { listID } = useParams();
   //const archiveStatus = location.state?.archiveStatus;
   if (token === undefined) {
     setToken(location.state?.token);
   }
-  //console.log(token);
+  if (username === undefined) {
+    setUsername(location.state?.username);
+  }
 
   useEffect(() => {
     axios
@@ -47,25 +53,25 @@ export const EditList = ({ token, username, setToken }) => {
           authorization: `token ${token}`,
         },
       })
-      .then((res) => {
-        setItems(res.data.listForItems);
-        setAuthID(res.data.auth_id);
-        setTitle(res.data.title);
-        setArchivedStatus(res.data.archived);
-        setNumberShared(res.data.shared_users.length);
+      .then((data) => {
+        setOwner(data.data.owner);
+        setItems(data.data.listForItems);
+        setAuthID(data.data.auth_id);
+        setTitle(data.data.title);
+        setArchivedStatus(data.data.archived);
+        setNumberShared(data.data.shared_users.length);
+        setShoppingStatus(data.data.active_shopping);
 
-        if (res.data.shared_users.length > 0) {
+        if (data.data.shared_users.length > 0) {
           setHasGuests(true);
         }
-
-        // console.log(items);
       })
       .catch((error) => {
         if (error.message === "Request failed with status code 403") {
           navigate("/Login");
         }
       });
-  }, [listID, token, navigate]);
+  }, [listID, token, navigate, owner]);
 
   const handleBack = (event) => {
     event.preventDefault();
@@ -108,77 +114,132 @@ export const EditList = ({ token, username, setToken }) => {
       );
   };
 
+<<<<<<< HEAD
+=======
+  const titleBarButtons = (guests) => {
+    return (
+      <>
+        <InviteButton listID={listID} authID={authID} token={token} />
+        {guests ? (
+          <RemoveUser
+            listID={listID}
+            token={token}
+            setHasGuests={setHasGuests}
+            numberShared={numberShared}
+            username={username}
+            owner={owner}
+          />
+        ) : null}
+
+        <DeleteList listID={listID} token={token} title={title} />
+      </>
+    );
+  };
+>>>>>>> b14d54b74d7a0a593029675771519b2184a924bd
 
   return (
     items && (
-      <div className="list-display">
-        {/* <div className="title-bar"> */}
-        <Stack
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="center"
-          sx={{ mt: 4 }}
-        >
-          <IconButton
-            aria-label="back to homepage"
-            variant="filled"
-            onClick={handleBack}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant="h5" width="100%" justifyContent="center">
-            {title}
-          </Typography>
-          <InviteButton listID={listID} authID={authID} token={token} />
-          {hasGuests ? (
-            <RemoveUser
-              listID={listID}
+      <div className="wrap">
+        <div className="list">
+          <div className="list-display topbar">
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              alignItems="center"
+              sx={{ mt: 0 }}
+            >
+              <IconButton
+                aria-label="back to homepage"
+                variant="filled"
+                onClick={handleBack}
+              >
+                <ArrowBackIcon sx={{ ml: "10px" }} />
+              </IconButton>
+              <Typography variant="h5" width="100%" justifyContent="center">
+                {title}
+              </Typography>
+              {username === owner ? (
+                titleBarButtons(hasGuests)
+              ) : owner !== username ? (
+                <RemoveUser
+                  listID={listID}
+                  token={token}
+                  setHasGuests={setHasGuests}
+                  numberShared={numberShared}
+                  owner={owner}
+                  username={username}
+                />
+              ) : null}
+            </Stack>
+
+            <SendItems
+              items={items}
+              setItems={setItems}
               token={token}
-              setHasGuests={setHasGuests}
-              numberShared={numberShared}
+              listID={listID}
+              scroll={scroll}
             />
-          ) : null}
-
-          <DeleteList listID={listID} token={token} title={title} />
-
-          {/* </div> */}
-        </Stack>
-
-        <SendItems
-          items={items}
-          setItems={setItems}
-          token={token}
-          listID={listID}
-        />
-        <ShowListItems
-          items={items}
-          setItems={setItems}
-          token={token}
-          listID={listID}
-          flagColor={flagColor}
-        />
-        {archiveStatus ? (
-          <Fab
-            sx={{ position: "fixed", bottom: 30, right: 30 }}
-            color="secondary"
-            variant="extended"
-            onClick={handleUnarchive}
-          >
-            <UnarchiveIcon sx={{ mr: 1 }} />
-            Unarchive List
-          </Fab>
-        ) : (
-          <Fab
-            sx={style}
-            color="success"
-            variant="extended"
-            onClick={handleShopping}
-          >
-            <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-            Go Shopping
-          </Fab>
-        )}
+          </div>
+          <ShowListItems
+            items={items}
+            setItems={setItems}
+            token={token}
+            listID={listID}
+            flagColor={flagColor}
+            scroll={scroll}
+          />
+          {archiveStatus ? (
+            <Fab
+              sx={{ position: "fixed", bottom: 30, right: 30 }}
+              color="secondary"
+              variant="extended"
+              onClick={handleUnarchive}
+            >
+              <UnarchiveIcon sx={{ mr: 1 }} />
+              Unarchive List
+            </Fab>
+          ) : owner === username ? (
+            fabForUser(handleShopping)
+          ) : (
+            fabForGuest(handleShopping, shoppingStatus)
+          )}
+        </div>
       </div>
     )
   );
 };
+
+function fabForUser(handleShopping) {
+  return (
+    <>
+      <Fab
+        sx={style}
+        color="success"
+        variant="extended"
+        onClick={handleShopping}
+      >
+        <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+        GO SHOPPING
+      </Fab>
+    </>
+  );
+}
+
+function fabForGuest(handleShopping, shoppingStatus) {
+  return (
+    <>
+      {shoppingStatus ? (
+        <Fab
+          className="rise-shake"
+          sx={style}
+          color="success"
+          variant="extended"
+          onClick={handleShopping}
+        >
+          <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+          JOIN SHOPPER
+        </Fab>
+      ) : null}
+    </>
+  );
+}

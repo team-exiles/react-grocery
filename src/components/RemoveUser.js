@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as React from "react";
+import { useNavigate } from "react-router";
 import {
   Button,
   Dialog,
@@ -28,23 +29,13 @@ export default function RemoveUser({
   token,
   setHasGuests,
   numberShared,
+  username,
+  owner,
 }) {
   const [open, setOpen] = React.useState(false);
   const [openBar, setOpenBar] = React.useState(false);
   const [sharedUsers, setSharedUsers] = React.useState([]);
-
-  // React.useEffect(() => {
-  //   axios
-  //     .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
-  //       headers: {
-  //         authorization: `token ${token}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setSharedUsers(res.data.shared_users);
-  //     });
-  // }, [listID, token]);
-
+  const navigate = useNavigate();
   const handleClickOpen = () => {
     setOpen(true);
     axios
@@ -73,10 +64,28 @@ export default function RemoveUser({
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         if (numberShared - 1 === 0) {
           setHasGuests(false);
         }
+      });
+
+    setOpenBar(true);
+  };
+
+  const handleRemoveSelf = (user) => {
+    setOpen(false);
+    axios
+      .delete(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/remove/${user}/`,
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        navigate("/Homepage");
       });
 
     setOpenBar(true);
@@ -102,14 +111,23 @@ export default function RemoveUser({
           </DialogContentText>
           <br />
 
-          {sharedUsers.map((m) => (
-            <Typography variant="subtitle1" key={m.id} sx={{ ml: 2, mb: 1 }}>
-              {m.username}
-              <IconButton onClick={(user) => handleRemove(m.username)}>
+          {owner === username ? (
+            sharedUsers.map((m) => (
+              <Typography variant="subtitle1" key={m.id} sx={{ ml: 2, mb: 1 }}>
+                {m.username}
+                <IconButton onClick={() => handleRemove(m.username)}>
+                  <PersonRemoveIcon />
+                </IconButton>
+              </Typography>
+            ))
+          ) : (
+            <Typography variant="subtitle1" sx={{ ml: 2, mb: 1 }}>
+              {username}
+              <IconButton onClick={() => handleRemoveSelf(username)}>
                 <PersonRemoveIcon />
               </IconButton>
             </Typography>
-          ))}
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

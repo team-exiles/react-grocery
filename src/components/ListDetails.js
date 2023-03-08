@@ -5,15 +5,17 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Button } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
-export const ListDetails = ({ list, token }) => {
+export const ListDetails = ({ list, token, username }) => {
   return (
     <Link
       to={`/lists/edit/${list.id}/`}
       path="relative"
+      style={{ textDecoration: "none" }}
       state={{
         //title: list.title,
         //id: list.id,
         token: token,
+        username: username,
         //archiveStatus: list.archived,
       }}
     >
@@ -25,6 +27,7 @@ export const ListDetails = ({ list, token }) => {
           vericalAlign: "center",
           border: "2px solid",
           display: "flex",
+          borderRadius: 28,
         }}
         color="primary"
         variant="outlined"
@@ -36,11 +39,14 @@ export const ListDetails = ({ list, token }) => {
         </Typography>
         <div className="dot-width" />
         {list.active_shopping ? (
-          <FiberManualRecordIcon
-            color="success"
-            className="blink"
-            fontSize="small"
-          />
+          // <FiberManualRecordIcon
+          //   color="success"
+          //   className="blink"
+          //   fontSize="small"
+          // />
+          <Button color="success" size="small" className="blink">
+            Live
+          </Button>
         ) : null}
       </Button>
     </Link>

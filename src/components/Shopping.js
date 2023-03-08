@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 import { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -25,6 +25,7 @@ export default function Shopping({ token }) {
 
   const { listID } = useParams();
   const title = location.state?.title;
+  const scroll = location.state?.scroll;
 
   const fetchList = () => {
     return axios.get(
@@ -47,11 +48,21 @@ export default function Shopping({ token }) {
 
   const handleBack = (event) => {
     event.preventDefault();
-    setItems([]);
-    navigate("/Homepage");
+    axios
+      .patch(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+        { active_shopping: false },
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setItems([]);
+        navigate(-1);
+      });
   };
-
-  //console.log(data.data.listForItems);
 
   const handleShopping = () => {
     axios
@@ -98,6 +109,7 @@ export default function Shopping({ token }) {
         setItems={setItems}
         token={token}
         listID={listID}
+        scroll={scroll}
       />
 
       <Fab

@@ -10,8 +10,17 @@ import Shopping from "./components/Shopping";
 import InviteLogin from "./components/Invitation";
 import { QueryClientProvider, QueryClient } from "react-query";
 //import { ReactQueryDevtools } from "react-query/devtools";
+import { createTheme } from "@mui/material/styles";
 
 const queryClient = new QueryClient();
+
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#406975",
+//     },
+//   },
+// });
 
 function App() {
   const [token, setToken] = useLocalStorageState("token", null);
@@ -50,6 +59,7 @@ function App() {
                     setUser={setUser}
                     username={username}
                     token={token}
+                    setUsername={setUsername}
                   />
                 }
               />
@@ -60,6 +70,7 @@ function App() {
                     setUser={setUser}
                     username={username}
                     token={token}
+                    setUsername={setUsername}
                   />
                 }
               />
@@ -83,6 +94,7 @@ function App() {
                     token={token}
                     setToken={setToken}
                     username={username}
+                    setUsername={setUsername}
                   />
                 }
               />

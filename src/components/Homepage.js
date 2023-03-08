@@ -1,6 +1,5 @@
-//import { useNavigate } from "react-router-dom";
-// import Card from "@mui/material/Card";
-// import Fab from "@mui/material/Fab";
+import axios from "axios";
+import { useQuery } from "react-query";
 import * as React from "react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import Link from "@mui/joy/Link";
@@ -15,6 +14,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
 import MuiAlert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+import Card from "@mui/material/Card";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -25,12 +26,29 @@ export const Homepage = ({ setUser, username, token }) => {
   const [sharedLists, setSharedLists] = useState([]);
   const location = useLocation();
   const [snackBar, setSnackBar] = useState(location.state?.openSnackBar);
-  //  const navigate = useNavigate();
+
   let active = [];
   let archived = [];
 
   //console.log(username);
 
+  // const fetchList = () => {
+  //   return axios.get(`https://safe-plains-62725.herokuapp.com/lists/me/`, {
+  //     headers: {
+  //       authorization: `token ${token}`,
+  //     },
+  //   });
+  // };
+
+  // const { isLoading, data } = useQuery("listInfo", fetchList, {
+  //   refetchInterval: 2000,
+  // });
+
+  // if (isLoading) {
+  //   return <h2>Loading...</h2>;
+  // }
+
+  //Loods data into useState to prop drill
   useEffect(() => {
     requestMyLists(token).then((res) => {
       setLists(res.data);
@@ -57,7 +75,13 @@ export const Homepage = ({ setUser, username, token }) => {
 
     return (
       <div>
-        <Button onClick={() => setExpansion(!isExpanded)} size="large">
+        <Button
+          fullWidth
+          onClick={() => setExpansion(!isExpanded)}
+          // size="large"
+          variant="contained"
+          sx={{ mb: "10px" }}
+        >
           <strong>
             Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
           </strong>
@@ -65,8 +89,8 @@ export const Homepage = ({ setUser, username, token }) => {
         {isExpanded && (
           <div className="expandedArchivedBox">
             {archived.map((list) => (
-              <div style={{ marginLeft: "30px" }}>
-                <ListDetails list={list} token={token} key={list.id} />
+              <div style={{ mx: "30px" }} key={list.id}>
+                <ListDetails list={list} token={token} username={username} />
               </div>
             ))}
           </div>
@@ -91,33 +115,51 @@ export const Homepage = ({ setUser, username, token }) => {
         </Alert>
       </Snackbar>
       <Typography variant="h4" align="center">
-        Forgot Milk?
+        <strong>Forgot Milk?</strong>
       </Typography>
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
-        <Typography variant="h5">Grocery Lists</Typography>
+        <Typography variant="h5" sx={{ mb: "5px" }}>
+          My Grocery Lists
+        </Typography>
         {active.map((list) => (
-          <ListDetails list={list} token={token} key={list.id} />
+          <ListDetails
+            list={list}
+            token={token}
+            key={list.id}
+            username={username}
+          />
         ))}
       </div>
-      <Divider />
+      <Divider sx={{ m: "10px" }} />
       <div className="shared-lists">
-        <Typography variant="h5">Shared Lists</Typography>
-        {sharedLists.map((list) => (
-          <ListDetails list={list} token={token} key={list.id} />
-        ))}
+        <Typography variant="h5" sx={{ mb: "5px" }}>
+          Shared Lists
+        </Typography>
+        {sharedLists.map((list) =>
+          list.archived ? null : (
+            <ListDetails
+              list={list}
+              token={token}
+              key={list.id}
+              username={username}
+            />
+          )
+        )}
       </div>
-      <Divider />
+      <Divider sx={{ m: "10px" }} />
       <ExpandedArchived />
       <div>
-        <IconButton
-          sx={{ position: "absolute", top: 18, right: 18 }}
-          onClick={() => setUser(null)}
-        >
-          <Link component={RouterLink} to="/Login">
-            <LogoutIcon />
-          </Link>
-        </IconButton>
+        <Tooltip title="Logout" arrow>
+          <IconButton
+            sx={{ position: "absolute", top: 18, right: 18 }}
+            onClick={() => setUser(null)}
+          >
+            <Link component={RouterLink} to="/Login">
+              <LogoutIcon />
+            </Link>
+          </IconButton>
+        </Tooltip>
       </div>
 
       <CreateList token={token} />

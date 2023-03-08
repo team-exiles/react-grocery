@@ -1,9 +1,3 @@
-// import Button from "@mui/joy/Button";
-// import FormGroup from "@mui/material/FormGroup";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import Box from "@mui/material/Box";
-// import { roleElements } from "aria-query";
-//import { useState } from "react";
 import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
@@ -14,9 +8,10 @@ import DeleteItem from "./DeleteItem";
 import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton } from "@mui/material";
 
-export function ShowListItems({ items, setItems, token, listID }) {
+export function ShowListItems({ items, setItems, token, listID, scroll }) {
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
+
     axios
       .patch(
         `https://safe-plains-62725.herokuapp.com/items/${item.id}/`,
@@ -73,34 +68,39 @@ export function ShowListItems({ items, setItems, token, listID }) {
   };
 
   return (
-    <List>
-      {items.map((item) => (
-        <div key={item.id}>
-          <Divider />
-          <ListItem
-            sx={{ backgroundColor: item.missing ? "rgb(214, 155, 149)" : null }}
-          >
-            <Checkbox
-              checked={item.check_box}
-              onChange={() => handleClick(item)}
-            />
+    <div className="list-container">
+      <List>
+        {items.map((item) => (
+          <div key={item.id}>
+            <Divider />
+            <ListItem
+              sx={{
+                backgroundColor: item.missing ? "rgb(214, 155, 149)" : null,
+              }}
+            >
+              <Checkbox
+                checked={item.check_box}
+                onChange={() => handleClick(item)}
+              />
 
-            <ListItemText primary={item.item} />
+              <ListItemText primary={item.item} />
 
-            <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
-              <FlagIcon />
-            </IconButton>
+              <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
+                <FlagIcon />
+              </IconButton>
 
-            <DeleteItem
-              token={token}
-              deleteItem={deleteItem}
-              itemID={item.id}
-            />
-          </ListItem>
+              <DeleteItem
+                token={token}
+                deleteItem={deleteItem}
+                itemID={item.id}
+              />
+            </ListItem>
 
-          <Divider />
-        </div>
-      ))}
-    </List>
+            <Divider />
+          </div>
+        ))}
+        <ListItem sx={{ height: "60px" }} ref={scroll}></ListItem>
+      </List>
+    </div>
   );
 }
