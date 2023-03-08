@@ -34,6 +34,7 @@ export const EditList = ({ token, username, setToken }) => {
   const [flagColor, setFlagColor] = useState("");
   const location = useLocation();
   const navigate = useNavigate("");
+  const [owner, setOwner] = useState("");
 
   const { listID } = useParams();
   //const archiveStatus = location.state?.archiveStatus;
@@ -49,6 +50,7 @@ export const EditList = ({ token, username, setToken }) => {
         },
       })
       .then((data) => {
+        setOwner(data.data.owner);
         setItems(data.data.listForItems);
         setAuthID(data.data.auth_id);
         setTitle(data.data.title);
@@ -64,7 +66,7 @@ export const EditList = ({ token, username, setToken }) => {
           navigate("/Login");
         }
       });
-  }, [listID, token, navigate]);
+  }, [listID, token, navigate, owner]);
 
   const handleBack = (event) => {
     event.preventDefault();
@@ -107,6 +109,23 @@ export const EditList = ({ token, username, setToken }) => {
       );
   };
 
+  const titleBarButtons = (guests) => {
+    return (
+      <>
+        <InviteButton listID={listID} authID={authID} token={token} />
+        {guests ? (
+          <RemoveUser
+            listID={listID}
+            token={token}
+            setHasGuests={setHasGuests}
+            numberShared={numberShared}
+          />
+        ) : null}
+        <DeleteList listID={listID} token={token} title={title} />
+      </>
+    );
+  };
+
   return (
     items && (
       <div className="wrap">
@@ -129,7 +148,9 @@ export const EditList = ({ token, username, setToken }) => {
               <Typography variant="h5" width="100%" justifyContent="center">
                 {title}
               </Typography>
-              <InviteButton listID={listID} authID={authID} token={token} />
+              {username === owner ? titleBarButtons(hasGuests) : null}
+
+              {/* <InviteButton listID={listID} authID={authID} token={token} /> 
               {hasGuests ? (
                 <RemoveUser
                   listID={listID}
@@ -139,7 +160,7 @@ export const EditList = ({ token, username, setToken }) => {
                 />
               ) : null}
 
-              <DeleteList listID={listID} token={token} title={title} />
+               */}
 
               {/* </div> */}
             </Stack>
@@ -178,7 +199,7 @@ export const EditList = ({ token, username, setToken }) => {
               onClick={handleShopping}
             >
               <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-              Go Shopping
+              {owner === username ? "Go Shopping" : "Join Shopping!"}
             </Fab>
           )}
         </div>
