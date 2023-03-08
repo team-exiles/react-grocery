@@ -15,9 +15,10 @@ import Button from "@mui/material/Button";
 import MuiAlert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
-import Card from "@mui/material/Card";
+import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -81,7 +82,7 @@ export const Homepage = ({ setUser, username, token }) => {
           onClick={() => setExpansion(!isExpanded)}
           // size="large"
           variant="contained"
-          sx={{ mb: "10px" }}
+          sx={{ mb: "10px", backgroundColor: "black" }}
           endIcon={
             <ExpandCircleDownIcon
               sx={{ fontSize: "larger", rotate: "90deg" }}
@@ -109,99 +110,108 @@ export const Homepage = ({ setUser, username, token }) => {
   filterList();
 
   return (
-    <section className="homepage" style={{ margin: "20px" }}>
-      <Snackbar
-        open={snackBar}
-        onClose={() => setSnackBar(false)}
-        autoHideDuration={3000}
-        anchorOrigin={{ horizontal: "center", vertical: "top" }}
-      >
-        <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
-          List Deleted
-        </Alert>
-      </Snackbar>
-      <Box sx={{ border: "7px black solid", padding: "15px" }}>
-        <Typography
-          align="left"
-          sx={{ fontWeight: "700", fontFamily: "Sans Serif", fontSize: "40px" }}
+    <Paper elevation={20} sx={{ height: 900 }}>
+      <section className="homepage" style={{ margin: "20px" }}>
+        <Snackbar
+          open={snackBar}
+          onClose={() => setSnackBar(false)}
+          autoHideDuration={3000}
+          anchorOrigin={{ horizontal: "center", vertical: "top" }}
         >
-          <strong>Forgot Milk?</strong>
-        </Typography>
-      </Box>
-      {/* <Divider sx={{ m: 2 }} /> */}
-      <Box
-        sx={{
-          border: "7px black solid",
-          borderBottom: "none",
-          padding: "15px",
-        }}
-      >
-        <div className="active-lists">
+          <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+            List Deleted
+          </Alert>
+        </Snackbar>
+        <Box sx={{ border: "7px black solid", padding: "5px 15px 10px 15px" }}>
           <Typography
+            align="left"
             sx={{
-              mb: "5px",
-              fontSize: "30px",
-              fontWeight: "600",
+              fontWeight: "700",
               fontFamily: "Sans Serif",
-              borderBottom: "5px black solid",
+              fontSize: "40px",
             }}
           >
-            My Grocery Lists
+            <strong>Forgot Milk?</strong>
           </Typography>
-          {active.map((list) => (
-            <ListDetails
-              list={list}
-              token={token}
-              key={list.id}
-              username={username}
-            />
-          ))}
-        </div>
-      </Box>
-      {/* <Divider sx={{ m: "10px" }} /> */}
-      <Box
-        sx={{ border: "7px black solid", borderTop: "none", padding: "15px" }}
-      >
-        <div className="shared-lists">
-          <Typography
-            sx={{
-              mb: "5px",
-              fontSize: "30px",
-              fontWeight: "600",
-              fontFamily: "Sans Serif",
-              borderBottom: "5px black solid",
-            }}
-          >
-            Shared Lists
-          </Typography>
-          {sharedLists.map((list) =>
-            list.archived ? null : (
+        </Box>
+        {/* <Divider sx={{ m: 2 }} /> */}
+        <Box
+          sx={{
+            border: "7px black solid",
+            borderBottom: "none",
+            padding: "15px",
+          }}
+        >
+          <div className="active-lists">
+            <Typography
+              sx={{
+                fontSize: "30px",
+                fontWeight: "600",
+                fontFamily: "Sans Serif",
+                borderBottom: "5px black solid",
+              }}
+            >
+              My Grocery Lists
+            </Typography>
+            {active.map((list) => (
               <ListDetails
                 list={list}
                 token={token}
                 key={list.id}
                 username={username}
               />
-            )
-          )}
+            ))}
+          </div>
+        </Box>
+        {/* <Divider sx={{ m: "10px" }} /> */}
+        <Box
+          sx={{
+            border: "7px black solid",
+            borderTop: "none",
+            padding: "0 15px 15px 15px",
+          }}
+        >
+          <div className="shared-lists">
+            <Typography
+              sx={{
+                mb: "5px",
+                fontSize: "30px",
+                fontWeight: "600",
+                fontFamily: "Sans Serif",
+                borderBottom: "5px black solid",
+              }}
+            >
+              Shared Lists
+            </Typography>
+            {sharedLists.map((list) =>
+              list.archived ? null : (
+                <ListDetails
+                  list={list}
+                  token={token}
+                  key={list.id}
+                  username={username}
+                />
+              )
+            )}
+          </div>
+        </Box>
+        <Divider sx={{ m: "10px" }} />
+        <ExpandedArchived />
+        <div>
+          <Tooltip title="Logout" arrow>
+            <IconButton
+              sx={{ position: "absolute", top: 18, right: 18 }}
+              onClick={() => setUser(null)}
+            >
+              <Link component={RouterLink} to="/Login">
+                <LogoutIcon />
+              </Link>
+            </IconButton>
+          </Tooltip>
         </div>
-      </Box>
-      <Divider sx={{ m: "10px" }} />
-      <ExpandedArchived />
-      <div>
-        <Tooltip title="Logout" arrow>
-          <IconButton
-            sx={{ position: "absolute", top: 18, right: 18 }}
-            onClick={() => setUser(null)}
-          >
-            <Link component={RouterLink} to="/Login">
-              <LogoutIcon />
-            </Link>
-          </IconButton>
-        </Tooltip>
-      </div>
 
-      <CreateList token={token} />
-    </section>
+        <CreateList token={token} />
+      </section>
+    </Paper>
   );
 };

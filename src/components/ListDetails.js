@@ -20,7 +20,7 @@ export const ListDetails = ({ list, token, username }) => {
     >
       <Button
         sx={{
-          mb: 2,
+          // mb: 2,
           justifyContent: "flex-start",
           vericalAlign: "center",
           border: "none",
