@@ -14,6 +14,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
 import MuiAlert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -126,14 +127,16 @@ export const Homepage = ({ setUser, username, token }) => {
       <Divider />
       <ExpandedArchived />
       <div>
-        <IconButton
-          sx={{ position: "absolute", top: 18, right: 18 }}
-          onClick={() => setUser(null)}
-        >
-          <Link component={RouterLink} to="/Login">
-            <LogoutIcon />
-          </Link>
-        </IconButton>
+        <Tooltip title="Logout" arrow>
+          <IconButton
+            sx={{ position: "absolute", top: 18, right: 18 }}
+            onClick={() => setUser(null)}
+          >
+            <Link component={RouterLink} to="/Login">
+              <LogoutIcon />
+            </Link>
+          </IconButton>
+        </Tooltip>
       </div>
 
       <CreateList token={token} />

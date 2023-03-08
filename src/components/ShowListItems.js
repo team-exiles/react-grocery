@@ -1,11 +1,3 @@
-// import Button from "@mui/joy/Button";
-// import FormGroup from "@mui/material/FormGroup";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import Box from "@mui/material/Box";
-// import { roleElements } from "aria-query";
-//import { useState } from "react";
-import { useQuery } from "react-query";
-
 import axios from "axios";
 import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
@@ -19,6 +11,7 @@ import { IconButton } from "@mui/material";
 export function ShowListItems({ items, setItems, token, listID, scroll }) {
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
+
     axios
       .patch(
         `https://safe-plains-62725.herokuapp.com/items/${item.id}/`,
@@ -106,7 +99,7 @@ export function ShowListItems({ items, setItems, token, listID, scroll }) {
             <Divider />
           </div>
         ))}
-        <ListItem sx={{ height: "90px" }} ref={scroll}></ListItem>
+        <ListItem sx={{ height: "60px" }} ref={scroll}></ListItem>
       </List>
     </div>
   );

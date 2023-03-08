@@ -25,9 +25,9 @@
   font-family: "Inter", sans-serif;
 }
 
-html {
+/* html {
   background-color: #e3ede8;
-}
+} */
 
 /* Material UI symbols from the index.html  */
 .material-symbols-outlined {
@@ -307,7 +307,7 @@ html {
 
 .send-item-input {
   /* border: 5px solid red; */
-  padding: 20px;
+  padding: 20px 20px 0 20px;
 }
 
 .expandedBox {
@@ -383,7 +383,7 @@ html {
 .list-container {
   overflow-x: scroll;
   margin: 30px auto;
-  background-color: #fff;
+
   height: 80vh;
   overflow-x: scroll;
 }

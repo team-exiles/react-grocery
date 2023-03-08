@@ -10,6 +10,7 @@ export const ListDetails = ({ list, token }) => {
     <Link
       to={`/lists/edit/${list.id}/`}
       path="relative"
+      style={{ textDecoration: "none" }}
       state={{
         //title: list.title,
         //id: list.id,
@@ -25,6 +26,7 @@ export const ListDetails = ({ list, token }) => {
           vericalAlign: "center",
           border: "2px solid",
           display: "flex",
+          borderRadius: 28,
         }}
         color="primary"
         variant="outlined"

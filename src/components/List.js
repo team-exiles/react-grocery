@@ -12,6 +12,7 @@ import DeleteList from "./DeleteList";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import RemoveUser from "./RemoveUser";
+import { useQuery } from "react-query";
 
 const style = {
   margin: 0,
@@ -39,7 +40,6 @@ export const EditList = ({ token, username, setToken }) => {
   if (token === undefined) {
     setToken(location.state?.token);
   }
-  //console.log(token);
 
   useEffect(() => {
     axios
@@ -48,18 +48,16 @@ export const EditList = ({ token, username, setToken }) => {
           authorization: `token ${token}`,
         },
       })
-      .then((res) => {
-        setItems(res.data.listForItems);
-        setAuthID(res.data.auth_id);
-        setTitle(res.data.title);
-        setArchivedStatus(res.data.archived);
-        setNumberShared(res.data.shared_users.length);
+      .then((data) => {
+        setItems(data.data.listForItems);
+        setAuthID(data.data.auth_id);
+        setTitle(data.data.title);
+        setArchivedStatus(data.data.archived);
+        setNumberShared(data.data.shared_users.length);
 
-        if (res.data.shared_users.length > 0) {
+        if (data.data.shared_users.length > 0) {
           setHasGuests(true);
         }
-
-        // console.log(items);
       })
       .catch((error) => {
         if (error.message === "Request failed with status code 403") {

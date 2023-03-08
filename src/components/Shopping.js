@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 import { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import { useLocation } from "react-router-dom";
@@ -25,6 +25,7 @@ export default function Shopping({ token }) {
 
   const { listID } = useParams();
   const title = location.state?.title;
+  const scroll = location.state?.scroll;
 
   const fetchList = () => {
     return axios.get(
@@ -98,6 +99,7 @@ export default function Shopping({ token }) {
         setItems={setItems}
         token={token}
         listID={listID}
+        scroll={scroll}
       />
 
       <Fab
