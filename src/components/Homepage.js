@@ -75,8 +75,9 @@ export const Homepage = ({ setUser, username, token }) => {
     return (
       <div>
         <Button
+          fullWidth
           onClick={() => setExpansion(!isExpanded)}
-          size="large"
+          // size="large"
           variant="contained"
           sx={{ mb: "10px" }}
         >
@@ -87,7 +88,7 @@ export const Homepage = ({ setUser, username, token }) => {
         {isExpanded && (
           <div className="expandedArchivedBox">
             {archived.map((list) => (
-              <div style={{ marginLeft: "30px" }} key={list.id}>
+              <div style={{ mx: "30px" }} key={list.id}>
                 <ListDetails list={list} token={token} username={username} />
               </div>
             ))}
