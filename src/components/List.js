@@ -46,9 +46,6 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
     setUsername(location.state?.username);
   }
 
-  console.log(owner);
-  console.log(username);
-
   useEffect(() => {
     axios
       .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
@@ -166,6 +163,8 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
                   token={token}
                   setHasGuests={setHasGuests}
                   numberShared={numberShared}
+                  owner={owner}
+                  username={username}
                 />
               ) : null}
             </Stack>

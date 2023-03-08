@@ -64,8 +64,6 @@ export default function Shopping({ token }) {
       });
   };
 
-  //console.log(data.data.listForItems);
-
   const handleShopping = () => {
     axios
       .patch(

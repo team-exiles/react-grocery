@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as React from "react";
+import { useNavigate } from "react-router";
 import {
   Button,
   Dialog,
@@ -34,7 +35,7 @@ export default function RemoveUser({
   const [open, setOpen] = React.useState(false);
   const [openBar, setOpenBar] = React.useState(false);
   const [sharedUsers, setSharedUsers] = React.useState([]);
-
+  const navigate = useNavigate();
   const handleClickOpen = () => {
     setOpen(true);
     axios
@@ -72,6 +73,24 @@ export default function RemoveUser({
     setOpenBar(true);
   };
 
+  const handleRemoveSelf = (user) => {
+    setOpen(false);
+    axios
+      .delete(
+        `https://safe-plains-62725.herokuapp.com/lists/${listID}/remove/${user}/`,
+        {
+          headers: {
+            authorization: `token ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        navigate("/Homepage");
+      });
+
+    setOpenBar(true);
+  };
+
   return (
     <div>
       <IconButton onClick={handleClickOpen} sx={{ mr: 1.5 }}>
@@ -92,14 +111,23 @@ export default function RemoveUser({
           </DialogContentText>
           <br />
 
-          {sharedUsers.map((m) => (
-            <Typography variant="subtitle1" key={m.id} sx={{ ml: 2, mb: 1 }}>
-              {owner === username ? m.username : username}
-              <IconButton onClick={(user) => handleRemove(m.username)}>
+          {owner === username ? (
+            sharedUsers.map((m) => (
+              <Typography variant="subtitle1" key={m.id} sx={{ ml: 2, mb: 1 }}>
+                {m.username}
+                <IconButton onClick={() => handleRemove(m.username)}>
+                  <PersonRemoveIcon />
+                </IconButton>
+              </Typography>
+            ))
+          ) : (
+            <Typography variant="subtitle1" sx={{ ml: 2, mb: 1 }}>
+              {username}
+              <IconButton onClick={() => handleRemoveSelf(username)}>
                 <PersonRemoveIcon />
               </IconButton>
             </Typography>
-          ))}
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

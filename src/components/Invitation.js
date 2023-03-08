@@ -34,7 +34,6 @@ export default function InviteLogin({ token, setToken }) {
           );
 
           if (listID === listCheck[0].id.toString()) {
-            // console.log(`User: ${username}`);
             axios
               .put(
                 `https://safe-plains-62725.herokuapp.com/lists/${listID}/invite/`,
