@@ -118,7 +118,9 @@ export const Homepage = ({ setUser, username, token }) => {
       </Typography>
       <Divider sx={{ m: 2 }} />
       <div className="active-lists">
-        <Typography variant="h5">My Grocery Lists</Typography>
+        <Typography variant="h5" sx={{ mb: "5px" }}>
+          My Grocery Lists
+        </Typography>
         {active.map((list) => (
           <ListDetails
             list={list}
@@ -130,7 +132,9 @@ export const Homepage = ({ setUser, username, token }) => {
       </div>
       <Divider sx={{ m: "10px" }} />
       <div className="shared-lists">
-        <Typography variant="h5">Shared Lists</Typography>
+        <Typography variant="h5" sx={{ mb: "5px" }}>
+          Shared Lists
+        </Typography>
         {sharedLists.map((list) =>
           list.archived ? null : (
             <ListDetails
