@@ -74,6 +74,7 @@ export const Homepage = ({ setUser, username, token }) => {
 
   function ExpandedArchived() {
     const [isExpanded, setExpansion] = useState(false);
+    
 
     return (
       <div>
@@ -83,11 +84,7 @@ export const Homepage = ({ setUser, username, token }) => {
           // size="large"
           variant="contained"
           sx={{ mb: "10px", backgroundColor: "black" }}
-          endIcon={
-            <ExpandCircleDownIcon
-              sx={{ fontSize: "larger", rotate: "90deg" }}
-            />
-          }
+          {isExpanded ? arrowLeft : arrowDown}
         >
           <strong>
             Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
@@ -100,6 +97,7 @@ export const Homepage = ({ setUser, username, token }) => {
                 <ListDetails list={list} token={token} username={username} />
               </div>
             ))}
+            <Button disabled hidden style={{ height: "60px" }} />
           </div>
         )}
       </div>
@@ -122,17 +120,42 @@ export const Homepage = ({ setUser, username, token }) => {
             List Deleted
           </Alert>
         </Snackbar>
-        <Box sx={{ border: "7px black solid", padding: "5px 15px 10px 15px" }}>
+        <Box
+          sx={{
+            border: "7px black solid",
+            padding: "5px 15px 10px 15px",
+            display: "flex",
+          }}
+        >
           <Typography
             align="left"
             sx={{
-              fontWeight: "700",
-              fontFamily: "Sans Serif",
-              fontSize: "40px",
+              fontWeight: "900",
+              fontFamily: "Montserrat",
+              fontSize: "2.9em",
+              textTransform: "uppercase",
             }}
           >
             <strong>Forgot Milk?</strong>
           </Typography>
+          <div
+            style={{
+              alignSelf: "center",
+              backgroundColor: "black",
+              borderRadius: "10px",
+            }}
+          >
+            <IconButton
+              sx={{ margin: "0 auto" }}
+              onClick={() => {
+                setUser(null, null);
+              }}
+            >
+              <Link component={RouterLink} to="/Login" sx={{ color: "white" }}>
+                <LogoutIcon />
+              </Link>
+            </IconButton>
+          </div>
         </Box>
         {/* <Divider sx={{ m: 2 }} /> */}
         <Box
@@ -147,7 +170,7 @@ export const Homepage = ({ setUser, username, token }) => {
               sx={{
                 fontSize: "30px",
                 fontWeight: "600",
-                fontFamily: "Sans Serif",
+                fontFamily: "Montserrat",
                 borderBottom: "5px black solid",
               }}
             >
@@ -177,7 +200,7 @@ export const Homepage = ({ setUser, username, token }) => {
                 mb: "5px",
                 fontSize: "30px",
                 fontWeight: "600",
-                fontFamily: "Sans Serif",
+                fontFamily: "Montserrat",
                 borderBottom: "5px black solid",
               }}
             >
@@ -197,18 +220,6 @@ export const Homepage = ({ setUser, username, token }) => {
         </Box>
         <Divider sx={{ m: "10px" }} />
         <ExpandedArchived />
-        <div>
-          <Tooltip title="Logout" arrow>
-            <IconButton
-              sx={{ position: "absolute", top: 18, right: 18 }}
-              onClick={() => setUser(null)}
-            >
-              <Link component={RouterLink} to="/Login">
-                <LogoutIcon />
-              </Link>
-            </IconButton>
-          </Tooltip>
-        </div>
 
         <CreateList token={token} />
       </section>

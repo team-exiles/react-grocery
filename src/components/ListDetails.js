@@ -21,17 +21,19 @@ export const ListDetails = ({ list, token, username }) => {
       <Button
         sx={{
           // mb: 2,
-          justifyContent: "flex-start",
+          textAlign: "left",
+
+          //justifyContent: "flex-start",
           vericalAlign: "center",
           border: "none",
-          display: "flex",
+          // display: "flex",
           //borderRadius: 28,
           color: "black",
         }}
         variant="outlined"
         // startIcon={<FormatListBulletedIcon />}
         key={list.id}
-        endIcon={<DoubleArrowIcon />}
+        startIcon={<DoubleArrowIcon />}
       >
         <Typography
           sx={{
@@ -40,7 +42,7 @@ export const ListDetails = ({ list, token, username }) => {
             // fontWeight: "bolder",
             fontSize: "18px",
             fontWeight: "700",
-            fontFamily: "Sans Serif",
+            fontFamily: "Montserrat",
           }}
         >
           {list.title}
