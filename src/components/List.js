@@ -123,7 +123,7 @@ export const EditList = ({ token }) => {
         />
         <Box
         sx={{
-          border:1,
+          // border:1,
           b:14,
         }}>
         <ShowListItems
