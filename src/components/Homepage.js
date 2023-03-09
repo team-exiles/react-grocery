@@ -148,6 +148,7 @@ export const Homepage = ({ setUser, username, token }) => {
             <strong>Forgot Milk?</strong>
           </Typography>
           <div
+            className="exit-button"
             style={{
               alignSelf: "center",
               backgroundColor: "black",

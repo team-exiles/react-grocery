@@ -353,7 +353,7 @@
   animation: jump-shaking 0.83s infinite;
 }
 
-/* .list-buttons::hover {
+.exit-button:hover {
   background-color: rgb(218, 55, 117) !important;
   color: white !important;
-} */
+}
