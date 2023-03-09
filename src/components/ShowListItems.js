@@ -75,6 +75,7 @@ export function ShowListItems({ items, setItems, token, listID, scroll }) {
             <Divider />
             <ListItem
               sx={{
+                borderRadius: "10px",
                 backgroundColor: item.missing ? "rgb(214, 155, 149)" : null,
               }}
             >
@@ -83,7 +84,13 @@ export function ShowListItems({ items, setItems, token, listID, scroll }) {
                 onChange={() => handleClick(item)}
               />
 
-              <ListItemText primary={item.item} />
+              <ListItemText
+                primary={item.item}
+                primaryTypographyProps={{
+                  fontSize: "21px",
+                  fontFamily: "Montserrat",
+                }}
+              />
 
               <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
                 <FlagIcon />

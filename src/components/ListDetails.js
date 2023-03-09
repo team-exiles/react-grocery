@@ -19,19 +19,22 @@ export const ListDetails = ({ list, token, username }) => {
       }}
     >
       <Button
+        className="list-buttons"
         sx={{
-          // mb: 2,
+          mb: "1px",
           textAlign: "left",
 
-          //justifyContent: "flex-start",
           vericalAlign: "center",
           border: "none",
-          // display: "flex",
-          //borderRadius: 28,
           color: "black",
+          borderRadius: 28,
+
+          ":hover": {
+            bgcolor: "#AF5!important",
+            color: "white !important",
+          },
         }}
         variant="outlined"
-        // startIcon={<FormatListBulletedIcon />}
         key={list.id}
         startIcon={<DoubleArrowIcon />}
       >
@@ -39,7 +42,6 @@ export const ListDetails = ({ list, token, username }) => {
           sx={{
             justifyText: "left",
             mt: 0.56,
-            // fontWeight: "bolder",
             fontSize: "18px",
             fontWeight: "700",
             fontFamily: "Montserrat",
@@ -49,11 +51,6 @@ export const ListDetails = ({ list, token, username }) => {
         </Typography>
         <div className="dot-width" />
         {list.active_shopping ? (
-          // <FiberManualRecordIcon
-          //   color="success"
-          //   className="blink"
-          //   fontSize="small"
-          // />
           <Button color="success" size="small" className="blink">
             <strong style={{ fontSize: "15px" }}>Live</strong>
           </Button>

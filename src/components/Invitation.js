@@ -21,11 +21,13 @@ export default function InviteLogin({ token, setToken }) {
 
   const handleSubmit = (event) => {
     requestLogin(username, password).then((res) => {
+      const inviteToken = res.data.auth_token;
       setToken(res.data.auth_token);
+
       axios
         .get(`https://safe-plains-62725.herokuapp.com/lists/`, {
           headers: {
-            authorization: `token ${token}`,
+            authorization: `token ${inviteToken}`,
           },
         })
         .then((res) => {
@@ -40,15 +42,15 @@ export default function InviteLogin({ token, setToken }) {
                 { username: `${username}` },
                 {
                   headers: {
-                    authorization: `token ${token}`,
+                    authorization: `token ${inviteToken}`,
                   },
                 }
               )
               .then((res) => {
                 navigate(`/lists/edit/${listID}/`, {
                   state: {
-                    token: token,
-                    userame: username,
+                    token: inviteToken,
+                    username: username,
                   },
                 });
               });

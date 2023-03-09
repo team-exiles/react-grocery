@@ -152,7 +152,16 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
               >
                 <ArrowBackIcon sx={{ ml: "10px" }} />
               </IconButton>
-              <Typography variant="h5" width="100%" justifyContent="center">
+              <Typography
+                variant="h5"
+                width="100%"
+                justifyContent="center"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "bolder",
+                  textTransform: "uppercase",
+                }}
+              >
                 {title}
               </Typography>
               {username === owner ? (

@@ -74,7 +74,8 @@ export const Homepage = ({ setUser, username, token }) => {
 
   function ExpandedArchived() {
     const [isExpanded, setExpansion] = useState(false);
-    
+
+    //const arrowLeft = (endIcon={<ExpandCircleDownIcon sx={{ fontSize: "larger" }} />}) : (endIcon={<ExpandedCircleDownIcon/>)}}
 
     return (
       <div>
@@ -84,7 +85,15 @@ export const Homepage = ({ setUser, username, token }) => {
           // size="large"
           variant="contained"
           sx={{ mb: "10px", backgroundColor: "black" }}
-          {isExpanded ? arrowLeft : arrowDown}
+          endIcon={
+            isExpanded ? (
+              <ExpandCircleDownIcon sx={{ fontSize: "larger" }} />
+            ) : (
+              <ExpandCircleDownIcon
+                sx={{ fontSize: "larger", rotate: "90deg" }}
+              />
+            )
+          }
         >
           <strong>
             Archived Lists {archived.length > 0 ? `(${archived.length})` : null}
