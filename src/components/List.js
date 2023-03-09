@@ -13,9 +13,10 @@ import { ShowListItems } from "./ShowListItems";
 import { SendItems } from "./SendItem";
 import RemoveUser from "./RemoveUser";
 import { useQuery } from "react-query";
+import Paper from "@mui/material/Paper";
 
 const style = {
-  margin: 0,
+  margin: "0 auto",
   top: "auto",
   right: 35,
   bottom: 35,
@@ -136,81 +137,84 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
 
   return (
     items && (
-      <div className="wrap">
-        <div className="list">
-          <div className="list-display topbar">
-            <Stack
-              direction="row"
-              justifyContent="space-evenly"
-              alignItems="center"
-              sx={{ mt: 0 }}
-            >
-              <IconButton
-                aria-label="back to homepage"
-                variant="filled"
-                onClick={handleBack}
+      <Paper elevation={20} sx={{ height: 900, margin: "0 auto" }}>
+        <div className="wrap">
+          <div className="list">
+            <div className="list-display topbar">
+              <Stack
+                direction="row"
+                justifyContent="space-evenly"
+                alignItems="center"
+                sx={{ mt: 0 }}
               >
-                <ArrowBackIcon sx={{ ml: "10px" }} />
-              </IconButton>
-              <Typography
-                variant="h5"
-                width="100%"
-                justifyContent="center"
-                sx={{
-                  fontFamily: "Montserrat",
-                  fontWeight: "bolder",
-                  textTransform: "uppercase",
-                }}
-              >
-                {title}
-              </Typography>
-              {username === owner ? (
-                titleBarButtons(hasGuests)
-              ) : owner !== username ? (
-                <RemoveUser
-                  listID={listID}
-                  token={token}
-                  setHasGuests={setHasGuests}
-                  numberShared={numberShared}
-                  owner={owner}
-                  username={username}
-                />
-              ) : null}
-            </Stack>
+                <IconButton
+                  aria-label="back to homepage"
+                  variant="filled"
+                  onClick={handleBack}
+                >
+                  <ArrowBackIcon sx={{ ml: "10px" }} />
+                </IconButton>
+                <Typography
+                  variant="h5"
+                  width="100%"
+                  justifyContent="center"
+                  sx={{
+                    fontFamily: "Montserrat",
+                    fontWeight: "bolder",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {title}
+                </Typography>
+                {username === owner ? (
+                  titleBarButtons(hasGuests)
+                ) : owner !== username ? (
+                  <RemoveUser
+                    listID={listID}
+                    token={token}
+                    setHasGuests={setHasGuests}
+                    numberShared={numberShared}
+                    owner={owner}
+                    username={username}
+                  />
+                ) : null}
+              </Stack>
 
-            <SendItems
+              <SendItems
+                items={items}
+                setItems={setItems}
+                token={token}
+                listID={listID}
+                scroll={scroll}
+              />
+            </div>
+            <ShowListItems
               items={items}
               setItems={setItems}
               token={token}
               listID={listID}
+              flagColor={flagColor}
               scroll={scroll}
+              archiveStatus={archiveStatus}
             />
+            {archiveStatus ? (
+              <Fab
+                sx={{ position: "fixed", bottom: 30, right: 30 }}
+                color="secondary"
+                variant="extended"
+                onClick={handleUnarchive}
+              >
+                <UnarchiveIcon sx={{ mr: 1 }} />
+                Unarchive List
+              </Fab>
+            ) : owner === username ? (
+              fabForUser(handleShopping)
+            ) : (
+              fabForGuest(handleShopping, shoppingStatus)
+            )}
           </div>
-          <ShowListItems
-            items={items}
-            setItems={setItems}
-            token={token}
-            listID={listID}
-            flagColor={flagColor}
-            scroll={scroll}
-          />
-          {archiveStatus ? (
-            <Fab
-              sx={{ position: "fixed", bottom: 30, right: 30 }}
-              color="secondary"
-              variant="extended"
-              onClick={handleUnarchive}
-            >
-              <UnarchiveIcon sx={{ mr: 1 }} />
-              Unarchive List
-            </Fab>
-          ) : owner === username ? (
-            fabForUser(handleShopping)
-          ) : (
-            fabForGuest(handleShopping, shoppingStatus)
-          )}
         </div>
-      </div>
+      </Paper>
     )
   );
 };

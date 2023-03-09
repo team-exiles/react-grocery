@@ -51,9 +51,17 @@ export const ListDetails = ({ list, token, username }) => {
         </Typography>
         <div className="dot-width" />
         {list.active_shopping ? (
-          <Button color="success" size="small" className="blink">
+          <div
+            style={{
+              color: "green",
+              marginLeft: "10px",
+            }}
+            size="small"
+            className="blink"
+            disabled
+          >
             <strong style={{ fontSize: "15px" }}>Live</strong>
-          </Button>
+          </div>
         ) : null}
       </Button>
     </Link>

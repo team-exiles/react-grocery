@@ -8,7 +8,14 @@ import DeleteItem from "./DeleteItem";
 import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton } from "@mui/material";
 
-export function ShowListItems({ items, setItems, token, listID, scroll }) {
+export function ShowListItems({
+  items,
+  setItems,
+  token,
+  listID,
+  scroll,
+  archiveStatus,
+}) {
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
 
@@ -91,11 +98,16 @@ export function ShowListItems({ items, setItems, token, listID, scroll }) {
                   fontFamily: "Montserrat",
                 }}
               />
-
-              <IconButton onClick={(e) => handleMissing(item.missing, item.id)}>
-                <FlagIcon />
-              </IconButton>
-
+              {archiveStatus ? null : (
+                <>
+                  {" "}
+                  <IconButton
+                    onClick={(e) => handleMissing(item.missing, item.id)}
+                  >
+                    <FlagIcon />
+                  </IconButton>
+                </>
+              )}
               <DeleteItem
                 token={token}
                 deleteItem={deleteItem}

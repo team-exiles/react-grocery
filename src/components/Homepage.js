@@ -80,6 +80,7 @@ export const Homepage = ({ setUser, username, token }) => {
     return (
       <div>
         <Button
+          color={"secondary"}
           fullWidth
           onClick={() => setExpansion(!isExpanded)}
           // size="large"
@@ -117,7 +118,7 @@ export const Homepage = ({ setUser, username, token }) => {
   filterList();
 
   return (
-    <Paper elevation={20} sx={{ height: 900 }}>
+    <Paper elevation={20} sx={{ height: 900, margin: "0 auto" }}>
       <section className="homepage" style={{ margin: "20px" }}>
         <Snackbar
           open={snackBar}
@@ -153,6 +154,7 @@ export const Homepage = ({ setUser, username, token }) => {
               alignSelf: "center",
               backgroundColor: "black",
               borderRadius: "10px",
+              marginLeft: "10px",
             }}
           >
             <IconButton

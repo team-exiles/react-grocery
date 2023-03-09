@@ -9,6 +9,7 @@ import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
 
 import axios from "axios";
 import { useParams } from "react-router";
@@ -75,6 +76,25 @@ export default function InviteLogin({ token, setToken }) {
           boxShadow: "md",
         }}
       >
+        <Box
+          sx={{
+            border: "7px black solid",
+            padding: "5px 15px 10px 15px",
+            display: "flex",
+          }}
+        >
+          <Typography
+            align="left"
+            sx={{
+              fontWeight: "900",
+              fontFamily: "Montserrat",
+              fontSize: "2.9em",
+              textTransform: "uppercase",
+            }}
+          >
+            <strong>Forgot Milk?</strong>
+          </Typography>
+        </Box>
         <div>
           <Typography level="h4" component="h1">
             <b>Welcome!</b>
