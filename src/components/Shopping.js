@@ -26,6 +26,8 @@ export default function Shopping({ token }) {
   const { listID } = useParams();
   const title = location.state?.title;
   const scroll = location.state?.scroll;
+  const owner = location.state?.owner;
+  const username = location.state?.username;
 
   const fetchList = () => {
     return axios.get(
@@ -48,20 +50,22 @@ export default function Shopping({ token }) {
 
   const handleBack = (event) => {
     event.preventDefault();
-    axios
-      .patch(
-        `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
-        { active_shopping: false },
-        {
-          headers: {
-            authorization: `token ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        setItems([]);
-        navigate(-1);
-      });
+    if (owner === username) {
+      axios
+        .patch(
+          `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
+          { active_shopping: false },
+          {
+            headers: {
+              authorization: `token ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          setItems([]);
+        });
+    }
+    navigate(-1);
   };
 
   const handleShopping = () => {
@@ -112,15 +116,19 @@ export default function Shopping({ token }) {
         scroll={scroll}
       />
 
-      <Fab
-        sx={{ position: "fixed", bottom: 30, right: 30 }}
-        color="error"
-        variant="extended"
-        onClick={handleShopping}
-      >
-        <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-        Finish Shopping & Archive
-      </Fab>
+      {owner === username ? (
+        <>
+          <Fab
+            sx={{ position: "fixed", bottom: 30, right: 30 }}
+            color="error"
+            variant="extended"
+            onClick={handleShopping}
+          >
+            <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
+            Finish Shopping & Archive
+          </Fab>
+        </>
+      ) : null}
     </div>
   );
 }

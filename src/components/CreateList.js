@@ -20,6 +20,7 @@ const style = {
   bottom: 35,
   left: "auto",
   position: "fixed",
+  backgroundColor: "black",
 };
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -69,9 +70,9 @@ export default function CreateList({ token }) {
         sx={style}
         // sx={{ position: "absolute", bottom: 40, right: 40 }}
         variant="extended"
-        color="primary"
         onClick={handleClickOpen}
         size="large"
+        color="primary"
       >
         <AddIcon sx={{ mr: 1 }} />
         <strong>New List</strong>

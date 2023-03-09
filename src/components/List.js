@@ -110,6 +110,8 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
           state: {
             title: title,
             id: listID,
+            owner: owner,
+            username: username,
           },
         })
       );
@@ -129,8 +131,9 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
             owner={owner}
           />
         ) : null}
-
-        <DeleteList listID={listID} token={token} title={title} />
+        {owner === username ? (
+          <DeleteList listID={listID} token={token} title={title} />
+        ) : null}
       </>
     );
   };
@@ -198,15 +201,19 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
               archivetatus={archiveStatus}
             />
             {archiveStatus ? (
-              <Fab
-                sx={{ position: "fixed", bottom: 30, right: 30 }}
-                color="secondary"
-                variant="extended"
-                onClick={handleUnarchive}
-              >
-                <UnarchiveIcon sx={{ mr: 1 }} />
-                Unarchive List
-              </Fab>
+              owner === username ? (
+                <>
+                  <Fab
+                    sx={{ position: "fixed", bottom: 30, right: 30 }}
+                    color="secondary"
+                    variant="extended"
+                    onClick={handleUnarchive}
+                  >
+                    <UnarchiveIcon sx={{ mr: 1 }} />
+                    <strong>Unarchive List</strong>
+                  </Fab>
+                </>
+              ) : null
             ) : owner === username ? (
               fabForUser(handleShopping)
             ) : (
@@ -229,7 +236,7 @@ function fabForUser(handleShopping) {
         onClick={handleShopping}
       >
         <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-        GO SHOPPING
+        <strong>GO SHOPPING</strong>
       </Fab>
     </>
   );
@@ -247,7 +254,7 @@ function fabForGuest(handleShopping, shoppingStatus) {
           onClick={handleShopping}
         >
           <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
-          JOIN SHOPPER
+          <strong>JOIN SHOPPER</strong>
         </Fab>
       ) : null}
     </>
