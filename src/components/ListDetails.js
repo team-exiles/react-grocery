@@ -31,7 +31,7 @@ export const ListDetails = ({ list, token, username }) => {
 
           ":hover": {
             bgcolor: "#AF5!important",
-            color: "white !important",
+            //            color: "white !important",
           },
         }}
         variant="outlined"
