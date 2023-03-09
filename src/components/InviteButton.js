@@ -31,7 +31,6 @@ export default function InviteButton({ listID, authID }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log(inviteLink);
   };
 
   const handleClose = () => {

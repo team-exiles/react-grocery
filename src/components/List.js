@@ -109,9 +109,6 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
         navigate(`/shopping/${listID}/`, {
           state: {
             title: title,
-            id: listID,
-            owner: owner,
-            username: username,
           },
         })
       );
@@ -131,9 +128,10 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
             owner={owner}
           />
         ) : null}
-        {owner === username ? (
+        {/* {owner === username ? (
           <DeleteList listID={listID} token={token} title={title} />
-        ) : null}
+        ) : null} */}
+        <DeleteList listID={listID} token={token} title={title} />
       </>
     );
   };
@@ -198,8 +196,12 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
               listID={listID}
               flagColor={flagColor}
               scroll={scroll}
-              archivetatus={archiveStatus}
+              archiveStatus={archiveStatus}
+              owner={owner}
+              username={username}
+              shoppingStatus={shoppingStatus}
             />
+
             {archiveStatus ? (
               owner === username ? (
                 <>
@@ -215,9 +217,25 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
                 </>
               ) : null
             ) : owner === username ? (
-              fabForUser(handleShopping)
+              fabForUser(
+                handleShopping,
+                listID,
+                token,
+                scroll,
+                owner,
+                username,
+                shoppingStatus
+              )
             ) : (
-              fabForGuest(handleShopping, shoppingStatus)
+              fabForGuest(
+                handleShopping,
+                listID,
+                token,
+                scroll,
+                owner,
+                username,
+                shoppingStatus
+              )
             )}
           </div>
         </div>
@@ -226,14 +244,32 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
   );
 };
 
-function fabForUser(handleShopping) {
+function fabForUser(
+  handleShopping,
+  listID,
+  token,
+  scroll,
+  owner,
+  username,
+  shoppingStatus
+) {
   return (
     <>
       <Fab
         sx={style}
         color="success"
         variant="extended"
-        onClick={handleShopping}
+        onClick={() =>
+          handleShopping(
+            handleShopping,
+            listID,
+            token,
+            scroll,
+            owner,
+            username,
+            shoppingStatus
+          )
+        }
       >
         <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
         <strong>GO SHOPPING</strong>
@@ -242,7 +278,10 @@ function fabForUser(handleShopping) {
   );
 }
 
-function fabForGuest(handleShopping, shoppingStatus) {
+function fabForGuest(
+  handleShopping,
+  { listID, token, scroll, owner, username, shoppingStatus }
+) {
   return (
     <>
       {shoppingStatus ? (
@@ -251,7 +290,16 @@ function fabForGuest(handleShopping, shoppingStatus) {
           sx={style}
           color="success"
           variant="extended"
-          onClick={handleShopping}
+          onClick={() =>
+            handleShopping(
+              listID,
+              token,
+              scroll,
+              owner,
+              username,
+              shoppingStatus
+            )
+          }
         >
           <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
           <strong>JOIN SHOPPER</strong>

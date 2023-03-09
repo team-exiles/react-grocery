@@ -15,7 +15,11 @@ export function ShowListItems({
   listID,
   scroll,
   archiveStatus,
+  owner,
+  username,
+  shoppingStatus,
 }) {
+  // console.log(shoppingStatus);
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
 
@@ -98,7 +102,7 @@ export function ShowListItems({
                   fontFamily: "Montserrat",
                 }}
               />
-              {archiveStatus ? null : (
+              {archiveStatus || owner !== username ? null : (
                 <>
                   {" "}
                   <IconButton
