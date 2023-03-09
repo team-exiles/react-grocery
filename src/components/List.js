@@ -114,8 +114,6 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
       );
   };
 
-<<<<<<< HEAD
-=======
   const titleBarButtons = (guests) => {
     return (
       <>
@@ -135,7 +133,6 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
       </>
     );
   };
->>>>>>> b14d54b74d7a0a593029675771519b2184a924bd
 
   return (
     items && (

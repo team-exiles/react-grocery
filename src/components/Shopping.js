@@ -60,8 +60,8 @@ export default function Shopping({ token }) {
       )
       .then((res) => {
         setItems([]);
-        navigate(-1);
       });
+      navigate(-1);
   };
 
   const handleShopping = () => {
