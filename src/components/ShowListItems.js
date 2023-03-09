@@ -7,6 +7,7 @@ import Divider from "@mui/material/Divider";
 import DeleteItem from "./DeleteItem";
 import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton } from "@mui/material";
+import { useLocation } from "react-router";
 
 export function ShowListItems({
   items,
@@ -19,7 +20,16 @@ export function ShowListItems({
   username,
   shoppingStatus,
 }) {
-  // console.log(shoppingStatus);
+  const location = useLocation();
+
+  //console.log(shoppingStatus);
+  if (owner === undefined) {
+    const owner = location.state?.owner;
+  }
+  if (username === undefined) {
+    const username = location.state?.username;
+  }
+
   const handleClick = (item) => {
     const newCheckBox = !item.check_box;
 
@@ -102,7 +112,7 @@ export function ShowListItems({
                   fontFamily: "Montserrat",
                 }}
               />
-              {archiveStatus || owner !== username ? null : (
+              {archiveStatus ? null : (
                 <>
                   {" "}
                   <IconButton

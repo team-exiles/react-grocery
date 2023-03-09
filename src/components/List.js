@@ -47,6 +47,9 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
     setUsername(location.state?.username);
   }
 
+  console.log(username);
+  console.log(owner);
+
   useEffect(() => {
     axios
       .get(`https://safe-plains-62725.herokuapp.com/lists/${listID}/`, {
@@ -95,8 +98,8 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
   };
 
   const handleShopping = () => {
-    axios
-      .patch(
+    if (owner === username) {
+      axios.patch(
         `https://safe-plains-62725.herokuapp.com/lists/${listID}/`,
         { active_shopping: true },
         {
@@ -104,14 +107,15 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
             authorization: `token ${token}`,
           },
         }
-      )
-      .then(
-        navigate(`/shopping/${listID}/`, {
-          state: {
-            title: title,
-          },
-        })
       );
+    }
+    navigate(`/shopping/${listID}/`, {
+      state: {
+        title: title,
+        owner: owner,
+        username: username,
+      },
+    });
   };
 
   const titleBarButtons = (guests) => {
@@ -280,8 +284,14 @@ function fabForUser(
 
 function fabForGuest(
   handleShopping,
-  { listID, token, scroll, owner, username, shoppingStatus }
+  listID,
+  token,
+  scroll,
+  owner,
+  username,
+  shoppingStatus
 ) {
+  console.log("fabforguest");
   return (
     <>
       {shoppingStatus ? (

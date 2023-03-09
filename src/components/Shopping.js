@@ -25,12 +25,11 @@ export default function Shopping({ token }) {
 
   const { listID } = useParams();
   const title = location.state?.title;
-  console.log(title);
-  const scroll = location.state?.scroll;
   const owner = location.state?.owner;
   const username = location.state?.username;
 
   console.log(owner);
+  console.log(username);
 
   const fetchList = () => {
     return axios.get(
@@ -110,12 +109,12 @@ export default function Shopping({ token }) {
             textTransform: "uppercase",
           }}
         >
-          {data.data.title}
+          {title}
         </Typography>
-        {/* {owner === username ? (
+        {owner === username ? (
           <DeleteList listID={listID} token={token} title={data.data.title} />
-        ) : null} */}
-        <DeleteList listID={listID} token={token} title={data.data.title} />
+        ) : null}
+        {/* <DeleteList listID={listID} token={token} title={data.data.title} /> */}
       </Stack>
       <SendItems
         items={data.data.listForItems}
@@ -128,13 +127,12 @@ export default function Shopping({ token }) {
         setItems={setItems}
         token={token}
         listID={listID}
-        scroll={scroll}
-        // owner={owner}
-        // username={username}
-        // shoppingStatus={shoppingStatus}
+        owner={owner}
+        username={username}
+        shoppingStatus={data.data.shopping}
       />
 
-      <>
+      {/* <>
         <Fab
           sx={{ position: "fixed", bottom: 30, right: 30 }}
           color="error"
@@ -144,9 +142,9 @@ export default function Shopping({ token }) {
           <ShoppingCartCheckoutIcon sx={{ mr: 1 }} />
           Finish Shopping & Archive
         </Fab>
-      </>
+      </> */}
 
-      {/* {owner === username ? (
+      {owner === username ? (
         <>
           <Fab
             sx={{ position: "fixed", bottom: 30, right: 30 }}
@@ -158,7 +156,7 @@ export default function Shopping({ token }) {
             Finish Shopping & Archive
           </Fab>
         </>
-      ) : null} */}
+      ) : null}
     </div>
   );
 }

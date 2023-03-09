@@ -14,7 +14,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
 import MuiAlert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
@@ -31,24 +30,6 @@ export const Homepage = ({ setUser, username, token }) => {
 
   let active = [];
   let archived = [];
-
-  //console.log(username);
-
-  // const fetchList = () => {
-  //   return axios.get(`https://safe-plains-62725.herokuapp.com/lists/me/`, {
-  //     headers: {
-  //       authorization: `token ${token}`,
-  //     },
-  //   });
-  // };
-
-  // const { isLoading, data } = useQuery("listInfo", fetchList, {
-  //   refetchInterval: 2000,
-  // });
-
-  // if (isLoading) {
-  //   return <h2>Loading...</h2>;
-  // }
 
   //Loods data into useState to prop drill
   useEffect(() => {
@@ -74,8 +55,6 @@ export const Homepage = ({ setUser, username, token }) => {
 
   function ExpandedArchived() {
     const [isExpanded, setExpansion] = useState(false);
-
-    //const arrowLeft = (endIcon={<ExpandCircleDownIcon sx={{ fontSize: "larger" }} />}) : (endIcon={<ExpandedCircleDownIcon/>)}}
 
     return (
       <div>
