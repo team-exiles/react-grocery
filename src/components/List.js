@@ -195,7 +195,7 @@ export const EditList = ({ token, username, setToken, setUsername }) => {
               listID={listID}
               flagColor={flagColor}
               scroll={scroll}
-              archiveStatus={archiveStatus}
+              archivetatus={archiveStatus}
             />
             {archiveStatus ? (
               <Fab

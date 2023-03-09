@@ -7,12 +7,12 @@ import { Stack } from "@mui/material";
 export function SendItems({ items, setItems, token, listID, scroll }) {
   const [textInput, setTextInput] = useState("");
   const [addedItem, setAddedItem] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [disableState, setDisableState] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (addedItem.trim() === "") {
-      alert("Enter valid message");
-      return;
     }
     axios
       .post(
@@ -37,36 +37,39 @@ export function SendItems({ items, setItems, token, listID, scroll }) {
 
   const handleText = (e) => {
     e.preventDefault();
+
     setTextInput(e.target.value);
     setAddedItem(e.target.value);
   };
 
   return (
-    <div className="item-entry">
-      <form className="send-item-input">
-        <label htmlFor="messageInput" hidden>
-          Enter Item
-        </label>
-        <Stack
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
-          <TextField
-            size="small"
-            required
-            id="list"
-            label="Add Item"
-            onChange={handleText}
-            value={textInput}
-            autoFocus
-            autoComplete="off"
-          />
-          <Button type="submit" variant="contained" onClick={handleSubmit}>
-            Add
-          </Button>
-        </Stack>
-      </form>
+    <div>
+      <div className="item-entry">
+        <form className="send-item-input">
+          <label htmlFor="messageInput" hidden>
+            Enter Item
+          </label>
+          <Stack
+            direction="row"
+            justifyContent="space-evenly"
+            alignItems="center"
+          >
+            <TextField
+              size="small"
+              required
+              id="list"
+              label="Add Item"
+              onChange={handleText}
+              value={textInput}
+              autoFocus
+              autoComplete="off"
+            />
+            <Button type="submit" variant="contained" onClick={handleSubmit}>
+              Add
+            </Button>
+          </Stack>
+        </form>
+      </div>
     </div>
   );
 }

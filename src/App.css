@@ -357,3 +357,8 @@
   background-color: rgb(218, 55, 117) !important;
   color: white !important;
 }
+
+.wrap {
+  overflow: visible;
+  height: 100%;
+}
