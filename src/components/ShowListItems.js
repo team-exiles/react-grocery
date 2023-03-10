@@ -89,7 +89,7 @@ export function ShowListItems({
 
   return (
     <div className="list-container scrollinvis">
-      {/* <List className="scrollinvis">
+      <List className="scrollinvis">
         {items.map((item) => (
           <div key={item.id}>
             <Divider />
@@ -132,7 +132,7 @@ export function ShowListItems({
           </div>
         ))}
         <ListItem sx={{ height: "60px" }} ref={scroll}></ListItem>
-      </List> */}
+      </List>
     </div>
   );
 }
