@@ -112,7 +112,7 @@ export function ShowListItems({
                   fontFamily: "Montserrat",
                 }}
               />
-              {archiveStatus ? null : (
+              {archiveStatus || shoppingStatus === false ? null : (
                 <>
                   {" "}
                   <IconButton
